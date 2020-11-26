@@ -1,14 +1,6 @@
+const db = require('./db')
+const { User, Event } = require('./models') // @anton will be working User model and @dmitry will be working on Event model
 
-const express = require('express')
-const app = express()
-const path = require('path')
+// assosciations below:
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, './public')))
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'))
-})
-
-module.exports = app
+module.exports = { User, Event }
