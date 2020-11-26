@@ -1,4 +1,5 @@
 
 node_modules
-server/public/bundle.js
 .DS_Storecd
+dist/main.js
+package-lock.json
