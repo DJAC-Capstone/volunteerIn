@@ -2,26 +2,26 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 
-const Event = db.define('event', {
+const Events = db.define('events', {
     title: {
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
     },
-    Type: {
+    type: {
         type: Sequelize.STRING,
-        allowNull: false
+        // allowNull: false
     },
-    Date: {
+    date: {
         type: Sequelize.DATE,
-        allowNull: false
+        // allowNull: false
     },
     Time: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        // allowNull: false
     },
     duration: {
         type: Sequelize.DATE,
-        allowNull: false
+        // allowNull: false
     },
     description: {
         type: Sequelize.TEXT
@@ -32,18 +32,18 @@ const Event = db.define('event', {
     address: {
         type: Sequelize.STRING
     },
-    sity: {
+    city: {
         type: Sequelize.STRING
     },
     state: {
         type: Sequelize.STRING
     },
-    Comments: {
+    comments: {
         type: Sequelize.STRING
     },
-    Donation: {
+    donation: {
         type: Sequelize.STRING
     }
 })
 
-module.exports = Event
+module.exports = Events

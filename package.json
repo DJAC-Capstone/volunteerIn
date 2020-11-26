@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "npm run build-watch & npm run start-server",
     "start-server": "nodemon main.js -e html,js,css --ignore public",
-    "build-watch": "webpack -w --mode=\"development\""
+    "build-watch": "webpack -w --mode=\"development\"",
+    "seed": "node seed.js"
   },
   "repository": {
     "type": "git",
@@ -29,8 +30,10 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.6",
     "path": "^0.12.7",
+    "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "sequelize": "^6.3.5",
     "webpack": "^5.6.0"
   },
   "devDependencies": {
