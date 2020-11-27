@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Event } = require('../db').models;
+const { Event } = require('../db');
 //load event
 
 router.get('/:id', async (req, res, next) => {
