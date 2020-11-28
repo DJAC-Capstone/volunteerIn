@@ -3,3 +3,5 @@ node_modules
 .DS_Storecd
 dist/main.js
 package-lock.json
+bundle.js
+bundle.js.map
