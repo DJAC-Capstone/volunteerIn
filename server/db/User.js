@@ -1,9 +1,6 @@
 const Sequelize = require('sequelize');
 
-const {
-  STRING, BOOLEAN, INTEGER, DATE,
-} = Sequelize;
-const bcrypt = require('bcrypt');
+const { STRING, INTEGER, DATE } = Sequelize;
 const db = require('./db');
 
 const User = db.define('user', {
@@ -61,9 +58,7 @@ const User = db.define('user', {
     validate: {
       notEmpty: true,
     },
-
   },
-
 });
 
 module.exports = User;
