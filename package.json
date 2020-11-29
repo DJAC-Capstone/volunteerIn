@@ -9,7 +9,8 @@
     "start-server": "nodemon main.js -e html,js,css --ignore public",
     "build-watch": "webpack -w --mode=\"development\"",
     "seed": "node seed.js",
-    "lint": "eslint --ext .js,.jsx src server/index.js server/db server/API server/routes "
+    "lint": "eslint --ext .js,.jsx src server/index.js server/db server/API server/routes ",
+    "build": "webpack --mode=\"production\""
   },
   "repository": {
     "type": "git",
