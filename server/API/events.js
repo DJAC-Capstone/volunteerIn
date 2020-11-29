@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Event } = require('../db');
-//load event
+// load event
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -16,23 +16,19 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-
-//sign up for the event
+// sign up for the event
 router.put('/:id', async (req, res, next) => {
-    
+  try {
+    const signupEvent = await Event.findByPk(req.params.id);
+    console.log(req.body);
 
-    try{
-      const signupEvent = await Event.findByPk(req.params.id);
-      console.log(req.body)
-     
-      await signupEvent.update(req.body)
-      res.send()
+    await signupEvent.update(req.body);
+    res.send();
+  } catch (ex) {
+    next(ex);
   }
-  catch(ex){
-      next(ex)
-  }
-  });
-//create event
+});
+// create event
 router.post('/', async (req, res, next) => {
   try {
     console.log(req.body);

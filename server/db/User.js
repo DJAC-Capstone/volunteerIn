@@ -1,7 +1,10 @@
 const Sequelize = require('sequelize');
-const { STRING, BOOLEAN, INTEGER ,DATE} = Sequelize;
-const db = require('./db');
+
+const {
+  STRING, BOOLEAN, INTEGER, DATE,
+} = Sequelize;
 const bcrypt = require('bcrypt');
+const db = require('./db');
 
 const User = db.define('user', {
   first_name: {
@@ -39,7 +42,7 @@ const User = db.define('user', {
   date_of_birth: {
     type: DATE,
     allowNull: false,
-   // defaultValue: NOW
+    // defaultValue: NOW
   },
 
   phone: {
@@ -51,16 +54,15 @@ const User = db.define('user', {
     },
   },
 
-    password: {
+  password: {
     type: STRING,
     allowNull: false,
     defaultValue: 'none',
     validate: {
       notEmpty: true,
     },
-    
-  },
 
+  },
 
 });
 

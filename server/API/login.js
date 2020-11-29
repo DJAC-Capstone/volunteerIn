@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
         },
         include: [Session],
       });
-      
+
       if (password !== foundUser.password) {
         throw new Error('Mismatched password!');
       }
