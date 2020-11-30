@@ -25,6 +25,7 @@
   "dependencies": {
     "@babel/core": "^7.12.9",
     "@babel/preset-react": "^7.12.7",
+    "axios": "^0.21.0",
     "babel-loader": "^8.2.1",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
@@ -41,6 +42,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sequelize": "^6.3.5",
+    "volleyball": "^1.5.1",
     "webpack": "^5.6.0"
   },
   "devDependencies": {

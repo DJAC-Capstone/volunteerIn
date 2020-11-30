@@ -4,9 +4,21 @@ const app = express();
 const morgan = require('morgan');
 const path = require('path');
 const chalk = require('chalk');
+const volleyball = require('volleyball');
+const authMiddleware = require('./middleware/auth');
+const cookieParser = require('cookie-parser');
+//logging middleware
+app.use(volleyball);
+
+//body pasing middleware
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(authMiddleware);
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use('/api', require('./api'));
 
 app.use(express.static(path.join(__dirname, '/public')));
 app.get('*', (req, res) => {

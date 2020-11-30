@@ -80,7 +80,7 @@ const seed = async () => {
   try {
     await db.sync({ force: true });
     await Promise.all(events.map((event) => Events.create({...event})))
-    // await Promise.all(users.map((user) => User.create({...user})));
+     await Promise.all(users.map((user) => User.create({...user})));
   } catch (err) {
     console.log(red(err));
   }

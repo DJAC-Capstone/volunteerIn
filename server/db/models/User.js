@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const { STRING, INTEGER, DATE } = Sequelize;
-const db = require('./db');
+const db = require('../db');
 
 const User = db.define('user', {
   first_name: {
@@ -42,14 +42,23 @@ const User = db.define('user', {
     // defaultValue: NOW
   },
 
+  // phone: {
+  //   type: INTEGER,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //     //isNumeric: true,
+  //   },
+  // },
   phone: {
-    type: INTEGER,
+    type: STRING,
     allowNull: false,
+    defaultValue: 'none',
     validate: {
       notEmpty: true,
-      isNumeric: true,
     },
   },
+
 
   password: {
     type: STRING,
