@@ -39,22 +39,8 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-  // try {
-  //   const followedUser = await User.findOne(req.params.id);
-  //   if (!followedUser) {
-  //     const error = new Error('USER NOT FOUND');
-  //     error.status = 404;
-  //     throw error;
-  //   }
-  //   res.status(200).send(singleUser);
-  // } catch (err) {
-  //   next(err);
-  // }
-
   try {
     const followedUser = await User.findByPk(req.params.id);
-    console.log(req.body);
-
     await followedUser.update(req.body);
     res.send();
   } catch (ex) {
@@ -64,7 +50,6 @@ router.put('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body);
     const newUser = await User.create(req.body.user);
     res.status(201).send(newUser);
   } catch (err) {
