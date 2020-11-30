@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
-const { STRING, BOOLEAN, INTEGER ,DATE,TIME} = Sequelize;
+
+const {
+  STRING, INTEGER, DATE, TIME,
+} = Sequelize;
 const db = require('./db');
-const bcrypt = require('bcrypt');
 
 const Event = db.define('event', {
- 
   title: {
     type: STRING,
     allowNull: false,
@@ -23,12 +24,13 @@ const Event = db.define('event', {
   date: {
     type: DATE,
     allowNull: false,
-   // defaultValue: NOW
+    // defaultValue: NOW
   },
-  time: {                //IM NOT SURE ABOUT THIS ONE!!!
+  time: {
+    // IM NOT SURE ABOUT THIS ONE!!!
     type: TIME,
     allowNull: false,
-   // defaultValue: NOW
+    // defaultValue: NOW
   },
 
   duration: {
@@ -47,7 +49,7 @@ const Event = db.define('event', {
     },
   },
 
-   city: {
+  city: {
     type: STRING,
     allowNull: false,
     validate: {
@@ -84,9 +86,6 @@ const Event = db.define('event', {
       notEmpty: true,
     },
   },
-    
-
-
 });
 
 module.exports = Event;

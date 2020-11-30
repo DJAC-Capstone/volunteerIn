@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
         },
         include: [Session],
       });
-      
+
       if (password !== foundUser.password) {
         throw new Error('Mismatched password!');
       }
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.delete('/logout', async (req, res, next) => {
+router.delete('/logout', async (req, res) => {
   try {
     await Session.destroy({ where: { uuid: req.cookies.sid } });
     req.user = null;

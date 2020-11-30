@@ -1,4 +1,5 @@
-const Sequelize = require('sequelize')
-const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/volunteerIn', {logging: false})
+const Sequelize = require('sequelize');
 
-module.exports = db
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/volunteerIn', { logging: false });
+
+module.exports = db;

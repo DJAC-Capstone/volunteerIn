@@ -1,11 +1,11 @@
 const router = require('express').Router();
 const { User } = require('../db');
 
-router.get('/',  async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: {
-        exclude: ['password','phone'],
+        exclude: ['password', 'phone'],
       },
     });
     res.send(users);
@@ -39,29 +39,28 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 router.put('/:id', async (req, res, next) => {
-    // try {
-    //   const followedUser = await User.findOne(req.params.id);
-    //   if (!followedUser) {
-    //     const error = new Error('USER NOT FOUND');
-    //     error.status = 404;
-    //     throw error;
-    //   }
-    //   res.status(200).send(singleUser);
-    // } catch (err) {
-    //   next(err);
-    // }
+  // try {
+  //   const followedUser = await User.findOne(req.params.id);
+  //   if (!followedUser) {
+  //     const error = new Error('USER NOT FOUND');
+  //     error.status = 404;
+  //     throw error;
+  //   }
+  //   res.status(200).send(singleUser);
+  // } catch (err) {
+  //   next(err);
+  // }
 
-    try{
-      const followedUser = await User.findByPk(req.params.id);
-      console.log(req.body)
-     
-      await followedUser.update(req.body)
-      res.send()
+  try {
+    const followedUser = await User.findByPk(req.params.id);
+    console.log(req.body);
+
+    await followedUser.update(req.body);
+    res.send();
+  } catch (ex) {
+    next(ex);
   }
-  catch(ex){
-      next(ex)
-  }
-  });
+});
 
 router.post('/', async (req, res, next) => {
   try {
