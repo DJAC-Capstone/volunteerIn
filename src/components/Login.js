@@ -1,11 +1,4 @@
 import React, { Component } from 'react';
-
-export default class Login extends Component {
-	render() {
-		return <div>This will be the login page :)</div>;
-	}
-}
-import React, { Component } from 'react';
 import userStyles from '../Utils/userStyles';
 
 export default class Login extends Component {
