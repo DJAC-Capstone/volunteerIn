@@ -8,9 +8,9 @@ export default class App extends Component {
 			<Router>
 				<Route render={() => <NavBar />} />
 				<Route path="/login" exact component={Login} />
-				<Route path="/">
+				{/* <Route path="/">
 					<Redirect to="/home" />
-				</Route>
+				</Route> */}
 				<Route path="/home" exact component={Home} />
 				<Route exact path="/events" exact component={Events} />
 				<Route path="/register" exact component={Register} />
