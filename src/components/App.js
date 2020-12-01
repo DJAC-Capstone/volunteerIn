@@ -9,7 +9,6 @@ export default class App extends Component {
     return (
       <Router>
         <Route render={() => <NavBar />} />
-        {/* <Route path = "/events" exact component = {Events} /> */}
         <Route path="/login" exact component={Login} />
         {/* <Route path = "/">
           <Redirect to = "/home"/>
