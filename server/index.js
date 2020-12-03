@@ -1,4 +1,6 @@
 const express = require('express');
+const socketIo = require('socket.io');
+const socketServer = require('./socketServer');
 
 const app = express();
 const morgan = require('morgan');
@@ -27,18 +29,10 @@ app.use((err, req, res) => {
   res.send(`Internal Server Error: ${err.message}`);
 });
 
-async function startServer() {
-  try {
-    // console.log(chalk.green('Database is syncing'))
-    // await db.sync()
-    const PORT = process.env.PORT || 3030;
-    await app.listen(PORT, () => {
-      console.log(chalk.green(`Listening on port: ${PORT}`));
-    });
-  } catch (e) {
-    console.log(chalk.red('Failed to start server'));
-    console.error(e);
-  }
-}
+const PORT = process.env.PORT || 3030;
+const server = app.listen(PORT, () => {
+  console.log(chalk.green(`Listening on port: ${PORT}`));
+});
 
-startServer();
+const Io = socketIo(server);
+socketServer(Io);

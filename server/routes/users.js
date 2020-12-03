@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../db');
+const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -16,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleUser = await User.findByPk(req.params.id);
+    const singleUser = await User.findByPk(req.params.id, { include: [Events] });
     if (!singleUser) {
       const error = new Error('USER NOT FOUND');
       error.status = 404;
