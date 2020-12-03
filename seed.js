@@ -223,6 +223,7 @@ const seed = async () => {
     for (let i = 0; i < 20; i++ ) {
       await createdEvents[i].setUsers(createdUsers[Math.floor(Math.random() * 50)]);
     }
+
   } catch (err) {
     console.log(red(err));
   }
