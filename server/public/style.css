@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar {
+    width: 1280px;
+    display: flex;
+}
+
+.active > a {
+    text-align: center;
+}
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 35px;
+    
+}
+
+.user-post-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 400px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px grey;
+}
+
+.user-post-container input{
+    text-align: center;
+    font-size: large;
+    
+}
+
+.other-type-of-posts-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* -------- */
+
+.other-users-post-container {
+    padding-top: 50px;
+}
+
+.profile-pic-and-name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+
+.profile-pic-and-name-container img{
+    max-height: 100px;
+    max-width: 100px;
+    border: solid 1px black;
+    border-radius: 50%;
+}
+
+.profile-pic-and-name-container div {
+    padding: 10px;
+    /* height: 300px;
+    width: 300px; */
+}
+
+.other-users-post-text .full-name {
+    font-weight: 900;
+    font-size: 20px;
+    height: 20px;
+    width: 400px;
+}
+
+.other-users-post-text .user-thoughts {
+
+    height: 200px;
+    width: 400px;
+}
