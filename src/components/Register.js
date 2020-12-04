@@ -74,7 +74,7 @@ class Register extends Component {
 
 export default connect(
   ({ user }) => ({
-    user: user.user,
+    user: user,
   }),
   (dispatch) => ({
     signUp: (infoObject) => dispatch(signUp(infoObject)),
