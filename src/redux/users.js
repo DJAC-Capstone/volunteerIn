@@ -6,8 +6,7 @@ const SET_SINGLE_USER = 'SET_SINGLEUSER';
 const CREATE_USER = 'CREATE_USER';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
-const ADD_EVENT ='ADD_EVENT';
-const ADD_FRIEND ='ADD_FRIEND';
+
 
 
 
@@ -39,19 +38,9 @@ const _deleteUser = (id) => {
   };
 };
 
-const _addEvent = (event) =>{
-    return{
-        type:ADD_EVENT,
-        event,
-    };
-};
 
-const _addFriend = (user) =>{
-    return{
-        type:ADD_FRIEND,
-        user,
-    };
-};
+
+
 
 ///////THUNK CREATORS////////
 
@@ -85,6 +74,9 @@ export const updateUser = ({ user, id }) => {
   }
 };
 
+
+
+
 export const deleteUser = ({ id, history }) => {
   try {
     return async (dispatch) => {
@@ -115,11 +107,6 @@ export default function usersReducer(state = [], action) {
   if (action.type === DELETE_USER) {
     return state.filter((user) => user.id !== action.user.id);
   }
-  if(action.type===ADD_EVENT){
-      return [...state,action.event];
-  }
-  if(action.type===ADD_FRIEND){
-    return [...state,action.user];
-}
+
   return state;
 }
