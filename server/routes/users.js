@@ -4,11 +4,7 @@ const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: {
-        exclude: ['password', 'phone'],
-      },
-    });
+    const users = await User.findAll();
     res.send(users);
   } catch (err) {
     next(err);
@@ -49,9 +45,9 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/create', async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body.user);
+    const newUser = await User.create({...req.body});
     res.status(201).send(newUser);
   } catch (err) {
     next(err);
