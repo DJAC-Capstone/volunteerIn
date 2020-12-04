@@ -1,13 +1,10 @@
 const router = require('express').Router();
 const { User } = require('../db');
+const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: {
-        exclude: ['password', 'phone'],
-      },
-    });
+    const users = await User.findAll();
     res.send(users);
   } catch (err) {
     next(err);
@@ -16,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const singleUser = await User.findByPk(req.params.id);
+    const singleUser = await User.findByPk(req.params.id, { include: [Events] });
     if (!singleUser) {
       const error = new Error('USER NOT FOUND');
       error.status = 404;
@@ -48,9 +45,9 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/create', async (req, res, next) => {
   try {
-    const newUser = await User.create(req.body.user);
+    const newUser = await User.create({...req.body});
     res.status(201).send(newUser);
   } catch (err) {
     next(err);

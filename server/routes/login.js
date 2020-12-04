@@ -1,78 +1,25 @@
-const router = require('express').Router();
-const { User, Session } = require('../db');
+const router = require('express').Router()
+const { User } = require('../db');
 
-const A_WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
-
-router.post('/login', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    if (typeof username !== 'string' || typeof password !== 'string') {
-      res.status(400).send({
-        message: 'Username and password must both be strings.',
-      });
-    } else {
-      const foundUser = await User.findOne({
-        where: {
-          username,
-        },
-        include: [Session],
-      });
-
-      if (password !== foundUser.password) {
-        throw new Error('Mismatched password!');
-      }
-
-      if (foundUser) {
-        if (foundUser.session) {
-          res.cookie('sid', foundUser.session.uuid, {
-            maxAge: A_WEEK_IN_SECONDS,
-            path: '/',
-          });
-          res.sendStatus(200);
-        } else {
-          const createdSession = await Session.create({});
-          await createdSession.setUser(foundUser);
-
-          res.cookie('sid', createdSession.uuid, {
-            maxAge: A_WEEK_IN_SECONDS,
-            path: '/',
-          });
-          res.sendStatus(201);
+router.post('/', async (req, res, next) => {
+    try {
+    const { email, password } = req.body;
+    const user = await User.findOne({where: { email }})
+    if (user) {
+        if (password === user.password) {
+            res.send(user)
         }
-      } else {
-        res.sendStatus(404);
-      }
+        else {
+            res.sendStatus(401).send('username or password is incorrect');
+        }
     }
-  } catch (e) {
-    console.log('Error while logging user in.');
-    console.error(e);
-    res.status(500).send({
-      message: e.message,
-    });
-  }
-});
-
-router.delete('/logout', async (req, res) => {
-  try {
-    await Session.destroy({ where: { uuid: req.cookies.sid } });
-    req.user = null;
-    res.redirect('/');
-  } catch (ex) {
-    console.log('Please login first before you logout');
-  }
-});
-
-router.get('/whoami', async (req, res, next) => {
-  try {
-    if (req.user) {
-      res.send(req.user);
-    } else {
-      res.sendStatus(401);
+    else {
+        res.sendStatus(401).send('username or password is incorrect');
     }
-  } catch (err) {
-    next(err);
-  }
-});
+}
+catch (err) {
+    next(err)
+}
+})
 
 module.exports = router;

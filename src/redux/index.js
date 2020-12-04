@@ -1,3 +1,4 @@
+
 import { combineReducers } from 'redux';
 import usersReducer from './users';
 import eventsReducer from './events'
@@ -8,3 +9,4 @@ const reducer = combineReducers({
 });
 
 export default reducer;
+

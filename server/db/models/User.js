@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-
-const { STRING, INTEGER, DATE } = Sequelize;
-
+const {
+  STRING, DATE, ARRAY,
+} = Sequelize;
 
 const db = require('../db');
 
@@ -12,7 +12,7 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isAlpha: true,
+      // isAlpha: true,
     },
   },
   last_name: {
@@ -20,7 +20,7 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      isAlpha: true,
+      // isAlpha: true,
     },
   },
   email: {
@@ -28,23 +28,24 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       isEmail: true,
-      notEmpty: true,
+      // notEmpty: true,
     },
   },
-
+  frineds: {
+    type: ARRAY(Sequelize.INTEGER),
+  },
   gender: {
     type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
   date_of_birth: {
     type: DATE,
-    allowNull: false,
+    // allowNull: false,
     // defaultValue: NOW
   },
-
 
   // phone: {
   //   type: INTEGER,
@@ -63,17 +64,14 @@ const User = db.define('user', {
     },
   },
 
-
-
-//   phone: {
-//     type: STRING,
-//     allowNull: false,
-//     validate: {
-//       notEmpty: true,
-//       // isNumeric: true,
-//     },
-//   },
-
+  //   phone: {
+  //     type: STRING,
+  //     allowNull: false,
+  //     validate: {
+  //       notEmpty: true,
+  //       // isNumeric: true,
+  //     },
+  //   },
 
   password: {
     type: STRING,
