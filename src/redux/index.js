@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 import usersReducer from './users';
+import eventsReducer from './events'
 
-
-
-
-const appReducer = combineReducers({
-  user: usersReducer,
-
+const reducer = combineReducers({
+  users: usersReducer,
+  events: eventsReducer,
 });
-export default appReducer;
+
+export default reducer;

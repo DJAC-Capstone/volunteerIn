@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Home extends Component {
+
+import  { getEvents } from '../redux/events'
+export class Home extends Component {
+  constructor() {
+    super()
+    this.state = {
+      events: []
+    }
+  }
+
+  async componentDidMount() {
+    
+    await this.props.fetchEvents()
+    this.setState({
+      events: this.props.events
+    });
+  }
+  
   render() {
-    // return <div>This will be the home page :)</div>;
     return (
       <div className="main-container">
         <div className="user-post-container">
@@ -43,11 +60,22 @@ export default class Home extends Component {
             </div>
           </div>
         </div>
-
-
       </div>
-
-      
     )
   }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    events: state.events,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchEvents: () => dispatch(getEvents()),
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
