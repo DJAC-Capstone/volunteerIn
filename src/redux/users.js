@@ -1,66 +1,49 @@
 import axios from 'axios';
 
-////////ACTION TYPES//////////
+/// /////ACTION TYPES//////////
 
 const SET_SINGLE_USER = 'SET_SINGLEUSER';
 const CREATE_USER = 'CREATE_USER';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
-const ADD_EVENT ='ADD_EVENT';
-const ADD_FRIEND ='ADD_FRIEND';
+const ADD_EVENT = 'ADD_EVENT';
+const ADD_FRIEND = 'ADD_FRIEND';
 
+const _setSingleUser = (user) => ({
+  type: SET_SINGLE_USER,
+  user,
+});
 
+const _createUser = (user) => ({
+  type: CREATE_USER,
+  user,
+});
 
-const _setSingleUser = (user) => {
-  return {
-    type: SET_SINGLE_USER,
-    user,
-  };
-};
+const _updateUser = (user) => ({
+  type: UPDATE_USER,
+  user,
+});
 
-const _createUser = (user) => {
-  return {
-    type: CREATE_USER,
-    user,
-  };
-};
+const _deleteUser = (id) => ({
+  type: DELETE_USER,
+  id,
+});
 
-const _updateUser = (user) => {
-  return {
-    type: UPDATE_USER,
-    user,
-  };
-};
+const _addEvent = (event) => ({
+  type: ADD_EVENT,
+  event,
+});
 
-const _deleteUser = (id) => {
-  return {
-    type: DELETE_USER,
-    id,
-  };
-};
+const _addFriend = (user) => ({
+  type: ADD_FRIEND,
+  user,
+});
 
-const _addEvent = (event) =>{
-    return{
-        type:ADD_EVENT,
-        event,
-    };
-};
+/// ////THUNK CREATORS////////
 
-const _addFriend = (user) =>{
-    return{
-        type:ADD_FRIEND,
-        user,
-    };
-};
-
-///////THUNK CREATORS////////
-
-
-export const setSingleUser = () => {
-  return async (dispatch) => {
-    const { data } = await axios.get('/api/auth/whoami');
-    dispatch(_setSingleUser(data));
-  };
+export const setSingleUser = () => async (dispatch) => {
+  const { data } = await axios.get('/api/auth/whoami');
+  dispatch(_setSingleUser(data));
 };
 
 export const createUser = (user) => {
@@ -97,10 +80,9 @@ export const deleteUser = ({ id, history }) => {
   }
 };
 
-////////USERS REDUCER//////////
+/// /////USERS REDUCER//////////
 
 export default function usersReducer(state = [], action) {
-
   if (action.type === SET_SINGLE_USER) {
     return action.user;
   }
@@ -108,18 +90,16 @@ export default function usersReducer(state = [], action) {
     return [...state, action.user];
   }
   if (action.type === UPDATE_USER) {
-    return state.map((user) =>
-      user.id === action.user.id ? action.user : user
-    );
+    return state.map((user) => (user.id === action.user.id ? action.user : user));
   }
   if (action.type === DELETE_USER) {
     return state.filter((user) => user.id !== action.user.id);
   }
-  if(action.type===ADD_EVENT){
-      return [...state,action.event];
+  if (action.type === ADD_EVENT) {
+    return [...state, action.event];
   }
-  if(action.type===ADD_FRIEND){
-    return [...state,action.user];
-}
+  if (action.type === ADD_FRIEND) {
+    return [...state, action.user];
+  }
   return state;
 }

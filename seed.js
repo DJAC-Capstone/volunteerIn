@@ -218,12 +218,11 @@ const events = [{
 const seed = async () => {
   try {
     await db.sync({ force: true });
-
-
-
-    await Promise.all(events.map((event) => Events.create({ ...event })));
-    await Promise.all(users.map((user) => User.create({ ...user })));
-
+    const createdEvents = await Promise.all(events.map((event) => Events.create({ ...event })));
+    const createdUsers = await Promise.all(users.map((user) => User.create({ ...user })));
+    for (let i = 0; i < 20; i++) {
+      await createdEvents[i].setUsers(createdUsers[Math.floor(Math.random() * 50)]);
+    }
   } catch (err) {
     console.log(red(err));
   }

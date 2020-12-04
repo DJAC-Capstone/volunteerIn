@@ -1,4 +1,4 @@
-const { Session,User} = require('../db/index');
+const { Session, User } = require('../db/index');
 
 //const { Session, User } = models;
 
@@ -15,9 +15,7 @@ const authMiddleware = async (req, res, next) => {
       });
 
       if (!session) {
-        console.log(
-          'Invalid session ID - not located in database. Removing cookie.'
-        );
+        console.log('Invalid session ID - not located in database. Removing cookie.');
         res.clearCookie('sid');
         req.user = null;
       } else {

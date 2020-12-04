@@ -2,9 +2,10 @@ const db = require('./db');
 const Events = require('./models/Events');
 const User = require('./models/User');
 
-const Session = require('./models/Session');
-//relations
-module.exports = { Events, User, Session, db };
+// User.hasMany(Events);
+Events.belongsToMany(User, { through: 'following' });
+User.belongsToMany(Events, { through: 'following' });
 
+// Events.hasMany(User);
 
-
+module.exports = { Events, db, User };
