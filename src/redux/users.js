@@ -1,105 +1,79 @@
+/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 
-/// /////ACTION TYPES//////////
+const GET_USER = 'GET_USER';
+const LOGOUT_USER = 'LOGOUT_USER';
+const LOGIN_USER = 'LOGIN_USER';
+const GET_ALL_USERS = 'GET_ALL_USERS';
+const SIGN_UP = 'SIGN_UP';
 
-const SET_SINGLE_USER = 'SET_SINGLEUSER';
-const CREATE_USER = 'CREATE_USER';
-const UPDATE_USER = 'UPDATE_USER';
-const DELETE_USER = 'DELETE_USER';
-const ADD_EVENT = 'ADD_EVENT';
-const ADD_FRIEND = 'ADD_FRIEND';
+const initialState = {
+  user: {},
+  users: [],
+};
 
-const _setSingleUser = (user) => ({
-  type: SET_SINGLE_USER,
+export const _getUser = (user) => ({
+  type: GET_USER,
   user,
 });
 
-const _createUser = (user) => ({
-  type: CREATE_USER,
+const getUser = () => async (dispatch) => {
+  const res = await axios.get('/api/users/get-user');
+  dispatch(_getUser(res.data));
+};
+
+export const _getAllUsers = (users) => ({
+  type: GET_ALL_USERS,
+  users,
+});
+
+const getAllUsers = () => async (dispatch) => {
+  const res = await axios.get('/api/users');
+  dispatch(_getAllUsers(res.data));
+};
+
+export const _logoutUser = (user) => ({
+  type: LOGOUT_USER,
   user,
 });
 
-const _updateUser = (user) => ({
-  type: UPDATE_USER,
+const logoutUser = () => async (dispatch) => {
+  await axios.post('/api/logout');
+  const res = await axios.get('/api/users/get-user');
+  dispatch(_logoutUser(res.data));
+};
+
+export const _loginUser = (user) => ({
+  type: LOGIN_USER,
   user,
 });
 
-const _deleteUser = (id) => ({
-  type: DELETE_USER,
-  id,
-});
+const loginUser = (loginCreds) => async (dispatch) => {
+  const res = await axios.post('/api/login', loginCreds);
+  dispatch(_loginUser(res.data));
+};
 
-const _addEvent = (event) => ({
-  type: ADD_EVENT,
-  event,
-});
-
-const _addFriend = (user) => ({
-  type: ADD_FRIEND,
+export const _signUp = (user) => ({
+  type: SIGN_UP,
   user,
 });
 
-/// ////THUNK CREATORS////////
-
-export const setSingleUser = () => async (dispatch) => {
-  const { data } = await axios.get('/api/auth/whoami');
-  dispatch(_setSingleUser(data));
+const signUp = (infoObject) => async (dispatch) => {
+  const res = await axios.post('/api/users/create', infoObject);
+  dispatch(_signUp(res.data));
 };
 
-export const createUser = (user) => {
-  try {
-    console.log(user);
-    return async (dispatch) => {
-      const { data } = axios.post('/api/users', { user });
-      dispatch(_createUser(data));
-    };
-  } catch (err) {
-    console.log('please enter vaild info');
+export default function usersReducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_USER: return { ...state, user: action.user };
+    case LOGOUT_USER: return { ...state, user: action.user };
+    case LOGIN_USER: return { ...state, user: action.user };
+    case GET_ALL_USERS: return { ...state, users: action.users };
+    case SIGN_UP: return { ...state, user: action.user };
+    default: return state;
   }
-};
-export const updateUser = ({ user, id }) => {
-  try {
-    return async (dispatch) => {
-      const { data } = axios.put(`/api/users/${id}`, { user });
-      dispatch(_updateUser(data));
-    };
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-export const deleteUser = ({ id, history }) => {
-  try {
-    return async (dispatch) => {
-      axios.delete(`/api/users/${id}`);
-      dispatch(_deleteUser(id));
-      history.push('/users');
-    };
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-/// /////USERS REDUCER//////////
-
-export default function usersReducer(state = [], action) {
-  if (action.type === SET_SINGLE_USER) {
-    return action.user;
-  }
-  if (action.type === CREATE_USER) {
-    return [...state, action.user];
-  }
-  if (action.type === UPDATE_USER) {
-    return state.map((user) => (user.id === action.user.id ? action.user : user));
-  }
-  if (action.type === DELETE_USER) {
-    return state.filter((user) => user.id !== action.user.id);
-  }
-  if (action.type === ADD_EVENT) {
-    return [...state, action.event];
-  }
-  if (action.type === ADD_FRIEND) {
-    return [...state, action.user];
-  }
-  return state;
 }
+
+export {
+  getUser, signUp, logoutUser, loginUser, getAllUsers,
+};
