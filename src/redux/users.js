@@ -6,6 +6,7 @@ const LOGOUT_USER = 'LOGOUT_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const SIGN_UP = 'SIGN_UP';
+const FIND_USER ='FIND_USER'
 
 const initialState = {
   user: {},
@@ -30,6 +31,14 @@ export const _getAllUsers = (users) => ({
 const getAllUsers = () => async (dispatch) => {
   const res = await axios.get('/api/users');
   dispatch(_getAllUsers(res.data));
+};
+export const _findUser = (user) => ({
+  type: FIND_USER,
+  user,
+});
+const findUser= (id) => async (dispatch) => {
+  const res = await axios.get(`/api/users/${id}`);
+  dispatch(_findUser(res.data));
 };
 
 export const _logoutUser = (user) => ({
@@ -70,10 +79,11 @@ export default function usersReducer(state = initialState, action) {
     case LOGIN_USER: return { ...state, user: action.user };
     case GET_ALL_USERS: return { ...state, users: action.users };
     case SIGN_UP: return { ...state, user: action.user };
+    case FIND_USER: return { ...state, user: action.user };
     default: return state;
   }
 }
 
 export {
-  getUser, signUp, logoutUser, loginUser, getAllUsers,
+  getUser, signUp, logoutUser, loginUser, getAllUsers,findUser
 };

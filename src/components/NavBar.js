@@ -35,6 +35,11 @@ export default class NavBar extends Component {
 									Events
 								</Link>
 							</li>
+							<li className={navLocation === 'friends' ? 'active' : 'null'}>
+								<Link to="/friends" onClick={() => setSelectedNav('friends')}>
+									Friends
+								</Link>
+							</li>
 							<li className={navLocation === 'login' ? 'active' : 'null'}>
 								<Link to="/login" onClick={() => setSelectedNav('login')}>
 									Log In
