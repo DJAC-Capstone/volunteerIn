@@ -1,33 +1,52 @@
 const { Session, User } = require('../db/index');
 
-//const { Session, User } = models;
+const authentication = async (req, res, next) => {
+  const A_WEEK_IN_SECONDS = 60 * 60 * 24 * 7;
 
-const authMiddleware = async (req, res, next) => {
-  try {
-    const { sid } = req.cookies;
+  //making this a function because it gets called twice
+  const createGuestAndAssignCookie = async () => {
 
-    if (!sid) {
-      console.log('No session associated with this user.');
-      req.user = null;
-    } else {
-      const session = await Session.findByPk(sid, {
-        include: User,
-      });
-
-      if (!session) {
-        console.log('Invalid session ID - not located in database. Removing cookie.');
-        res.clearCookie('sid');
-        req.user = null;
-      } else {
-        // You could update the expiry of the cookie here if desired.
-        console.log(`Session User Identified: ${session.user.username}`);
-        req.user = session.user;
-      }
-    }
-    next();
-  } catch (err) {
-    next(err);
+    const createdSession = await Session.create();
+    res.cookie('sid', createdSession.id, {
+      maxAge: new Date(Date.now() + A_WEEK_IN_SECONDS),
+      path: '/'
+    });
+    req.sid = createdSession.id;
   }
-};
 
-module.exports = authMiddleware;
+  //session opened page for the first time.  Cookie created
+  if (!req.cookies.sid) {
+    await createGuestAndAssignCookie();
+  }
+  //session exists
+  else {
+    req.sid = req.cookies.sid
+    const user = await User.findOne({
+      include: [
+        {
+          model: Session,
+          where: {
+            id: req.sid
+          }
+        }
+      ]
+    })
+
+    //if session already has a user
+    if (user){
+      req.user = user
+  }
+    //if session does not have a user
+    //(this is weird case where computer has cookie not in our db)
+    //we clear the cookie on their end, and then treat them as a guest
+    else {
+      res.clearCookie('sid', req.sid, {
+        path: '/'
+      })
+      await createGuestAndAssignCookie();
+    }
+  }
+  next();
+}
+
+module.exports = authentication

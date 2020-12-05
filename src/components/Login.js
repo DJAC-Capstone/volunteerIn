@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import userStyles from '../Utils/userStyles';
-import {loginUser} from '../redux/users'
+import {loginUser, getUser} from '../redux/users'
 import { connect } from 'react-redux'
 
 class Login extends Component {constructor() {
@@ -27,6 +27,9 @@ class Login extends Component {constructor() {
     password: ''
     })
     this.props.history.push('/home')
+
+    console.log(this.props.user);
+    
   }
 
   render(){
@@ -57,7 +60,8 @@ export default connect(
 	},
 	(dispatch) => {
 	  return {
-	  loginUser: (credentials) => dispatch(loginUser(credentials))
+    loginUser: (credentials) => dispatch(loginUser(credentials)),
+    getUser: () => dispatch(getUser())
 	}
   }
   )(Login)

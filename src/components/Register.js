@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import userStyles from '../Utils/userStyles';
-import { signUp } from '../redux/users';
+import { signUp, getUser } from '../redux/users';
 
 class Register extends Component {
   constructor() {
@@ -26,16 +26,17 @@ class Register extends Component {
   }
 
   async handleSubmit(ev) {
-	ev.preventDefault();
-	await this.props.signUp({...this.state})
-	
-    this.setState({
-      password: '',
-      email: '',
-      first_name: '',
-      last_name: '',
-	    phone: '',
-	});	
+    ev.preventDefault();
+    await this.props.signUp({...this.state})	
+    this.props.getUser()
+      this.setState({
+        password: '',
+        email: '',
+        first_name: '',
+        last_name: '',
+        phone: '',
+    });	
+    this.props.history.push('/home')
   }
 
   render() {
@@ -78,5 +79,6 @@ export default connect(
   }),
   (dispatch) => ({
     signUp: (infoObject) => dispatch(signUp(infoObject)),
+    getUser: () => dispatch(getUser())
   }),
 )(Register);

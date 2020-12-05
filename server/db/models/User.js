@@ -12,7 +12,7 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      // isAlpha: true,
+      isAlpha: true,
     },
   },
   last_name: {
@@ -20,15 +20,16 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true,
-      // isAlpha: true,
+      isAlpha: true,
     },
   },
   email: {
     type: STRING,
+    unique: true,
     allowNull: false,
     validate: {
       isEmail: true,
-      // notEmpty: true,
+      notEmpty: true,
     },
   },
   frineds: {
@@ -46,15 +47,6 @@ const User = db.define('user', {
     // allowNull: false,
     // defaultValue: NOW
   },
-
-  // phone: {
-  //   type: INTEGER,
-  //   allowNull: false,
-  //   validate: {
-  //     notEmpty: true,
-  //     //isNumeric: true,
-  //   },
-  // },
   phone: {
     type: STRING,
     allowNull: false,
@@ -63,16 +55,6 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
-
-  //   phone: {
-  //     type: STRING,
-  //     allowNull: false,
-  //     validate: {
-  //       notEmpty: true,
-  //       // isNumeric: true,
-  //     },
-  //   },
-
   password: {
     type: STRING,
     allowNull: false,
