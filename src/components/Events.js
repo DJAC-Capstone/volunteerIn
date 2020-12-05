@@ -8,19 +8,10 @@ class Events extends Component {
 		await this.props.getEvents();
 	}
 	render() {
-    console.log('test to see if this works')
-		console.log(this.props.events);
 		const { events } = this.props;
 		return (
 			<div>
-				{/* <h3 style={{ fontFamily: 'Josefin Sans, sans-serif' }}>My Events</h3>
-				{this.props.user.events.map(userEvent => (
-					<div style={eventStyles} key={userEvent.id}>
-						<div style={{ fontWeight: 'bolder' }}>{userEvent.title}</div>
-						<div>{userEvent.description}</div>
-					</div>
-				))} */}
-				<h3>All Events</h3>
+				<h3 style = {{padding: "8px", fontFamily: "Josefin Sans"}}>All Events</h3>
 				{!!events &&
 					events.map(event => (
 						<div style={eventStyles} key={event.id}>

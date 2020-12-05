@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import userStyles from '../Utils/userStyles';
+import {userStyles} from '../Utils/userStyles';
 import {loginUser, getUser} from '../redux/users'
 import { connect } from 'react-redux'
 
