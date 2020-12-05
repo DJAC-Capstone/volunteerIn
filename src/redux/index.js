@@ -1,7 +1,7 @@
 
 import { combineReducers } from 'redux';
-import usersReducer from './users';
-import eventsReducer from './events'
+import usersReducer from './Users';
+import eventsReducer from './Events'
 
 const reducer = combineReducers({
   users: usersReducer,

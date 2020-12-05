@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import userStyles from '../Utils/userStyles';
-import { signUp, getUser } from '../redux/users';
+import { signUp, getUser } from '../redux/Users';
 
 class Register extends Component {
   constructor() {
