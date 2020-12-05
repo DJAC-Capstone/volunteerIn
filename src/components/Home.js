@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import  { getEvents } from '../redux/events'
-import { getAllUsers } from '../redux/users'
+import  { getEvents } from '../redux/Events'
+import { getAllUsers } from '../redux/Users'
 export class Home extends Component {
   constructor() {
     super()

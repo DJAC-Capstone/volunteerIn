@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {userStyles} from '../Utils/userStyles';
 import { signUp, getUser } from '../redux/users';
 
+
 class Register extends Component {
   constructor() {
     super();
