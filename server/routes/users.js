@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../db');
+const bcrypt = require('bcrypt')
+const { User, Session } = require('../db');
 const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
@@ -10,6 +11,14 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+router.get('/get-user', (req, res, next) => {
+  try {
+      res.send(req.user)
+  }
+  catch (err) {
+      next(err)
+  }
+})
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -47,7 +56,18 @@ router.put('/:id', async (req, res, next) => {
 
 router.post('/create', async (req, res, next) => {
   try {
-    const newUser = await User.create({...req.body});
+    const { password, email, first_name, last_name,phone } = req.body
+    const hashedPw = await bcrypt.hash(password, 10)
+    const newUser = await User.create(
+      {
+        password: hashedPw,
+        email,
+        first_name,
+        last_name,
+        phone
+      });
+      const usersSession = await Session.findByPk(req.sid)
+      await usersSession.setUser(newUser)
     res.status(201).send(newUser);
   } catch (err) {
     next(err);
