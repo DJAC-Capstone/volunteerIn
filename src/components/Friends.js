@@ -32,7 +32,7 @@ class Friends extends Component {
     handleSubmit (e) {
       e.preventDefault()
      console.log(this.props.users)
-       // this.props.findUser(this.state.username);
+      // this.props.findUser(this.state.username);
         this.setState({username:''})
       
     }
