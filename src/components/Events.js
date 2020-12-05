@@ -8,6 +8,7 @@ class Events extends Component {
 		await this.props.getEvents();
 	}
 	render() {
+    console.log('test to see if this works')
 		console.log(this.props.events);
 		const { events } = this.props;
 		return (
@@ -35,8 +36,7 @@ class Events extends Component {
 export default connect(
 	({ user, events }) => {
 		return {
-			user: user.user,
-			events: events,
+			events: events.events,
 		};
 	},
 	dispatch => {
