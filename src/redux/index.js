@@ -1,15 +1,12 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import thunk from 'redux-thunk';
 
+import { combineReducers } from 'redux';
 import usersReducer from './users';
-import eventReducer from './Events';
+import eventsReducer from './events'
 
-const appReducer = combineReducers({
-
-  evet: eventReducer,
-  user: usersReducer,
-
+const reducer = combineReducers({
+  users: usersReducer,
+  events: eventsReducer,
 });
 
-const store = createStore(appReducer, applyMiddleware(thunk));
-export default store;
+export default reducer;
+

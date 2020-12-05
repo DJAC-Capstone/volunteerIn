@@ -1,7 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './components/App';
-import store from './redux';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('main'));
+import store from './store'
+import App from './components/App'
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('main')
+)

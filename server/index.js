@@ -1,7 +1,8 @@
 const express = require('express');
+
+
 const socketIo = require('socket.io');
 const socketServer = require('./socketServer');
-
 const app = express();
 const morgan = require('morgan');
 const path = require('path');
@@ -9,6 +10,7 @@ const chalk = require('chalk');
 const volleyball = require('volleyball');
 const cookieParser = require('cookie-parser');
 const authMiddleware = require('./middleware/auth');
+
 // logging middleware
 app.use(volleyball);
 
@@ -22,6 +24,11 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 app.use('/api', require('./routes'));
 

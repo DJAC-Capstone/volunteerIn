@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+
+// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch} from 'react-router-dom';
+
 import Chat from './Chatbox';
-import {
-  NavBar, Home, Login, Events, Register,
-} from './index';
+import Login from './Login';
+import Home from './Home';
+import Register from './Register';
+import NavBar from './NavBar'
 
 export default class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Route render={() => <NavBar />} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/home" exact component={Home} />
-        <Route path="/chat" exact component={Chat} />
-        <Route path="/events" exact component={Events} />
-        <Route path="/register" exact component={Register} />
-      </Router>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<div>
+				<Route render={() => <NavBar />} />
+				<Switch>
+					<Route exact path="/login" component={Login} />
+					<Route exact path="/home" component={Home} />
+					<Route exact path="/register" component={Register} />
+					<Route exact path="/chat" component={Chat} />
+				</Switch>
+				</div>
+			</Router>
+		);
+	}
+
 }

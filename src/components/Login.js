@@ -55,7 +55,7 @@ class Login extends Component {constructor() {
 
 export default connect(
 	({user}) => {return {
-		user: user.user
+		user: user
 	  }
 	},
 	(dispatch) => {

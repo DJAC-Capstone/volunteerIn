@@ -1,0 +1,119 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.navbar {
+    width: 1280px;
+    display: flex;
+}
+
+.active > a {
+    text-align: center;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+    /* padding-top: 35px; */
+    padding: 20px;
+    
+}
+
+.left-container {
+    display: flex;
+    height: 400px;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    padding-right: 50px;
+    justify-content: center;
+    margin: 20px;
+
+}
+
+.left-container p {
+    font-size: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.main-container img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.user-post-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px grey;
+    /* background-color: #f8f8f8; */
+}
+
+.user-post-container input{
+    text-align: center;
+    font-size: large;
+    
+}
+
+.other-type-of-posts-container {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+/* -------- */
+
+.middle-container {
+    background-color: #f8f8f8;
+    margin: 20px;
+}
+
+.other-users-post-container {
+    padding-top: 50px;
+}
+
+.profile-pic-and-name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: #f8f8f8;
+}
+
+
+
+.profile-pic-and-name-container img{
+    max-height: 100px;
+    max-width: 100px;
+    border: solid 1px black;
+    border-radius: 50%;
+}
+
+.profile-pic-and-name-container div {
+    padding: 10px;
+    /* height: 300px;
+    width: 300px; */
+}
+
+.other-users-post-text .full-name {
+    font-weight: 900;
+    font-size: 20px;
+    height: 20px;
+    width: 400px;
+}
+
+.other-users-post-text .event-description {
+
+    height: 200px;
+    width: 400px;
+}
