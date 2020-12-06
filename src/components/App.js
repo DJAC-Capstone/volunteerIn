@@ -10,6 +10,7 @@ import Register from './Register';
 import NavBar from './NavBar'
 import Events from './Events'
 import Friends from './Friends'
+import CreateEvent from './CreateEvent'
 
 export default class App extends Component {
 	render() {
@@ -24,6 +25,7 @@ export default class App extends Component {
 					<Route exact path="/chat" component={Chat} />
           <Route exact path="/events" component={Events} />
 					<Route exact path="/friends" component={Friends} />
+          <Route exact path="/createEvent" component={CreateEvent} />
 				</Switch>
 				</div>
 			</Router>
