@@ -7,7 +7,7 @@ import Chat from './Chatbox';
 import Login from './Login';
 import Home from './Home';
 import Register from './Register';
-import NavBar from './NavBar
+import NavBar from './NavBar'
 import Events from './Events'
 import Friends from './Friends'
 
