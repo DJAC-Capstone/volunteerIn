@@ -69,7 +69,7 @@ export class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
+    events: state.events.events,
     allUsers: state.users
   }
 }

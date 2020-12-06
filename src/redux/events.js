@@ -23,7 +23,7 @@ export const getEvents = () => {
   export default function eventsReducer(state = [], action) {
     switch (action.type) {
       case GET_EVENTS:
-        return action.events
+        return { ...state, events: action.events };
       default:
         return state
     }
