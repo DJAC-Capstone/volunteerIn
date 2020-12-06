@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 //import userStyles from '../Utils/userStyles';
 import {findUser} from '../redux/Users'
 import {getAllUsers} from '../redux/Users';
+import {Link} from 'react-router-dom'
 
 
 
@@ -26,14 +27,21 @@ class Friends extends Component {
     handleSearch (e) {
       //history.push(`/search/${evt.target.value}`
       console.log(e.target.value )
+      
       this.setState({ username: e.target.value })
     }
   
     handleSubmit (e) {
       e.preventDefault()
-     console.log(this.props.users)
-      // this.props.findUser(this.state.username);
-        this.setState({username:''})
+      const {users}=this.props
+      // for (let i=0;i<users.length;i++){
+      //   if(users[i][first_name]===this.state.username){
+      //       this.props.findUser(users[i][id]);
+      //   }
+      // }
+    //  console.log(this.props.users)
+    //    //this.props.findUser(this.state.username);
+    //     this.setState({username:''})
       
     }
   
@@ -60,13 +68,21 @@ class Friends extends Component {
 						return <p key={index}>{user.name} <button className="btn btn-primary" onClick={()=>{this.setState({userDetail:user})}}>View Timeline</button></p>
           })
         } */}
+{
+this.props.users.map( user => {
+              if (user.first_name.toLowerCase().indexOf(this.state.username.toLowerCase()) > -1 && this.state.username!== '') {
+                  return (
+                    <Link to={`/users/${user.id}`} key ={user.id} >{user.first_name}</Link>
+                  )
+                }
+              }) }
         </div>
       )  
     }
   }
   const mapStateToProps=(state)=>{
     return{
-      users:state.user
+      users:state.users.users
     }
   }
  const mapDispatchToProps=(dispatch)=>{
