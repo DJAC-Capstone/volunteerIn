@@ -6,6 +6,8 @@ router.use('/users', require('./users'));
 
 router.use('/login', require('./login'));
 
+//router.use('/friends', require('./events'));
+
 router.use((req, res, next) => {
   const err = new Error('API route not found!');
   err.status = 404;
