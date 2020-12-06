@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import  { getEvents } from '../redux/Events'
+import  { getEvents } from '../redux/events'
 import { getAllUsers } from '../redux/Users'
 export class Home extends Component {
   constructor() {
