@@ -117,3 +117,90 @@ body {
     height: 200px;
     width: 400px;
 }
+/* -------------------ChatBox--------------------- */
+.messages{
+    display: flex;
+    height: 30rem;
+    width: 100%;
+    bottom: 0;
+    z-index: 3;
+    position: fixed;
+
+}
+.chatBox{
+    border: black solid 1px;
+    height: 30rem;
+    width: 30rem;
+    background-color: rgb(233, 224, 224);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* position: absolute; */
+    /* right: 0px; */
+    bottom: 2rem;
+    /* z-index: 3; */
+    /* position: fixed; */
+}
+.chatBoxClose{
+    margin-bottom: -1px;
+    height: 0;
+    bottom: -8px;
+    right: -8px;
+    position: fixed;
+
+}
+.chatBoxClose > form{
+    margin-bottom: -1px;
+    height: 0;
+    bottom: -8px;
+    right: -8px;
+    position: fixed;
+
+}
+.showAllUsers{
+    border: black solid 1px;
+    height: 28rem;
+    width: 28rem;
+    background-color: rgb(233, 224, 224);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 2rem;
+    z-index: 3;
+    position: fixed;
+}
+.showAllUsers > ul{
+    z-index: 3;
+    /* border: black solid 1px; */
+    padding: 1rem;
+    width: 100%;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+    border-bottom: black solid 1px;
+
+}
+.showAllUsers > ul:hover{
+    background-color: rgb(173, 171, 171);
+}
+.messages > button{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    z-index: 4;
+    width: 28rem;
+    position: fixed;
+}
+.chatBox > form {
+    position: absolute;
+    /* right: 0px; */
+    bottom: 0px;
+    width: 30rem;
+}
+#message-input{
+   width: 80%;
+   margin-left: 5px;
+   z-index: 4;
+
+}
+

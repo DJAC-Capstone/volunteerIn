@@ -9,6 +9,7 @@ import Home from './Home';
 import Register from './Register';
 import NavBar from './NavBar'
 import Friends from './Friends'
+import Chatbox from './Chatbox'
 
 export default class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ export default class App extends Component {
 			<Router>
 				<div>
 				<Route render={() => <NavBar />} />
+				<Route render={() => <Chatbox />} />
 				<Switch>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/home" component={Home} />
