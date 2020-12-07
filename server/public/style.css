@@ -1,13 +1,10 @@
-body {
+/* body {
     display: flex;
     justify-content: center;
     background-color: white;
-}
+} */
 
-.navbar {
-    width: 1280px;
-    display: flex;
-}
+
 
 .active > a {
     text-align: center;
@@ -119,13 +116,14 @@ body {
 }
 /* -------------------ChatBox--------------------- */
 .messages{
-    display: flex;
+    display: inline-flex;
     height: 30rem;
     width: 100%;
     bottom: 0;
     z-index: 3;
     position: fixed;
-
+    float: left;
+    padding-left: 20rem;
 }
 .chatBox{
     border: black solid 1px;
@@ -134,17 +132,13 @@ body {
     background-color: rgb(233, 224, 224);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    /* position: absolute; */
-    /* right: 0px; */
     bottom: 2rem;
-    /* z-index: 3; */
-    /* position: fixed; */
 }
 .chatBoxClose{
     margin-bottom: -1px;
     height: 0;
     bottom: -8px;
-    right: -8px;
+    left: -8px;
     position: fixed;
 
 }
@@ -152,7 +146,7 @@ body {
     margin-bottom: -1px;
     height: 0;
     bottom: -8px;
-    right: -8px;
+    left: -8px;
     position: fixed;
 
 }
@@ -164,7 +158,7 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     position: absolute;
-    right: 0;
+    left: 0;
     bottom: 2rem;
     z-index: 3;
     position: fixed;
@@ -185,7 +179,7 @@ body {
 }
 .messages > button{
     position: absolute;
-    right: 0px;
+    left: 0px;
     bottom: 0px;
     z-index: 4;
     width: 28rem;
@@ -193,7 +187,6 @@ body {
 }
 .chatBox > form {
     position: absolute;
-    /* right: 0px; */
     bottom: 0px;
     width: 30rem;
 }
@@ -203,4 +196,51 @@ body {
    z-index: 4;
 
 }
+/* ------------------NavBar-------------------- */
+#navBar {
+    top: 0;
+    z-index: 1;
+    position: fixed;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: #7a7d81;
+}
+#navBar > h1 {
+    margin: 0.5rem;
+}
 
+#login-form {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+
+}
+#login-form >form >input {
+  margin-right: 1rem;
+
+}
+#login-form >h4 {
+    margin: 0;
+    padding-right: 2rem;
+}
+#register-container{
+    padding-top: 60px;
+}
+#navBar > div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center; 
+    margin-top: 1rem;
+}
+#navBar > div >h3{
+    margin-top: 0;
+}
+#navBar > div >a{
+    text-align: center;
+    margin: 0 1rem 1rem 1rem;
+    font-size: 25px;
+    color: black;
+}

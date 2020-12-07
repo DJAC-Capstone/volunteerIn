@@ -6,8 +6,5 @@ import store from './store'
 import App from './components/App'
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('main')
+  <Provider store={store}> <App /> </Provider>, document.getElementById('main')
 )

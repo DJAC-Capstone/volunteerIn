@@ -25,24 +25,12 @@ class Friends extends Component {
     }
   
     handleSearch (e) {
-      //history.push(`/search/${evt.target.value}`
-      console.log(e.target.value )
-      
       this.setState({ username: e.target.value })
     }
   
     handleSubmit (e) {
       e.preventDefault()
-      const {users}=this.props
-      // for (let i=0;i<users.length;i++){
-      //   if(users[i][first_name]===this.state.username){
-      //       this.props.findUser(users[i][id]);
-      //   }
-      // }
-    //  console.log(this.props.users)
-    //    //this.props.findUser(this.state.username);
-    //     this.setState({username:''})
-      
+
     }
   
     render () {
@@ -51,34 +39,23 @@ class Friends extends Component {
       
         <div className='searchbar-container'>
           <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              size='45'
-              placeholder='name'
-              onChange={handleSearch}
-              value={this.state.username} />
-            <button
-              type='submit'
-              onClick={handleSubmit}>
-              Search
-            </button>
+            <input type='text' size='45' placeholder='name' onChange={handleSearch} value={this.state.username} />
+            <button type='submit' onClick={handleSubmit}> Search</button>
           </form>
-          {/* {
-          this.props.users.map((user, index)=>{
-						return <p key={index}>{user.name} <button className="btn btn-primary" onClick={()=>{this.setState({userDetail:user})}}>View Timeline</button></p>
-          })
-        } */}
-{
-this.props.users.map( user => {
-              if (user.first_name.toLowerCase().indexOf(this.state.username.toLowerCase()) > -1 && this.state.username!== '') {
-                  return (
-                    <Link to={`/users/${user.id}`} key ={user.id} >{user.first_name}</Link>
-                  )
+            <div>
+                {
+                this.props.users.map( user => {
+                  if (user.first_name.toLowerCase().indexOf(this.state.username.toLowerCase()) > -1 && this.state.username!== '') {
+                      return (
+                        <Link to={`/users/${user.id}`} key ={user.id} >{user.first_name}</Link>
+                      )
+                    }
+                  }) 
                 }
-              }) }
-        </div>
-      )  
-    }
+            </div>
+          </div>
+        )  
+      }
   }
   const mapStateToProps=(state)=>{
     return{
