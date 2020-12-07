@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import  { getEvents } from '../redux/Events'
-import { getAllUsers } from '../redux/Users'
+import  { getEvents } from '../redux/events'
+import { getAllUsers } from '../redux/users'
 export class Home extends Component {
   constructor() {
     super()
@@ -11,6 +11,7 @@ export class Home extends Component {
       events: [],
       allUsers: []
     }
+    this.createEventButton = this.createEventButton.bind(this)
   }
 
   async componentDidMount() {
@@ -21,7 +22,9 @@ export class Home extends Component {
       allUsers: this.props.allUsers
     });
   }
-  
+  createEventButton () {
+    window.location.hash = "#/createEvent"
+  }
   render() {
 
     //Still need to connect users on redux
@@ -33,7 +36,7 @@ export class Home extends Component {
           <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
-              <button>Create Event</button>
+              <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Upload Video</button>
             </div>

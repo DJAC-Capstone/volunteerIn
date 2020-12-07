@@ -38,10 +38,18 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 // create event
-router.post('/', async (req, res, next) => {
+router.post('/create', async (req, res, next) => {
   try {
     console.log(req.body);
-    const newEvent = await Events.create(req.body.user);
+    const { title, description, date, city, state } = req.body
+    const newEvent = await Events.create(
+      {
+        title,
+        description,
+        date,
+        city,
+        state,
+      });
     res.status(201).send(newEvent);
   } catch (err) {
     next(err);
