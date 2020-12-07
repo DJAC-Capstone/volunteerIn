@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../redux/Users';
+import { getUser } from '../redux/users';
 // import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 

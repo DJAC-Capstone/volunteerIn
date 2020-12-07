@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import userStyles from '../Utils/userStyles';
-import {loginUser} from '../redux/Users'
+import {loginUser} from '../redux/users'
 import { connect } from 'react-redux'
 
 class Login extends Component {constructor() {

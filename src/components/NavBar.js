@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllUsers, getUser } from '../redux/Users';
+import { getAllUsers, getUser } from '../redux/users';
 import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
