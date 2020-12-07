@@ -7,11 +7,13 @@ const LOGIN_USER = 'LOGIN_USER';
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const SIGN_UP = 'SIGN_UP';
 const FIND_USER='FIND_USER';
+const FOLLOW_USER = 'FOLLOW_USER'
 
 const initialState = {
   user: {},
   users: [],
   foundUser:{},
+  friends:[]
 };
 
 export const _getUser = (user) => ({
@@ -76,6 +78,17 @@ const signUp = (infoObject) => async (dispatch) => {
   dispatch(_signUp(res.data));
 };
 
+export const _followFrined = (friends) => ({
+  type: FOLLOW_USER,
+  friends,
+});
+
+const followFrined = (id,arr) => async (dispatch) => {
+  const res = await axios.put('/api/users/follow');
+  dispatch(_followFrined(res.data));
+};
+
+
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER: return { ...state, user: action.user };
@@ -84,10 +97,12 @@ export default function usersReducer(state = initialState, action) {
     case GET_ALL_USERS: return { ...state, users: action.users };
     case SIGN_UP: return { ...state, user: action.user };
     case FIND_USER: return { ...state, foundUser: action.foundUser };
+    case FOLLOW_USER: return { ...state, friends: action.friends };
+
     default: return state;
   }
 }
 
 export {
-  getUser, signUp, logoutUser, loginUser, getAllUsers,findUser
+  getUser, signUp, logoutUser, loginUser, getAllUsers,findUser, followFrined
 };

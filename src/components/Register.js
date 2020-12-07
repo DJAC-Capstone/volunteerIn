@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import userStyles from '../Utils/userStyles';
-import { signUp, getUser } from '../redux/Users';
+import {userStyles} from '../utils/userStyles';
+import { signUp, getUser } from '../redux/users';
+
 
 class Register extends Component {
   constructor() {

@@ -54,6 +54,18 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
+router.put('/follow', async (req, res, next) => {
+  try {
+    console.log("req.body]]]]]]]]]]]]]]]]]]");
+    
+    // const followedUser = await User.findByPk(req.body.id);
+    // await followedUser.update({friends: req.body.arr });
+    // res.send();
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 router.post('/create', async (req, res, next) => {
   try {
     const { password, email, first_name, last_name,phone } = req.body

@@ -32,20 +32,6 @@ class Login extends Component {constructor() {
   render(){
     const {handleChange, handleSubmit} = this;
 		return (
-			// <div>
-			// 	<form style={userStyles} onSubmit = {handleSubmit}>
-			// 		<div style={{ margin: '20px' }}>
-			// 			<h3>Login to VolunteerIn</h3>
-			// 			<div className="form-group">
-			// 				<input type="email"	className="form-control" id="email"	autoComplete="email" placeholder="Email address" name="email" onChange={handleChange} value={this.state.email} />
-			// 			</div>
-			// 			<div className="form-group">
-			// 				<input type="password" className="form-control"	id="password" autoComplete="current-password" placeholder="Password" name="password" onChange={handleChange} value={this.state.password} />
-			// 			</div>
-			// 			<button type="submit" className="btn btn-primary">Submit</button>
-			// 		</div>
-			// 	</form>
-      // </div>
       <div id="login-form">
         <h4>Login</h4>
         <form onSubmit = {handleSubmit} >

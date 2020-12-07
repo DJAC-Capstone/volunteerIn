@@ -11,6 +11,7 @@ export class Home extends Component {
       events: [],
       allUsers: []
     }
+    this.createEventButton = this.createEventButton.bind(this)
   }
 
   async componentDidMount() {
@@ -21,7 +22,9 @@ export class Home extends Component {
       allUsers: this.props.allUsers
     });
   }
-  
+  createEventButton () {
+    window.location.hash = "#/createEvent"
+  }
   render() {
 
     //Still need to connect users on redux
@@ -33,7 +36,7 @@ export class Home extends Component {
           <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
-              <button>Create Event</button>
+              <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Upload Video</button>
             </div>
@@ -69,7 +72,7 @@ export class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state.events,
+    events: state.events.events,
     allUsers: state.users
   }
 }
