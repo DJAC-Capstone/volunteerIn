@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Redirect} from 'react-router-dom'
+
 
 import  { getEvents } from '../redux/events'
-import { getAllUsers } from '../redux/Users'
+import { getAllUsers } from '../redux/users'
 export class Home extends Component {
   constructor() {
     super()

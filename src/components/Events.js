@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { eventStyles } from '../Utils/userStyles';
+import { eventStyles } from '../utils/userStyles';
 import { getEvents } from '../redux/events';
 
 class Events extends Component {
@@ -16,7 +16,9 @@ class Events extends Component {
 					events.map(event => (
 						<div style={eventStyles} key={event.id}>
 							<div style={{ fontWeight: 'bolder' }}>{event.title}</div>
-							<div>{event.description}</div>
+              <div>{event.city},{' '}{event.state}{' '}</div>
+              <div>{event.description}</div>
+              
 						</div>
 					))}
 			</div>

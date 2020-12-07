@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 //import userStyles from '../Utils/userStyles';
-import {findUser} from '../redux/Users'
-import {getAllUsers} from '../redux/Users';
+import {findUser} from '../redux/users'
+import {getAllUsers} from '../redux/users';
 import {Link} from 'react-router-dom'
 
 
