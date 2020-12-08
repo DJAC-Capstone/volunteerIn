@@ -1,59 +1,48 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAllUsers, getUser } from '../redux/users';
+import Friends from './Friends'
+import Register from './Register';
+import Login from './Login';
 
-export default class NavBar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			navLocation: 'home',
-		};
-		this.setSelectedNav = this.setSelectedNav.bind(this);
-	}
-	setSelectedNav(selection) {
-		this.setState({
-			navLocation: selection,
-		});
-	}
+
+
+class NavBar extends Component {
 	render() {
-		const { setSelectedNav, props, state } = this;
-		const { navLocation } = state;
+	const {user} = this.props
 		return (
 			<div>
-				<nav className="navbar navbar-default">
-					<div className="container-fluid">
-						<div className="navbar-header">
-							<div className="navbar-brand">VolunteerIn</div>
-						</div>
-						<ul className="nav navbar-nav">
-							<li className={navLocation === 'home' ? 'active' : 'null'}>
-								<Link to="/home" onClick={() => setSelectedNav('home')}>
-									Home
-								</Link>
-							</li>
-							<li className={navLocation === 'events' ? 'active' : 'null'}>
-								<Link to="/events" onClick={() => setSelectedNav('events')}>
-									Events
-								</Link>
-							</li>
-							<li className={navLocation === 'friends' ? 'active' : 'null'}>
-								<Link to="/friends" onClick={() => setSelectedNav('friends')}>
-									Friends
-								</Link>
-							</li>
-							<li className={navLocation === 'login' ? 'active' : 'null'}>
-								<Link to="/login" onClick={() => setSelectedNav('login')}>
-									Log In
-								</Link>
-							</li>
-							<li className={navLocation === 'register' ? 'active' : 'null'}>
-								<Link to="/register" onClick={() => setSelectedNav('register')}>
-									Register
-								</Link>
-							</li>
-						</ul>
+			<nav id='navBar'>
+				<h1 className="brand">VolunteerIn</h1>						
+				{
+					user.id === undefined?
+					<Login/>:
+					<div>
+						<Friends/>
+						<Link to="/home" >Home</Link>
+						<Link to="/events">Events</Link>
+						<Link to="#"><img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>Hi {user.first_name}</Link>
 					</div>
-				</nav>
+				}
+			</nav>	
+				{
+					this.props.user.id === undefined?
+					<div id="register-container">
+						<h2>Register</h2>
+						<Register/>
+					</div>: null
+				}
 			</div>
 		);
 	}
 }
+export default connect(
+	(state) => ({
+	  user:  state.users.user,
+	}),
+	(dispatch) => ({
+	  getAllUsers: () => dispatch(getAllUsers()),
+	  getUser: () => dispatch(getUser())
+	}),
+  )(NavBar);

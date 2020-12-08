@@ -32,7 +32,7 @@ const User = db.define('user', {
       notEmpty: true,
     },
   },
-  frineds: {
+  friends: {
     type: ARRAY(Sequelize.INTEGER),
   },
   gender: {
