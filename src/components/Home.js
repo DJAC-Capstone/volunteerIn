@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router';
 
 import  { getEvents } from '../redux/events'
 import { getAllUsers } from '../redux/users'
+
+import User from './User'
+
+
+
 export class Home extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       events: [],
-      allUsers: []
+      allUsers: [],
+      user: '',
+      showUserComponent: false
     }
     this.createEventButton = this.createEventButton.bind(this)
+    this.handleUserNameClick = this.handleUserNameClick.bind(this)
   }
 
   async componentDidMount() {
@@ -19,20 +27,36 @@ export class Home extends Component {
     await this.props.fetchEvents()
     this.setState({
       events: this.props.events,
-      allUsers: this.props.allUsers
+      allUsers: this.props.allUsers,
+      user: this.props.allUsers.users[Math.floor(Math.random()*(3-1)+1)]
     });
+    document.getElementById('userName').innerHTML = this.state.user.first_name + ' ' + this.state.user.last_name
   }
+
+  handleUserNameClick(ev){
+    const u = document.getElementById('userName').innerHTML.split(' ').join('').toLowerCase();
+    this.setState({
+      user: u,
+      showUserComponent: true
+     })
+  }
+
   createEventButton () {
     window.location.hash = "#/createEvent"
   }
   render() {
-
-    //Still need to connect users on redux
     return (
       <div className="main-container">
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-          <p>Person's Name</p>
+          <p id="userName" value={this.innerTex} onClick={this.handleUserNameClick}></p>
+          {this.state.showUserComponent ? <Redirect 
+          to={{
+            pathname: `/${this.state.user}`, 
+            state: {name: this.state.user}
+          }}
+          /> : null}
+
           <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
@@ -73,7 +97,8 @@ export class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     events: state.events.events,
-    allUsers: state.users
+    allUsers: state.users,
+    user: state.user
   }
 }
 

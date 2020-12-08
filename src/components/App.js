@@ -11,21 +11,24 @@ import NavBar from './NavBar'
 import Events from './Events'
 import Friends from './Friends'
 import CreateEvent from './CreateEvent'
+import User from './User'
 
 export default class App extends Component {
 	render() {
+		console.log("inappp", this.props)
 		return (
 			<Router>
 				<div>
-				<Route render={() => <NavBar />} />
+				<NavBar />
 				<Switch>
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/home" component={Home} />
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/chat" component={Chat} />
-          <Route exact path="/events" component={Events} />
+					<Route exact path="/:userName" component={User} />
+          			<Route exact path="/events" component={Events} />
 					<Route exact path="/friends" component={Friends} />
-          <Route exact path="/createEvent" component={CreateEvent} />
+          			<Route exact path="/createEvent" component={CreateEvent} />
 				</Switch>
 				</div>
 			</Router>
