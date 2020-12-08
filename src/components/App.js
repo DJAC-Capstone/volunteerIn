@@ -24,7 +24,7 @@ class App extends Component {
 			<Router>
 				<main>
 					<NavBar />
-					 <Chatbox />
+					 {/* <Chatbox /> */}
 					{/* <Switch> */}
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />
