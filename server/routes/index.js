@@ -6,6 +6,8 @@ router.use('/users', require('./users'));
 
 router.use('/login', require('./login'));
 
+router.use('/logout', require('./logout'));
+
 //router.use('/friends', require('./events'));
 
 router.use((req, res, next) => {

@@ -1,19 +1,18 @@
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 
 const GET_USER = 'GET_USER';
-const LOGOUT_USER = 'LOGOUT_USER';
 const LOGIN_USER = 'LOGIN_USER';
 const GET_ALL_USERS = 'GET_ALL_USERS';
 const SIGN_UP = 'SIGN_UP';
 const FIND_USER='FIND_USER';
-const FOLLOW_USER = 'FOLLOW_USER'
+const FOLLOW_USER = 'FOLLOW_USER';
+const LOGOUT_USER = 'LOGOUT_USER';
+
 
 const initialState = {
   user: {},
   users: [],
-  foundUser:{},
-  friends:[]
+  foundUser:{}
 };
 
 export const _getUser = (user) => ({
@@ -47,17 +46,6 @@ const getAllUsers = () => async (dispatch) => {
   dispatch(_getAllUsers(res.data));
 };
 
-export const _logoutUser = (user) => ({
-  type: LOGOUT_USER,
-  user,
-});
-
-const logoutUser = () => async (dispatch) => {
-  await axios.post('/api/logout');
-  const res = await axios.get('/api/users/get-user');
-  dispatch(_logoutUser(res.data));
-};
-
 export const _loginUser = (user) => ({
   type: LOGIN_USER,
   user,
@@ -78,13 +66,29 @@ const signUp = (infoObject) => async (dispatch) => {
   dispatch(_signUp(res.data));
 };
 
-export const _followFrined = (friends) => ({
+export const _logoutUser = (user) => {
+  return {
+      type: LOGOUT_USER,
+      user
+  }
+}
+
+const logoutUser = () => {
+  return async(dispatch) => {
+     const res= await axios.post('/api/logout')
+     console.log(res.data);
+     
+      dispatch(_logoutUser(res.data))
+  }
+}
+
+export const _followFrined = (user) => ({
   type: FOLLOW_USER,
-  friends,
+  user,
 });
 
 const followFrined = (id,arr) => async (dispatch) => {
-  const res = await axios.put('/api/users/follow');
+  const res = await axios.put('/api/users/follow', {id,arr});
   dispatch(_followFrined(res.data));
 };
 
@@ -97,7 +101,7 @@ export default function usersReducer(state = initialState, action) {
     case GET_ALL_USERS: return { ...state, users: action.users };
     case SIGN_UP: return { ...state, user: action.user };
     case FIND_USER: return { ...state, foundUser: action.foundUser };
-    case FOLLOW_USER: return { ...state, friends: action.friends };
+    case FOLLOW_USER: return { ...state, user: action.user };
 
     default: return state;
   }
