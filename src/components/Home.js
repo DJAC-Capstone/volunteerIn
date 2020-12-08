@@ -5,9 +5,6 @@ import { Redirect } from 'react-router';
 import  { getEvents } from '../redux/events'
 import { getAllUsers } from '../redux/users'
 
-import User from './User'
-
-
 
 export class Home extends Component {
   constructor(props) {
@@ -30,11 +27,13 @@ export class Home extends Component {
       allUsers: this.props.allUsers,
       user: this.props.allUsers.users[Math.floor(Math.random()*(3-1)+1)]
     });
-    document.getElementById('userName').innerHTML = this.state.user.first_name + ' ' + this.state.user.last_name
+     const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
+     document.getElementById('userName').innerHTML = userFullName
   }
 
   handleUserNameClick(ev){
-    const u = document.getElementById('userName').innerHTML.split(' ').join('').toLowerCase();
+    const u = document.getElementById('userName').innerHTML
+    //.split(' ').join('').toLowerCase();
     this.setState({
       user: u,
       showUserComponent: true
@@ -49,11 +48,11 @@ export class Home extends Component {
       <div className="main-container">
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-          <p id="userName" value={this.innerTex} onClick={this.handleUserNameClick}></p>
+          <p id="userName" onClick={this.handleUserNameClick}></p>
           {this.state.showUserComponent ? <Redirect 
           to={{
-            pathname: `/${this.state.user}`, 
-            state: {name: this.state.user}
+            pathname: `/${this.state.user.split(' ').join('').toLowerCase()}`, 
+            state: {fullName: this.state.user}
           }}
           /> : null}
 
