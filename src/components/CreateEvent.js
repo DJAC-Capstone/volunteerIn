@@ -18,8 +18,7 @@ class CreateEvent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  //   
-  // }
+  
 
   handleChange(ev) {
     this.setState({      

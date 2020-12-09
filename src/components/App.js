@@ -15,6 +15,7 @@ import Friends from './Friends'
 import CreateEvent from './CreateEvent'
 import EditEvent from './EditEvent'
 import SingleEvent from './SingleEvent'
+import UploadPhoto from './UploadPhoto'
 
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
           <Route exact path="/createEvent" component={CreateEvent} />
 		  <Route exact path="/:id/editEvent" component={EditEvent} />
 		  <Route exact path="/:id" component={SingleEvent} />
+		  <Route exact path="/:id/uploadPhoto" component={UploadPhoto} />
 				</Switch>
 				</div>
 			</Router>

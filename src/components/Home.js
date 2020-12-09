@@ -25,6 +25,12 @@ export class Home extends Component {
   createEventButton () {
     window.location.hash = "#/createEvent"
   }
+  uploadPhotoButton () {
+    window.location.hash = "#/uploadPhoto"
+  }
+  uploadVideoButton () {
+    window.location.hash = "#/uploadVideo"
+  }
   render() {
 
     //Still need to connect users on redux
@@ -37,11 +43,21 @@ export class Home extends Component {
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
               <button onClick = {this.createEventButton}>Create Event</button>
-              <button>Upload Photo</button>
-              <button>Upload Video</button>
+              <button onClick = {this.uploadPhotoButton}>Upload Photo</button>
+              <button onClick = {this.uploadVideoButton}>Upload Video</button>
             </div>
+           
+           
           </div>
+        
         </div>
+         
+         {/* {this.state.events.map(event=>{
+              return (<div key={event.id}>
+                  <img src={event.photo}/>
+              </div>)
+            })}
+         </div> */}
         
 
         <div className="middle-container">
@@ -64,6 +80,8 @@ export class Home extends Component {
            )
            })}
         </div>
+        
+         
       </div>
     )
   }
