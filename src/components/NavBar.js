@@ -5,7 +5,7 @@ export default class NavBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			navLocation: 'home',
+			navLocation: '',
 		};
 		this.setSelectedNav = this.setSelectedNav.bind(this);
 	}
@@ -17,6 +17,7 @@ export default class NavBar extends Component {
 	render() {
 		const { setSelectedNav, props, state } = this;
 		const { navLocation } = state;
+		console.log('2222', this.props)
 		return (
 			<div>
 				<nav className="navbar navbar-default">
@@ -51,9 +52,12 @@ export default class NavBar extends Component {
 								</Link>
 							</li>
 						</ul>
+						
 					</div>
 				</nav>
 			</div>
 		);
 	}
 }
+
+

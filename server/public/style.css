@@ -101,8 +101,6 @@ body {
 
 .profile-pic-and-name-container div {
     padding: 10px;
-    /* height: 300px;
-    width: 300px; */
 }
 
 .other-users-post-text .full-name {
@@ -113,7 +111,37 @@ body {
 }
 
 .other-users-post-text .event-description {
-
     height: 200px;
     width: 400px;
 }
+
+/* ---user-profile-oage---- */
+#user-profile-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-name-on-profile-page{
+    padding: 10px;
+    font-size: xx-large;
+}
+
+.activities > p {
+    text-align: center;
+    font-size: large;
+    font-weight: 900;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: black;
+    color:white;
+    }
+
+.event-title {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 700px;
+    font-size: medium;
+    background-color: #f8f8f8;
+}
+

@@ -31,9 +31,8 @@ export class Home extends Component {
      document.getElementById('userName').innerHTML = userFullName
   }
 
-  handleUserNameClick(ev){
+  handleUserNameClick(){
     const u = document.getElementById('userName').innerHTML
-    //.split(' ').join('').toLowerCase();
     this.setState({
       user: u,
       showUserComponent: true
@@ -43,6 +42,7 @@ export class Home extends Component {
   createEventButton () {
     window.location.hash = "#/createEvent"
   }
+
   render() {
     return (
       <div className="main-container">
@@ -52,7 +52,12 @@ export class Home extends Component {
           {this.state.showUserComponent ? <Redirect 
           to={{
             pathname: `/${this.state.user.split(' ').join('').toLowerCase()}`, 
-            state: {fullName: this.state.user}
+            state: {
+              fullName: this.state.user, 
+              users: this.state.allUsers.users, 
+              events: this.state.events,
+              user: this.state.user
+            }
           }}
           /> : null}
 
