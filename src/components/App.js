@@ -11,6 +11,7 @@ import NavBar from './NavBar'
 import Events from './Events'
 import Friends from './Friends'
 import CreateEvent from './CreateEvent'
+import EditEvent from './EditEvent'
 
 export default class App extends Component {
 	render() {
@@ -26,6 +27,7 @@ export default class App extends Component {
           <Route exact path="/events" component={Events} />
 					<Route exact path="/friends" component={Friends} />
           <Route exact path="/createEvent" component={CreateEvent} />
+		  <Route exact path="/:id/editEvent" component={EditEvent} />
 				</Switch>
 				</div>
 			</Router>

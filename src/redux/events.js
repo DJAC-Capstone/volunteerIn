@@ -1,6 +1,7 @@
 import axios from 'axios';
 const GET_EVENTS = 'GET_EVENTS';
 const CREATE_EVENT = 'CREATE_EVENT';
+const UPDATE_EVENT='UPDATE_EVENT'
 
 const initialState = {
   event: {},
@@ -36,12 +37,41 @@ export const getEvents = () => {
     dispatch(_createEvent(res.data));
   };
 
+  export const _updateEvent = (event) => ({
+    type: UPDATE_EVENT,
+    event,
+  });
+  export const updateEvent = ( event ,id) => async (dispatch) => {
+        const res = await axios.put(`/api/events/${id}/editEvent`, event );
+        dispatch(_updateEvent(res.data));
+      };
+  // export const updateEvent = (event,id, history) => {
+  //   return (dispatch) => {
+  //     console.log(event,id)
+
+  //     return axios.put(`/api/events/${id}`,event)
+  //       .then(res => res.data)
+  //       .then(event => {
+  //         dispatch( _updateEvent(event) )
+  //         history.push(`/events/${id}`)
+  //       })
+      
+  //   };
+  // };
+
+   
+
   export default function eventsReducer(state = initialState, action) {
     switch (action.type) {
       case GET_EVENTS:
         return { ...state, events: action.events };
       case CREATE_EVENT:
         return { ...state, event: action.event };
+        case UPDATE_EVENT:
+          return { ...state, event: action.event };
+      //   return state.map((event) =>
+      //   event.id === action.event.id ? action.event : event
+      // );
       default:
         return state
     }

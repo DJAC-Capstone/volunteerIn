@@ -26,13 +26,15 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // sign up for the event
-router.put('/:id', async (req, res, next) => {
+router.put('/:id/editEvent', async (req, res, next) => {
   try {
-    const signupEvent = await Events.findByPk(req.params.id);
-    console.log(req.body);
+    console.log(req.params.id)
+    
+     const signupEvent = await Events.findByPk(req.params.id);
+     console.log(req.body);
 
-    await signupEvent.update(req.body);
-    res.send();
+   const event=  await signupEvent.update(req.body);
+     res.send(event);
   } catch (ex) {
     next(ex);
   }
