@@ -70,16 +70,9 @@ const {event}=this.props;
   }
 }
 
-// export default connect(
-//     (state)=>({
-//         event: state.event
-//       }),
-//   (dispatch) => ({
-//     updateEvent: (id) => dispatch(updateEvent(id)),
-//   }),
-// )(EditEvent);
+
 const mapStateToProps=({event})=>{
-    //const event=events.find(event=>event.id===id*1);
+  
    
     return{
         event,
