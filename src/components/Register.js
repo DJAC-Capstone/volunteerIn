@@ -46,6 +46,7 @@ class Register extends Component {
       <div>
         <form style={userStyles} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
+          <h2>Register...</h2>
             <h3>Personal Info</h3>
             <div className="form-group">
               <input type="text" className="form-control" id="firstName" placeholder="First Name" name="first_name" onChange={handleChange} value={this.state.first_name } />
