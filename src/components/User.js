@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 
 
-export class User extends Component {
+export default class User extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -24,17 +24,17 @@ export class User extends Component {
                     }
                 </p>   
                 <div className="activities">
-                    <p>Events Hosted</p>
-                    {events.map(e=>
-                        {
-                        return (
-                            <div key={e.id}>
-                                <p className="event-title">{e.title}</p>
-                            </div>
-                        )
-                        })
-                    }
-                    <p>Events Attened</p>
+                    <p className="activities-sections">Events Hosted</p>
+                        {events.map(e=>
+                            {
+                            return (
+                                <div key={e.id}>
+                                    <p className="event-title">{e.title}</p>
+                                </div>
+                            )
+                            })
+                        }
+                    <p className="activities-sections">Events Attened</p>
                     {events.map(e=>
                         {
                         return (

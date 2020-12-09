@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-//import userStyles from '../Utils/userStyles';
-import {findUser} from '../redux/users'
-import {getAllUsers} from '../redux/users';
+import {getAllUsers, followFrined, getUser} from '../redux/users';
 import {Link} from 'react-router-dom'
 
 
@@ -15,7 +13,7 @@ class Friends extends Component {
         userDetail:null,
         
       }
-      //this.findUser=this.findUser.bind(this)
+      this.addFriend=this.addFriend.bind(this)
       this.handleSearch=this.handleSearch.bind(this)
       this.handleSubmit=this.handleSubmit.bind(this)
     }
@@ -25,69 +23,65 @@ class Friends extends Component {
     }
   
     handleSearch (e) {
-      //history.push(`/search/${evt.target.value}`
-      console.log(e.target.value )
-      
       this.setState({ username: e.target.value })
     }
   
     handleSubmit (e) {
       e.preventDefault()
-      const {users}=this.props
-      // for (let i=0;i<users.length;i++){
-      //   if(users[i][first_name]===this.state.username){
-      //       this.props.findUser(users[i][id]);
-      //   }
-      // }
-    //  console.log(this.props.users)
-    //    //this.props.findUser(this.state.username);
-    //     this.setState({username:''})
-      
+
     }
-  
+
+    addFriend(user,friendId){
+      
+      if(user.friends === null){
+        const arr=[friendId]
+        this.props.followFrined(user.id, arr)
+      }else{ 
+        const arr=[...user.friends ,friendId]
+        this.props.followFrined(user.id, arr)
+      }
+   
+    }
+
     render () {
       const{handleSearch,handleSubmit}=this
+      const {username} = this.state
+      const {users}= this.props
       return (
       
         <div className='searchbar-container'>
           <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              size='45'
-              placeholder='name'
-              onChange={handleSearch}
-              value={this.state.username} />
-            <button
-              type='submit'
-              onClick={handleSubmit}>
-              Search
-            </button>
+            <input type='text' size='45' placeholder='name' onChange={handleSearch} value={username} />
+            <button type='submit' onClick={handleSubmit}> Search</button>
           </form>
-          {/* {
-          this.props.users.map((user, index)=>{
-						return <p key={index}>{user.name} <button className="btn btn-primary" onClick={()=>{this.setState({userDetail:user})}}>View Timeline</button></p>
-          })
-        } */}
-{
-this.props.users.map( user => {
-              if (user.first_name.toLowerCase().indexOf(this.state.username.toLowerCase()) > -1 && this.state.username!== '') {
-                  return (
-                    <Link to={`/users/${user.id}`} key ={user.id} >{user.first_name}</Link>
-                  )
+          <ul id="myUL" >
+                {
+                users.map( user => {
+                  if (user.first_name.toLowerCase().indexOf(username.toLowerCase()) > -1 && username!== '') {
+                      return (
+                        <div key ={user.id}>
+                          <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                          <Link to={`/users/${user.id}`}  >{user.first_name}</Link>
+                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>follow</button>
+                        </div>
+                      )
+                    }
+                  }) 
                 }
-              }) }
-        </div>
-      )  
-    }
+            </ul>
+          </div>
+        )  
+      }
   }
   const mapStateToProps=(state)=>{
     return{
-      users:state.users.users
+      users:state.users.users,
+      user:state.users.user
     }
   }
  const mapDispatchToProps=(dispatch)=>{
     return{
-      //findUser:(id)=>dispatch(findUser(id)),
+      followFrined:(id, arr)=>dispatch(followFrined(id, arr)),
       getAllUsers:()=>dispatch(getAllUsers())
     }
   };

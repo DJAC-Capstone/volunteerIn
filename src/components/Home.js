@@ -71,7 +71,6 @@ export class Home extends Component {
           </div>
         </div>
         
-
         <div className="middle-container">
           {this.state.events.map (ev=>{
             let randID = Math.floor(Math.random() * (3 - 1) + 1)
@@ -96,7 +95,6 @@ export class Home extends Component {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
