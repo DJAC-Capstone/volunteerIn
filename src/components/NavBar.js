@@ -6,8 +6,6 @@ import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
 
-
-
 class NavBar extends Component {
 	constructor() {
 		super()

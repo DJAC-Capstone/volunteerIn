@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../redux/users';
-// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { HashRouter as Router, Route, Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 import Home from './Home';
@@ -13,6 +12,7 @@ import Login from './Login';
 import Events from './Events'
 import Friends from './Friends'
 import CreateEvent from './CreateEvent'
+import User from './User'
 import SingleEvent from './SingleEvent'
 
 
@@ -27,17 +27,17 @@ class App extends Component {
 				<main>
 					<NavBar />
 					 {/* <Chatbox /> */}
-					{/* <Switch> */}
+					<Switch>
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/createEvent" component={CreateEvent} />
-						<Route path = "/events/:id" exact component = { SingleEvent } />
-					{/* </Switch> */}
+						<Route exact path="/:userName" component={User} />
+						<Route exact path = "/events/:id" component = { SingleEvent } />
+					</Switch>
 				</main>
-    				
 			</Router>
 		);
 	}
