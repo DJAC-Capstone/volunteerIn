@@ -28,7 +28,6 @@ class Friends extends Component {
   
     handleSubmit (e) {
       e.preventDefault()
-
     }
 
     addFriend(user,friendId){
