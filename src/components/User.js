@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 
 
-export default class User extends Component {
+export class User extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -19,9 +19,7 @@ export default class User extends Component {
         return( 
             <div id="user-profile-main-container">
                 <p className="user-name-on-profile-page">
-                    {
-                    this.props.location.state ? document.getElementsByClassName("user-name-on-profile-page").innerHTML = this.props.location.state.user : ''
-                    }
+                    {this.props.location.state.user.first_name}
                 </p>   
                 <div className="activities">
                     <p className="activities-sections">Events Hosted</p>
@@ -53,3 +51,16 @@ export default class User extends Component {
 
 
 
+const mapStateToProps = (state) => {
+    return {
+    
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+    
+    }
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(User)

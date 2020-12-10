@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import  { getEvents } from '../redux/events'
 import { getAllUsers } from '../redux/users'
@@ -12,31 +13,23 @@ export class Home extends Component {
     this.state = {
       events: [],
       allUsers: [],
-      user: '',
-      showUserComponent: false
+      userName: '',
+      dummyUsers:[],
+      dummyUser:{}
     }
+    console.log('111',this.props)
+
     this.createEventButton = this.createEventButton.bind(this)
-    this.handleUserNameClick = this.handleUserNameClick.bind(this)
+    // this.handleUserNameClick = this.handleUserNameClick.bind(this)
   }
 
-  async componentDidMount() {
-    await this.props.fetchAllUsers()
-    await this.props.fetchEvents()
+  componentDidMount() {
+    this.props.fetchEvents()
     this.setState({
       events: this.props.events,
-      allUsers: this.props.allUsers,
-      user: this.props.allUsers.users[Math.floor(Math.random()*(3-1)+1)]
-    });
-     const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
-     document.getElementById('userName').innerHTML = userFullName
-  }
-
-  handleUserNameClick(){
-    const u = document.getElementById('userName').innerHTML
-    this.setState({
-      user: u,
-      showUserComponent: true
-     })
+      allUsers: this.props.allUsers.users,
+      user: this.props.allUsers.user
+    })
   }
 
   createEventButton () {
@@ -44,52 +37,45 @@ export class Home extends Component {
   }
 
   render() {
+    const {user} = this.props.allUsers
+    const {users} = this.props.allUsers
+    const {events} = this.props
+    let i = 0;
     return (
       <div className="main-container">
         <div className="left-container">
-          <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-          <p id="userName" onClick={this.handleUserNameClick}></p>
-          {this.state.showUserComponent ? <Redirect 
-          to={{
-            pathname: `/${this.state.user.split(' ').join('').toLowerCase()}`, 
+          <img src={`https://randomuser.me/api/portraits/women/${++i}.jpg`}/>
+          <Link to={{
+            pathname: `/${user.first_name}${user.last_name}`,
             state: {
-              fullName: this.state.user, 
-              users: this.state.allUsers.users, 
-              events: this.state.events,
-              user: this.state.user
+              events: events,
+              user: user
             }
-          }}
-          /> : null}
-
+          }}>{`${user.first_name} ${user.last_name}`}</Link>
           <div className="user-post-container">
-            <input placeholder="Share A Thought"></input>
+            <input placeholder="Post"></input>
             <div className="other-type-of-posts-container">
               <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
-              <button>Upload Video</button>
+              <button>Post</button>
             </div>
           </div>
         </div>
-        
         <div className="middle-container">
-          {this.state.events.map (ev=>{
-            let randID = Math.floor(Math.random() * (3 - 1) + 1)
+          {users.map (friend => { // friends.map should be changed to friends.map after adding users table in db
             return (
-              <div key={ev.id} className="other-users-post-container">
+              <div key={friend.id} className="other-users-post-container">
                 <div className="profile-pic-and-name-container">
-                  <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-                  {/* {this.state.allUsers.users.map(usr=>{
-                    return ( */}
-                    <div className="other-users-post-text">
-                      <p className="full-name">{`${this.state.allUsers.users[randID].first_name} ${this.state.allUsers.users[randID].last_name}`}</p>
-                      <p className="event-description">{ev.description}</p>
-                    </div>
-                    {/* )
-                  })} */}
+                  <img src={`https://randomuser.me/api/portraits/women/${++i}.jpg`}/>
+                  <p className="full-name">{`${friend.first_name} ${friend.last_name}`}</p>
+                </div>
+                <div className="friends-most-recent-event">
+                  <p>friend.events[0].title</p>
+                  <p>friend.events[0].description</p>
                 </div>
               </div>
-           )
-           })}
+            )
+          })}
         </div>
       </div>
     )
