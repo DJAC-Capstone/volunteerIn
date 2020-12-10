@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const { Events } = require('../db');
+const { Events , User} = require('../db');
 // load event
 
 router.get('/', async (req, res, next) => {
   try {
-    const events = await Events.findAll();
+    const events = await Events.findAll({ include: [User] });
     res.send(events);
   } catch (err) {
     next(err);
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const event = await Events.findByPk(req.params.id);
+    const event = await Events.findByPk(req.params.id,  { include: [User] });
     if (!event) {
       const error = new Error('EVENT NOT FOUND');
       error.status = 404;
@@ -29,8 +29,6 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const signupEvent = await Events.findByPk(req.params.id);
-    console.log(req.body);
-
     await signupEvent.update(req.body);
     res.send();
   } catch (ex) {
@@ -51,6 +49,16 @@ router.post('/create', async (req, res, next) => {
         state,
       });
     res.status(201).send(newEvent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/follow', async (req, res, next) => {
+  try {
+    const signupEvent = await Events.findByPk(req.body.event.id);
+    await signupEvent.setUsers(req.body.user.id);
+   
   } catch (err) {
     next(err);
   }

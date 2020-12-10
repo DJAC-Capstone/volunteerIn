@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import userStyles from '../Utils/userStyles';
-import {loginUser} from '../redux/Users'
+import {loginUser} from '../redux/users'
 import { connect } from 'react-redux'
 
 class Login extends Component {constructor() {
@@ -26,7 +25,7 @@ class Login extends Component {constructor() {
     email: '',
     password: ''
     })
-    this.props.history.push('/home') 
+    // this.props.history.push('/home') 
   }
 
   render(){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import { getAllUsers, getUser } from '../redux/Users';
+import { getAllUsers, getUser } from '../redux/users';
 
 
 class Chat extends Component {

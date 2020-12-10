@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {getAllUsers, followFrined} from '../redux/users';
+import {getAllUsers, followFrined, getUser} from '../redux/users';
 import {Link} from 'react-router-dom'
 
 
@@ -32,14 +32,15 @@ class Friends extends Component {
     }
 
     addFriend(user,friendId){
+      
       if(user.friends === null){
         const arr=[friendId]
         this.props.followFrined(user.id, arr)
-      }else{
+      }else{ 
         const arr=[...user.friends ,friendId]
         this.props.followFrined(user.id, arr)
       }
-    
+   
     }
 
     render () {
@@ -61,7 +62,7 @@ class Friends extends Component {
                         <div key ={user.id}>
                           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
                           <Link to={`/users/${user.id}`}  >{user.first_name}</Link>
-                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>follow</button>
+                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>Follow</button>
                         </div>
                       )
                     }

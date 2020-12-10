@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const { User, Session } = require('../db');
+const { User, Session, Events } = require('../db');
 
 router.post('/', async (req, res, next) => {
     try {
     const { email, password } = req.body;
-    const user = await User.findOne({where: { email }})
+    const user = await User.findOne({where: { email }}, { include: [Events] })
     if (user) {
         const correctPassword = await bcrypt.compare(password, user.password)
         if (correctPassword) {

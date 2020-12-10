@@ -1,11 +1,6 @@
-/* body {
-    display: flex;
-    justify-content: center;
-    background-color: white;
-} */
-
-
-
+html> body{
+    background-color: rgba(246, 214, 163, 0.287);
+}
 .active > a {
     text-align: center;
 }
@@ -15,8 +10,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* align-items: center; */
-    /* padding-top: 35px; */
     padding: 20px;
     
 }
@@ -98,8 +91,6 @@
 
 .profile-pic-and-name-container div {
     padding: 10px;
-    /* height: 300px;
-    width: 300px; */
 }
 
 .other-users-post-text .full-name {
@@ -110,10 +101,44 @@
 }
 
 .other-users-post-text .event-description {
-
     height: 200px;
     width: 400px;
 }
+
+/* ---user-profile-page---- */
+#user-profile-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-name-on-profile-page{
+    padding: 10px;
+    font-size: xx-large;
+}
+
+.activities > p {
+    text-align: center;
+    font-size: large;
+    font-weight: 900;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: black;
+    color:white;
+    }
+
+.activities-sections {
+    
+}
+
+.event-title {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    width: 700px;
+    font-size: medium;
+    background-color: #f8f8f8;
+}
+
 /* -------------------ChatBox--------------------- */
 .messages{
     display: inline-flex;
@@ -206,7 +231,9 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    background: #7a7d81;
+    background-image: url(./volunteer-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 #navBar > h1 {
     margin: 0.5rem;
@@ -228,7 +255,16 @@
 }
 #register-container{
     padding-top: 60px;
+    display: flex;
+    justify-content: space-around;
 }
+
+#register-container > div >p{
+    width: 30rem;
+    font-size: 15px;
+}
+
+
 #navBar > div{
     display: flex;
     justify-content: space-around;
@@ -237,6 +273,11 @@
 }
 #navBar > div >h3{
     margin-top: 0;
+}
+#navBar > div >i{
+    text-align: center;
+    margin: 0 1rem 1rem 1rem;
+    cursor: pointer;
 }
 #navBar > div >a{
     text-align: center;
@@ -254,10 +295,11 @@
 
 #myUL {
     z-index: 3;
-    top: 47px;
-    left: 37%;
+    top: 43px;
+    margin-left: auto;
+    margin-right: auto;
     height: 7rem;
-    width: 25rem;
+    width: 33rem;
     position: fixed;
     align-items: center;
     list-style-type: none;
@@ -286,4 +328,101 @@
   #myUL >div > a {
     font-size: 25px;
     color: black;
+  }
+  /* -------------------SigleEvent------------------------ */
+  .singleeventContainer{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70rem;
+    margin-top: 80px;
+  }
+  .singleeventContainer >img {
+    border-radius: 10px;
+    width: 70rem;
+    box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px rgb(0, 107, 139);
+  }
+  .titleContainer{
+    display: flex;
+    justify-content: space-around;
+  }
+  .titleContainer > button {
+    width: 10rem;
+    height: 4rem;
+    margin-top: 4rem;
+    background: rgb(56, 96, 148);
+    color: white;
+  }
+  .titleContainer > ul > h4 {
+    color: rgb(235, 63, 63);
+  }
+
+  .description,  .eventLocation {
+      border: black 1px solid;
+      width: 30rem;
+      height: 40rem;
+      border-radius: 10px;
+      padding: 1rem
+  }
+
+  .dataContainer{
+    display: flex;
+    justify-content: space-around;
+  }
+  .mapContainer{
+    margin: 1rem;
+    border: black 1px solid;
+    width: 25rem;
+    height: 25rem;
+  }
+  /* ----------------------All Events---------------- */
+
+  .allEventsContainer{
+    padding-top: 9rem;
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+  }
+  .oneEvent{
+    margin: 1.5rem;
+    height: 28rem;
+    width: 30rem;
+    border: black 1px solid;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 1px 1px 2px black, 0 0 25px rgb(204, 123, 121), 0 0 5px rgb(139, 32, 0);
+  }
+  .oneEvent > img{
+    width: 100%;
+    height: 8rem;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .oneEvent > ul >li{
+    list-style: none;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  .oneEvent > ul >a{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+  }
+  .oneEvent > ul >h5{
+    color: tomato;
+  }
+  .oneEvent > button{
+    width: 100%;
+    background: rgb(56, 96, 148);
+    color: white;
+  }
+  /* ------------------createEvent------------------ */
+
+  .createEvent{
+      padding-top: 90px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 70rem;
   }

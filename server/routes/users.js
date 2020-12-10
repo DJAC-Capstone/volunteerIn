@@ -11,9 +11,10 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-router.get('/get-user', (req, res, next) => {
+router.get('/get-user', async (req, res, next) => {
   try {
-      res.send(req.user)
+    const singleUser = await User.findByPk(req.user.id, { include: [Events] })
+      res.send(singleUser)
   }
   catch (err) {
       next(err)
@@ -44,23 +45,12 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
-  try {
-    const followedUser = await User.findByPk(req.params.id);
-    await followedUser.update(req.body);
-    res.send();
-  } catch (ex) {
-    next(ex);
-  }
-});
 
 router.put('/follow', async (req, res, next) => {
   try {
-    console.log("req.body]]]]]]]]]]]]]]]]]]");
-    
-    // const followedUser = await User.findByPk(req.body.id);
-    // await followedUser.update({friends: req.body.arr });
-    // res.send();
+    const followedUser = await User.findByPk(req.body.id);
+    const user=await followedUser.update({friends: req.body.arr });    
+    res.send(user);
   } catch (ex) {
     next(ex);
   }
