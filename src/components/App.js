@@ -22,14 +22,17 @@ class App extends Component {
 		await this.props.getUser()
 	}
 	render() {
+		console.log("app props", this.props)
+
 		return (
 			<Router>
-				<main>
+				{/* <main> */}
 					<NavBar />
+					<Route exact path="/login" component={Login} />
+
 					 {/* <Chatbox /> */}
 					<Switch>
-						<Route exact path="/login" component={Login} />
-						<Route exact path="/home" component={Home} />
+						<Route exact path="/home" render={(props)=>(<Home test="hi" {...props} />)}/>
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
@@ -37,7 +40,7 @@ class App extends Component {
 						<Route exact path="/:userName" component={User} />
 						<Route exact path="/events/:id" component = { SingleEvent } />
 					</Switch>
-				</main>
+				{/* </main> */}
 			</Router>
 		);
 	}

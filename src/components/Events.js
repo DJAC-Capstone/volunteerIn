@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getEvents, followEvent, getUser } from '../redux/events';
+import { getEvents, followEvent} from '../redux/events';
 import { Link } from 'react-router-dom';  
 
 
@@ -37,7 +37,8 @@ class Events extends Component {
                 newArr.push(this.state.arr[i])
             }
         }
-        this.setState({arr : newArr})
+		this.setState({arr : newArr})
+		
     }
 
 

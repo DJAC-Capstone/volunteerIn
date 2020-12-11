@@ -57,7 +57,7 @@ class NavBar extends Component {
 }
 export default connect(
 	(state) => ({
-	  user:  state.users.user,
+	  user: state.users.user,
 	}),
 	(dispatch) => ({
 	  getAllUsers: () => dispatch(getAllUsers()),
