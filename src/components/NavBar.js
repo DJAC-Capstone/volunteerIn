@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllUsers, logoutUser } from '../redux/users';
+import { getAllUsers, logoutUser, getUser } from '../redux/users';
 import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
@@ -13,6 +13,7 @@ class NavBar extends Component {
 	  }
 	async handleLogout(){
 		await this.props.logoutUser()
+		this.props.getUser()
 	  }
 
 	render() {
@@ -60,6 +61,7 @@ export default connect(
 	}),
 	(dispatch) => ({
 	  getAllUsers: () => dispatch(getAllUsers()),
-	  logoutUser: () => dispatch(logoutUser())
+	  logoutUser: () => dispatch(logoutUser()),
+	  getUser: ()=> dispatch(getUser())
 	}),
   )(NavBar);

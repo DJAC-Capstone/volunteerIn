@@ -11,9 +11,10 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
-router.get('/get-user', (req, res, next) => {
+router.get('/get-user', async (req, res, next) => {
   try {
-      res.send(req.user)
+    const singleUser = await User.findByPk(req.user.id, { include: [Events] })
+      res.send(singleUser)
   }
   catch (err) {
       next(err)

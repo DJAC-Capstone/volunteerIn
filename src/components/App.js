@@ -35,7 +35,7 @@ class App extends Component {
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/createEvent" component={CreateEvent} />
 						<Route exact path="/:userName" component={User} />
-						<Route exact path = "/events/:id" component = { SingleEvent } />
+						<Route exact path="/events/:id" component = { SingleEvent } />
 					</Switch>
 				</main>
 			</Router>

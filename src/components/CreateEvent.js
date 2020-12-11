@@ -43,7 +43,7 @@ class CreateEvent extends Component {
   render(){
 const {handleChange, handleSubmit} = this
     return (
-      <div>
+      <div className='createEvent'>
         <form style={userStyles} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
             <h3>Event Info</h3>

@@ -4,7 +4,7 @@ const { Events , User} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
-    const events = await Events.findAll();
+    const events = await Events.findAll({ include: [User] });
     res.send(events);
   } catch (err) {
     next(err);
@@ -29,8 +29,6 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const signupEvent = await Events.findByPk(req.params.id);
-    console.log(req.body);
-
     await signupEvent.update(req.body);
     res.send();
   } catch (ex) {
@@ -51,6 +49,16 @@ router.post('/create', async (req, res, next) => {
         state,
       });
     res.status(201).send(newEvent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/follow', async (req, res, next) => {
+  try {
+    const signupEvent = await Events.findByPk(req.body.event.id);
+    await signupEvent.setUsers(req.body.user.id);
+   
   } catch (err) {
     next(err);
   }

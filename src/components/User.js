@@ -10,8 +10,6 @@ export default class User extends Component {
             user: this.props.match.params.userName,
         }
     }
-
-
     render(){
         let ev = this.props.location.state
         let events = []

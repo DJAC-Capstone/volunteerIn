@@ -25,7 +25,7 @@ class Login extends Component {constructor() {
     email: '',
     password: ''
     })
-    this.props.history.push('/home') 
+    // this.props.history.push('/home') 
   }
 
   render(){
