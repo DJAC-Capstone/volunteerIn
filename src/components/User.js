@@ -1,47 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'; 
+import { getUser } from '../redux/users';
 
 
-
-export default class User extends Component {
+class User extends Component {
     constructor(props){
         super(props)
         this.state = {
-            user: this.props.match.params.userName,
+            user: '',
+            events: [],
+            friends: []
+        }
+    }
+    async componentDidMount(){
+		await this.props.getUser()
+	}
+    componentDidUpdate(){
+        if(this.state.user === ''){
+            this.setState({user: this.props.user, events: this.props.user.events, friends: this.props.user.friends})
         }
     }
     render(){
-        let ev = this.props.location.state
-        let events = []
-        ev ? events = ev.events : events = []
+        const {events, user, friends} = this.state
         return( 
             <div id="user-profile-main-container">
-                <p className="user-name-on-profile-page">
-                    {
-                    this.props.location.state ? document.getElementsByClassName("user-name-on-profile-page").innerHTML = this.props.location.state.user : ''
-                    }
-                </p>   
+                <div className='user-mini-profile'> 
+					<img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                    <h2>{user.first_name} {user.last_name}</h2>
+                    <h4>Friends: {friends.length}</h4>
+                    <h4>Events: {events.length}</h4>
+                </div>   
                 <div className="activities">
-                    <p className="activities-sections">Events Hosted</p>
-                        {events.map(e=>
+                        {events.map(event =>
                             {
                             return (
-                                <div key={e.id}>
-                                    <p className="event-title">{e.title}</p>
+                            <div className='oneEvent-users-profile' key={event.id}>
+                                <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                                <ul>
+                                    <Link to={`/events/${event.id}`}>{event.title}</Link>
+                                    <li>{event.description}</li>
+                                    <h5>{event.city},{' '}{event.state}{' '}</h5>
+                                   
+                                </ul>
+                                <div>
+                                    <h4>Commment</h4>
+                                    <li>{event.comments}</li>
                                 </div>
+                            </div>
                             )
                             })
                         }
-                    <p className="activities-sections">Events Attened</p>
-                    {events.map(e=>
-                        {
-                        return (
-                            <div key={e.id}>
-                                <p className="event-title">{e.title}</p>
-                            </div>
-                        )
-                        })
-                    }
                 </div>
             </div>
         
@@ -50,4 +59,11 @@ export default class User extends Component {
 }
 
 
-
+export default connect(
+	(state) => ({
+		user: state.users.user
+      }),
+      (dispatch) => ({
+        getUser: () => dispatch(getUser())
+      })
+  )(User)

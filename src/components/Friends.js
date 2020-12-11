@@ -35,9 +35,11 @@ class Friends extends Component {
       if(user.friends === null){
         const arr=[friendId]
         this.props.followFrined(user.id, arr)
+        this.setState({username: ''})
       }else{ 
         const arr=[...user.friends ,friendId]
         this.props.followFrined(user.id, arr)
+        this.setState({username: ''})
       }
    
     }

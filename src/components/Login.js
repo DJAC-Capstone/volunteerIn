@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {loginUser} from '../redux/users'
+import {loginUser, getUser} from '../redux/users'
 import { connect } from 'react-redux'
 
 class Login extends Component {constructor() {
@@ -21,11 +21,12 @@ class Login extends Component {constructor() {
   async handleSubmit(ev){
     ev.preventDefault()
     await this.props.loginUser(this.state)
-    await this.setState({
+    this.props.getUser()
+    this.props.history.push('/home') 
+    this.setState({
     email: '',
     password: ''
     })
-    // this.props.history.push('/home') 
   }
 
   render(){
@@ -48,6 +49,7 @@ export default connect(
 	(dispatch) => {
 	  return {
     loginUser: (credentials) => dispatch(loginUser(credentials)),
+    getUser: () => dispatch(getUser())
 	}
   }
   )(Login)
