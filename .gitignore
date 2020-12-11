@@ -4,3 +4,4 @@ node_modules
 dist/main.js
 bundle.js
 bundle.js.map
+secrets.js
