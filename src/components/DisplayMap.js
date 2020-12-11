@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useLayoutEffect } from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
 import { GoogleMap, LoadScript, GoogleMapPin, Marker } from '@react-google-maps/api';
@@ -15,30 +15,11 @@ function DisplayMaps({event}) {
   const [map, setMap] = useState(null);
   const [loc, setLoc] = useState({lat:0, lng:0});
  
+  const stringAdd = `${event.street_address}, ${event.city}, ${event.state}, ${event.zip_code}`
+  console.log(stringAdd)
 
-  const {street_address, city, state, zip_code } = event
-  const newAdd = {
-    street_address,
-    city,
-    state,
-    zip_code
-  }
-
-  const stringAdd = Object.keys(newAdd).reduce(function(acc, v) {
-      return acc.concat(' ', `${newAdd[v]},`);
-  }, '');
- 
-  
-  const onLoad = useCallback(function callback(map) {
-  }, [])
- 
-  const onUnmount = useCallback(function callback(map) {
-    setMap(null)
-  }, [])
- 
   const getLatAndLongFromAddress = async (add) => {
-    // im gonna translate the address to a lat and long
-    add = !!event && encodeURIComponent(add);
+    add = stringAdd && encodeURIComponent(add);
     console.log(add)
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${add}&key=${MAP_API}`;
     const { data } = await axios.get(url);
@@ -50,13 +31,11 @@ function DisplayMaps({event}) {
     setLoc({lat: lat, lng:lng})
   };
 
-
   useEffect(() => {
-    
     const address = stringAdd;
     getLatAndLongFromAddress(address);
-console.log(address)
   }, []); 
+
 
   return (
     <LoadScript
@@ -66,8 +45,8 @@ console.log(address)
         mapContainerStyle={containerStyle}
         center={loc}
         zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+        // onLoad={onLoad}
+        // onUnmount={onUnmount}
       >
             <Marker
       // onLoad={onLoad}

@@ -158,7 +158,7 @@ const events = [{
   title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$602.28', comments: 'Proactive reciprocal projection',
 },
 {
-  title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',
+  title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address:'8500 Beverly Blvd', city: 'Los Angeles', state: 'CA', zip_code: '98848', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',
 },
 {
   title: 'Kids Rockin Saturday ', description: 'Saturday morning fun zone for kids!', date: '06/15/2021', time: '7:14 PM', duration: 3, street_address: '100 Columbiana Circle', city: 'Columbia', state: 'South Carolina', zip_code: '29212', donation: '$937.45', comments: 'User-centric background structure',
