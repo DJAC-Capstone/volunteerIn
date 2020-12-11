@@ -28,7 +28,6 @@ class Friends extends Component {
   
     handleSubmit (e) {
       e.preventDefault()
-
     }
 
     addFriend(user,friendId){
@@ -62,7 +61,7 @@ class Friends extends Component {
                         <div key ={user.id}>
                           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
                           <Link to={`/users/${user.id}`}  >{user.first_name}</Link>
-                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>follow</button>
+                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>Follow</button>
                         </div>
                       )
                     }

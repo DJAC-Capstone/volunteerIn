@@ -276,7 +276,7 @@ html> body{
     justify-content: space-around;
 }
 
-#register-container  >p{
+#register-container > div >p{
     width: 30rem;
     font-size: 15px;
 }
@@ -312,10 +312,11 @@ html> body{
 
 #myUL {
     z-index: 3;
-    top: 47px;
-    left: 37%;
+    top: 43px;
+    margin-left: auto;
+    margin-right: auto;
     height: 7rem;
-    width: 25rem;
+    width: 33rem;
     position: fixed;
     align-items: center;
     list-style-type: none;
@@ -394,17 +395,17 @@ html> body{
 
   .allEventsContainer{
     padding-top: 9rem;
-    top: 80px;
     width: 90vw;
     margin: 0 auto;
     max-width: 1170px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
   }
   .oneEvent{
-    height: 25rem;
+    margin: 1.5rem;
+    height: 28rem;
     width: 30rem;
     border: black 1px solid;
     border-radius: 10px;
@@ -413,7 +414,7 @@ html> body{
   }
   .oneEvent > img{
     width: 100%;
-    height: 6rem;
+    height: 8rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
   }
@@ -433,4 +434,12 @@ html> body{
     width: 100%;
     background: rgb(56, 96, 148);
     color: white;
+  }
+  /* ------------------createEvent------------------ */
+
+  .createEvent{
+      padding-top: 90px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 70rem;
   }

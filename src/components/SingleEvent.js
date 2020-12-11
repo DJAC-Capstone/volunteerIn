@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { singleEvent } from '../redux/events';
+import { singleEvent, followEvent } from '../redux/events';
 import faker from 'faker'
 
 class SingleEvent extends Component{
@@ -8,7 +8,8 @@ class SingleEvent extends Component{
         super();
         this.state = {
             id: 1,
-            event: {}
+            event: {},
+            arr:[]
           };
         }
 
@@ -22,9 +23,26 @@ class SingleEvent extends Component{
           this.setState({id: this.props.match.params.id})
         }
       }
+      addEvent(event){	
+		const eventArr= [...this.state.arr]
+		this.props.followEvent(this.props.user, event)
+		eventArr.push(event.id)
+		this.setState({arr: eventArr})
+    }
+    
+    removeEvent(event){
+        const newArr=[]
+        for(let i=0; i< this.state.arr.length; i++){
+            if(this.state.arr[i] !== event.id){
+                newArr.push(this.state.arr[i])
+            }
+        }
+        this.setState({arr : newArr})
+    }
+
 
     render(){
-        
+		const {arr} =this.state
         const {event} = this.state
         console.log(event);
 
@@ -37,7 +55,11 @@ class SingleEvent extends Component{
                             <h4>Start Date: {new Date(event.date).toDateString()}</h4>
                             <h4>End Date: {new Date(event.duration).toDateString()}</h4>
                         </ul>
-                        <button>Join</button>
+                            {
+								arr.indexOf(event.id) === -1 ? 
+                                <button onClick={()=> this.addEvent(event)}>Join</button>:
+								<button onClick={()=> this.removeEvent(event)}> Cancel </button>
+							}
                     </div>
                 <div className='dataContainer'>
                     <div className="description">
@@ -60,10 +82,13 @@ class SingleEvent extends Component{
 
 export default connect(
     (state) => ({
-        event:  state.events.event
+        event:  state.events.event,
+		user: state.users.user
+
       }),
       (dispatch) => ({
-        singleEvent: (id) => dispatch(singleEvent(id))
+        singleEvent: (id) => dispatch(singleEvent(id)),
+        followEvent: (userID, EventTd) => dispatch(followEvent(userID, EventTd))
       })
 )(SingleEvent)
 
