@@ -5,3 +5,4 @@ dist/main.js
 bundle.js
 bundle.js.git map
 secrets.js
+server/public/bundle.js.map

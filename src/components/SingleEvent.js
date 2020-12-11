@@ -84,7 +84,7 @@ class SingleEvent extends Component{
 export default connect(
     (state) => ({
         event:  state.events.event,
-		user: state.users.user
+		    user: state.users.user
 
       }),
       (dispatch) => ({
