@@ -62,8 +62,7 @@ class User extends Component {
 export default connect(
 	(state) => ({
 		user: state.users.user
-      }),
-      (dispatch) => ({
+      }),(dispatch) => ({
         getUser: () => dispatch(getUser())
       })
   )(User)
