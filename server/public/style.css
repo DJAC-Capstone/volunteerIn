@@ -92,6 +92,10 @@ html> body{
     font-weight: bold;
 }
 
+.profile-pic {
+    margin-top: 20px;
+}
+
 .profile-pic-and-name-container img{
     max-height: 100px;
     max-width: 100px;
@@ -308,7 +312,7 @@ html> body{
     /* background-image: url(./volunteer-bg.jpg); */
     background-repeat: no-repeat;
     background-size: auto;
-    background-color: white;
+    background-color: #f8f8f8;
 }
 
 a {
