@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { singleEvent, followEvent } from '../redux/events';
+import DisplayMaps from './DisplayMap'
 import faker from 'faker'
 
 class SingleEvent extends Component{
@@ -70,8 +71,8 @@ class SingleEvent extends Component{
                         <h4>Location</h4>
                         <h5>{event.city}</h5>
                         <h5>{event.state}</h5>
-                        <div className='mapContainer'>
-                            location in map
+                        <div>
+                        <DisplayMaps event ={event}/>
                         </div>
                     </div>
                 </div>
@@ -83,7 +84,7 @@ class SingleEvent extends Component{
 export default connect(
     (state) => ({
         event:  state.events.event,
-		user: state.users.user
+		    user: state.users.user
 
       }),
       (dispatch) => ({
