@@ -36,7 +36,7 @@ class NavBar extends Component {
 				}
 			</nav>	
 				{
-					this.props.user.id === undefined?
+					this.props.user.id === undefined ? (
 					<div id="register-container">
 						<Register/>
 						<div>
@@ -46,7 +46,7 @@ class NavBar extends Component {
 								Welcome to VolunteerIn, your volunteer community hub! Here you will be able to create a profile that will include your favorite quotes and interests. You will also be able to create an event you would like to host and see other volunteer events in your area.  You can also follow other users and see what events they have attended and created.
 							</p>
 						</div>
-					</div>: null
+					</div>): null
 				}
 			</div>
 		);

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 
 import  { getEvents } from '../redux/events'
 import { getAllUsers } from '../redux/users'
-
+import {Link } from 'react-router-dom'
 
 export class Home extends Component {
   constructor(props) {
@@ -67,6 +67,7 @@ export class Home extends Component {
               <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Upload Video</button>
+              <button><Link to =  "/updateUser">Update User</Link></button>
             </div>
           </div>
         </div>

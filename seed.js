@@ -4,10 +4,10 @@ const { db, User, Events } = require('./server/db/index.js');
 
 // dummy users
 const users = [{
-  first_name: 'Rosmunda', last_name: 'Shallo', friends:[2,3,5,8], gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
+  first_name: 'Rosmunda', last_name: 'Shallo', friends:[2,3], gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
 },
 {
-  first_name: 'Olly', last_name: 'Dufour', gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'odufour1@wikispaces.com', password: 'EUzSqPtV7j',
+  first_name: 'Olly', last_name: 'Dufour', friends:[1,3], gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'odufour1@wikispaces.com', password: 'EUzSqPtV7j',
 },
 // {
 //   first_name: 'Tracee', last_name: 'Mattsson', gender: 'Female', date_of_birth: '11/10/1980', phone: '650-822-0995', email: 'tmattsson2@salon.com', password: 'PkR7NvA',
@@ -151,7 +151,7 @@ const users = [{
 //   first_name: 'Daren', last_name: 'Puttrell', gender: 'Male', date_of_birth: '08/30/1976', phone: '310-451-9540', email: 'dputtrell1c@de.vu', password: 'QryHh1K3',
 // },
 {
-  first_name: 'Freddy', last_name: 'Blakeston', gender: 'Male', date_of_birth: '12/17/1988', phone: '818-210-6335', email: 'fblakeston1d@youtu.be', password: 'zl5P76H',
+  first_name: 'Freddy', last_name: 'Blakeston', friends:[1,2], gender: 'Male', date_of_birth: '12/17/1988', phone: '818-210-6335', email: 'fblakeston1d@youtu.be', password: 'zl5P76H',
 }];
 
 const events = [{

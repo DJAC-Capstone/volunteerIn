@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {getUser} from '../redux/users'
 
 
-class EditCostume extends Component {
+class UpdateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,11 +30,11 @@ class EditCostume extends Component {
     
     return (
 
-      <div>
-        <h1>
+      <div style={{marginTop: "200px"}}>Hello world</div>)}}
+        {/* <h1>
           Update Profile Information:{' '}</h1>
           {user.first_name}{user.last_name}
-          </div>)}}
+          </div>)}} */}
           
 /* 
         </h1>
@@ -164,7 +164,7 @@ class EditCostume extends Component {
 } */
 
 const mapStateToProps = (state) => ({
-  user: users.user
+  user: state.users.user
 });
 
 const mapDispatchToProps = (dispatch) => ({

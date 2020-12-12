@@ -14,6 +14,7 @@ import Friends from './Friends'
 import CreateEvent from './CreateEvent'
 import User from './User'
 import SingleEvent from './SingleEvent'
+import UpdateProfile from './UpdateProfile'
 
 
 class App extends Component {
@@ -34,8 +35,10 @@ class App extends Component {
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/createEvent" component={CreateEvent} />
-						<Route exact path="/:userName" component={User} />
+						  <Route exact path="/updateUser" component={UpdateProfile} />
+              <Route exact path="/:userName" component={User} />
 						<Route exact path="/events/:id" component = { SingleEvent } />
+          
 					</Switch>
 				</main>
 			</Router>
