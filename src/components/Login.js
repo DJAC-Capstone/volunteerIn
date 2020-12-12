@@ -18,11 +18,10 @@ class Login extends Component {constructor() {
     })
   }
 
-  async handleSubmit(ev){
+  handleSubmit(ev){
     ev.preventDefault()
-    await this.props.loginUser(this.state)
-    this.props.getUser()
-    this.props.history.push('/home') 
+    this.props.loginUser(this.state)
+    window.location.hash = "#/home"
     this.setState({
     email: '',
     password: ''
