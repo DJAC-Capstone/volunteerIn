@@ -4,7 +4,7 @@ const { db, User, Events } = require('./server/db/index.js');
 
 // dummy users
 const users = [{
-  first_name: 'Rosmunda', last_name: 'Shallo', frineds:[2,3,5,8], gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
+  first_name: 'Rosmunda', last_name: 'Shallo', friends:[2,3,5,8], gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
 },
 {
   first_name: 'Olly', last_name: 'Dufour', gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'odufour1@wikispaces.com', password: 'EUzSqPtV7j',

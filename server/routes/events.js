@@ -57,7 +57,7 @@ router.post('/create', async (req, res, next) => {
 router.post('/follow', async (req, res, next) => {
   try {
     const signupEvent = await Events.findByPk(req.body.event.id);
-    await signupEvent.setUsers(req.body.user.id);
+    await signupEvent.addUsers(req.body.user.id);
    
   } catch (err) {
     next(err);
