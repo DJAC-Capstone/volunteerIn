@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import  { getEvents } from '../redux/events'
-import { getAllUsers } from '../redux/users'
+import { getAllUsers, getUser } from '../redux/users'
 import {Link } from 'react-router-dom'
 
 export class Home extends Component {
@@ -20,12 +20,13 @@ export class Home extends Component {
   }
 
   async componentDidMount() {
+    await this.props.getUser()
     await this.props.fetchAllUsers()
     await this.props.fetchEvents()
     this.setState({
       events: this.props.events,
       allUsers: this.props.allUsers,
-      user: this.props.allUsers.users[Math.floor(Math.random()*(3-1)+1)]
+      user: this.props.user
     });
      const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
      document.getElementById('userName').innerHTML = userFullName
@@ -48,7 +49,7 @@ export class Home extends Component {
       <div className="main-container">
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-          <p id="userName" onClick={this.handleUserNameClick}></p>
+    <p onClick={this.handleUserNameClick}>{this.props.user.first_name}{' '}{this.props.user.last_name}</p>
           {this.state.showUserComponent ? <Redirect 
           to={{
             pathname: `/${this.state.user.split(' ').join('').toLowerCase()}`, 
@@ -67,7 +68,7 @@ export class Home extends Component {
               <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Upload Video</button>
-              <button><Link to =  "/updateUser">Update User</Link></button>
+              <button><Link to =  "/updateUser">Update Profile</Link></button>
             </div>
           </div>
         </div>
@@ -101,12 +102,13 @@ const mapStateToProps = (state) => {
   return {
     events: state.events.events,
     allUsers: state.users,
-    user: state.user
+    user: state.users.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getUser: ()=> dispatch(getUser()),
     fetchEvents: () => dispatch(getEvents()),
     fetchAllUsers: () => dispatch(getAllUsers())
   }
