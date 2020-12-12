@@ -1,167 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from '../redux/users'
+import{ userStyles} from '../utils/userStyles'
 
 
 class UpdateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      first_name:'',
+      last_name:'',
       email: '',
       phone: '',
       password: '',
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getUser();
   }
 
-  handleInputChange(ev) {
+  handleChange(ev) {
     const { name, value } = ev.target;
     this.setState({
       [name]: value,
     });
   }
+  handleSubmit(ev){
+    console.log('submit being handled')
+  }
 
   render() {
-    const user = this.props.user;
+    const {user} = this.props;
+    const {handleChange, handleSubmit }= this
     
     return (
 
-      <div style={{marginTop: "200px"}}>Hello world</div>)}}
-        {/* <h1>
-          Update Profile Information:{' '}</h1>
+      // <div >Hello world</div>)}}
+      <div>
+        <h3 style={{marginTop: "200px"}}>
           {user.first_name}{user.last_name}
-          </div>)}} */}
-          
-/* 
-        </h1>
-        <hr />
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { costumeName: this.state.costumeName }); }}>
-          <label>
-            Current Name:
-            {'  '}
-            {thisCostume.costumeName}
-            <div>
-              New Name:
-              {'  '}
-              <input
-                name="costumeName"
-                type="text"
-                placeholder={this.costumeName}
-                value={this.state.costumeName}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <input type="submit" value="Update" />
-          </label>
-        </form>
-        <hr />
-
-        <div>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { price: this.state.price }); }}>
-          <label>
-            Current Price:
-            {' '}
-            {thisCostume.price}
-            <div>
-              New Price:
-              {'  '}
-              <input
-                name="price"
-                type="number"
-                value={this.state.price}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <input type="submit" value="Update" />
-          </label>
-        </form>
-        </div>
-
-        <hr />
-
-        <div>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { imageUrl: this.state.imageUrl }); }}>
-          <label>
-            Current ImageUrl:
-            {' '}
-            {' '}
-            {thisCostume.imageUrl}
-            <div>
-              New Image Url:
-              {'  '}
-              <input
-                name="imageUrl"
-                type="text"
-                value={this.state.imageUrl}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <input type="submit" value="Update" />
-          </label>
-        </form>
-        </div>
-        <hr />
-
-        <div>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { quantity: parseInt(this.state.quantity, 10) }); }}>
-          <label>
-            Current Quantity:
-            {' '}
-            {' '}
-            {thisCostume.quantity}
-            <div>
-              New Quantity:
-              {'  '}
-              <input
-                name="quantity"
-                type="text"
-                value={this.state.quantity}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <input type="submit" value="Update" />
-          </label>
-        </form>
-        </div>
-        <hr />
-
-        <div>
-        <form onSubmit={() => { this.props.dispatchUpdateCostume(this.state.costumeId, { categoryId: this.state.categoryId }); }}>
-          <label>
-            Current Category:
-            {' '}
-            {' '}
-            {thisCategory ? thisCategory.title : null}
-            <div>
-              New Category:
-
-              <select
-                name="categoryId"
-                value={this.state.categoryId}
-                onChange={this.handleInputChange}
-              >
-                <option>--Update Category--</option>
-                {!!categories && categories
-                  .map((category) => (
-                    <option key={category.title} value={category.id}>
-                      {category.title}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <input type="submit" value="Update" />
-          </label>
-        </form>
-        </div>
-        <hr />
-      </div> */
-    /* );
+          </h3>
+           <div>
+           <form style={userStyles} onSubmit={handleSubmit}>
+             <div style={{ margin: '20px' }}>
+             <h2></h2>
+               <h3>Personal Info</h3>
+               <div className="form-group">
+                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button>Update</button>
+               </div>
+               <div className="form-group">
+                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button>Update</button>
+               </div>
+               <hr />
+               <h3>Contact Info</h3>
+               <div className="form-group">
+                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button>Update</button>
+               </div>
+               <div className="form-group">
+                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button>Update</button>
+               </div>
+               <hr />
+               <h3>Create New Password</h3>
+               <div className="form-group">
+                 <input type="password" className="form-control" id="password" autoComplete="current-password" laceholder= {user.password} name="password" onChange={handleChange} value={this.state.password} /><button>Update</button>
+               </div>
+               <button type="submit" className="btn btn-primary"> Update All</button>
+             </div>
+           </form>
+         </div>
+         <div>
+      </div>
+      </div>
+    );
   }
-} */
+}
+
 
 const mapStateToProps = (state) => ({
   user: state.users.user

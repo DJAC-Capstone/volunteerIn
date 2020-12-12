@@ -32,5 +32,18 @@ const titleStyle = {
   pdding: '10px'
 }
 
-export {userStyles, eventStyles};
+const updateForm = {
+	display: 'inline-block',
+	fontFamily: 'Josefin Sans, sans-serif',
+	borderStyle: 'solid',
+	borderWidth: '2px',
+	borderColor: 'gray',
+	borderRadius: '10px',
+	margin: '15px',
+	width: '700px',
+	verticalAlign: 'center',
+	// height: '300px',
+};
+
+export {userStyles, eventStyles, updateForm};
 
