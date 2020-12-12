@@ -155,7 +155,7 @@ const users = [{
 }];
 
 const events = [{
-  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$602.28', comments: 'Proactive reciprocal projection',
+  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets!', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$602.28', comments: 'Proactive reciprocal projection',
 },
 {
   title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address:'8500 Beverly Blvd', city: 'Los Angeles', state: 'CA', zip_code: '98848', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',
@@ -212,7 +212,7 @@ const events = [{
 //   title: 'ultrices posuere cubilia curae donec', description: 'ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a', date: '03/26/2021', time: '7:44 AM', duration: 1, street_address: '21504 Debra Junction', city: 'Dallas', state: 'Texas', zip_code: '75265', donation: '$940.35', comments: 'De-engineered asymmetric concept',
 // },
 {
-  title: 'Food for Friends', description: 'Taking some quality time to share a meal with those in need', date: '04/18/2021', time: '7:23 PM', duration: 3.5, street_address: '8001 S Orange Blossom Trail', city: 'Orlando', state: 'FL', zip_code: '32809', donation: '$1251.05', comments: 'Face to face exuding paradigm',
+  title: 'Food for Friends', description: 'Taking some quality time to share a meal with those in need!', date: '04/18/2021', time: '7:23 PM', duration: 3.5, street_address: '8001 S Orange Blossom Trail', city: 'Orlando', state: 'FL', zip_code: '32809', donation: '$1251.05', comments: 'Face to face exuding paradigm',
 }];
 
 const seed = async () => {

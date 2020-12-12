@@ -62,6 +62,8 @@ export class Home extends Component {
           }}
           /> : null}
 
+          
+
           <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
