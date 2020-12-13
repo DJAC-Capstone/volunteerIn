@@ -79,10 +79,12 @@ class Friends extends Component {
                         <div key ={user.id}>
                           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
                           <Link to={`/users/${user.id}`} onClick={() =>this.getFriendProfile(user.id)}>{user.first_name}</Link>
-                          {                         
+                          {         
+                          logedInUser.friends?                
                             logedInUser.friends.indexOf(user.id) > -1 ?
                             <button onClick={()=>this.unFollow(this.props.logedInUser, user.id)}>Unfollow</button>:
                             <button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
+                            :<button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
                           }
                         </div>
                       )

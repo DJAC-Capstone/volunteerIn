@@ -15,6 +15,7 @@ import CreateEvent from './CreateEvent'
 import User from './User'
 import SingleEvent from './SingleEvent'
 import FriendProfile from './FriendProfile'
+import UpdateProfile from './UpdateProfile'
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
 			<Router>
 				<main>
 					<NavBar />
-					 <Chatbox />
+					 {/* <Chatbox /> */}
 					<Switch>
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />
@@ -37,7 +38,9 @@ class App extends Component {
 						<Route exact path="/createEvent" component={CreateEvent} />
 						<Route exact path="/users/profile/:id" component={User} />
 						<Route exact path="/users/:id" component={FriendProfile} />
+					  	<Route exact path="/updateUser" component={UpdateProfile} />
 						<Route exact path="/events/:id" component = { SingleEvent } />
+          
 					</Switch>
 				</main>
 			</Router>

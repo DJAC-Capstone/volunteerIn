@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import {Link} from 'react-router-dom'
 import  { getEvents } from '../redux/events'
-import { getAllUsers, findUser } from '../redux/users'
-
+import { getAllUsers, getUser, findUser} from '../redux/users'
 
 export class Home extends Component {
   constructor(props) {
@@ -20,6 +19,7 @@ export class Home extends Component {
   }
 
   async componentDidMount() {
+    await this.props.getUser()
     await this.props.fetchAllUsers()
     await this.props.fetchEvents()
     this.setState({
@@ -27,8 +27,6 @@ export class Home extends Component {
       allUsers: this.props.allUsers,
       user: this.props.allUsers.user
     });
-    //  const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
-    //  document.getElementById('userName').innerHTML = userFullName
   }
 
   createEventButton () {
@@ -42,13 +40,13 @@ export class Home extends Component {
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
            <Link to={`/users/profile/${user.id}`}>{user.first_name} {user.last_name}</Link>
-
-          <div className="user-post-container">
+            <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
               <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Upload Video</button>
+              <button><Link to =  "/updateUser">Update Profile</Link></button>
             </div>
           </div>
         </div>
@@ -78,12 +76,13 @@ const mapStateToProps = (state) => {
   return {
     events: state.events.events,
     allUsers: state.users,
-    user: state.user
+    user: state.users.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getUser: ()=> dispatch(getUser()),
     fetchEvents: () => dispatch(getEvents()),
     fetchAllUsers: () => dispatch(getAllUsers()),
     findUser: (id) => dispatch(findUser(id))
