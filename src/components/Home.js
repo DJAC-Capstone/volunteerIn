@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
+import uuid from 'react-uuid'
+
 
 import  { getEvents } from '../redux/events'
-// import { getAllUsers } from '../redux/users'
-
-
 
 export class Home extends Component {
   constructor(props) {
@@ -16,27 +14,11 @@ export class Home extends Component {
       allUsers: [],
       userEvents: []
     }
-
-    this.createEventButton = this.createEventButton.bind(this)
-    // this.handleUserNameClick = this.handleUserNameClick.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchEvents()
-    this.setState({
-      events: this.props.events,
-      allUsers: this.props.allUsers.users,
-      user: this.props.allUsers.user,
-      userEvents: this.props.events.users
-    })
   }
-
-  // componentDidUpdate(){
-  //   if(this.props.events[0].users === undefined){
-  //     this.fetchEvents
-  //   }
-  //   console.log("........", this.state)
-  // }
 
   createEventButton () {
     window.location.hash = "#/createEvent"
@@ -48,17 +30,16 @@ export class Home extends Component {
     const {users} = this.props.allUsers
     let i = 0
 
+    if (Object.keys(user).length === 0 || users.length === 0){
+      return (
+        <div>Loading...</div>
+      ) 
+    }
     return (
       <div className="main-container">
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${++i}.jpg`}/>
-          <Link to={{
-            pathname: `/${user.first_name}${user.last_name}`,
-            // state: {
-            //   events: events,
-            //   user: user
-            // }
-          }}>{`${user.first_name} ${user.last_name}`}</Link>
+          <Link to={`/users/${user.id}`}>{`${user.first_name}${user.last_name}`}</Link>
           <div className="user-post-container">
             <input placeholder="Post"></input>
             <div className="other-type-of-posts-container">
@@ -82,16 +63,20 @@ export class Home extends Component {
         </div>
      
         <div className="middle-container">
-          
           {user.friends.map (friendID=>{
+            const friendInfo = users[friendID]
             return (
-              <div key={++i} className="other-users-post-container">
+              <div key={uuid()} className="other-users-post-container">
                 <div className="profile-pic-and-name-container">
-                  <img classname="profile-pic" src={`https://randomuser.me/api/portraits/women/${i}.jpg`}/>
+                  <img className="profile-pic" src={`https://randomuser.me/api/portraits/women/${i}.jpg`}/>
                   <div>
-                    <p>{`${users[friendID].first_name} ${users[friendID].last_name}`}</p>
-                    <p>{`${user.events[0].title}`}</p>
-                    <p>{`${user.events[0].description}`}</p>
+                    <p>{`${friendInfo.first_name} ${friendInfo.last_name}`}</p>
+                    {friendInfo.events.length === 0 ? <div>No Events Found</div> :
+                    <div>
+                      <p>{`${friendInfo.events[0].title}`}</p>
+                      <p>{`${friendInfo.events[0].description}`}</p>
+                    </div>
+                    }
                   </div>
                     )
                 </div>
@@ -115,7 +100,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchEvents: () => dispatch(getEvents()),
-    // fetchAllUsers: () => dispatch(getAllUsers())
   }
 }
 
