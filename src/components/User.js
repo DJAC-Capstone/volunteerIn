@@ -28,7 +28,7 @@ class User extends Component {
                 <div className='user-mini-profile'> 
 					<img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
                     <h2>{user.first_name} {user.last_name}</h2>
-                    <h4>Friends: {friends.length}</h4>
+                    <h4>Friends: {friends ? friends.length : 0} </h4>
                     <h4>Events: {events.length}</h4>
                 </div>   
                 <div className="activities">

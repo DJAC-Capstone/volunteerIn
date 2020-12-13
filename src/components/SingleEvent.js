@@ -53,8 +53,7 @@ class SingleEvent extends Component{
                     <div className='titleContainer'>   
                         <ul>
                             <h2>{event.title}</h2>
-                            <h4>Start Date: {new Date(event.date).toDateString()}</h4>
-                            <h4>End Date: {new Date(event.duration).toDateString()}</h4>
+                            <h4>Date: {new Date(event.date).toDateString()}</h4>
                         </ul>
                             {
 								arr.indexOf(event.id) === -1 ? 

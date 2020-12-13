@@ -6,6 +6,7 @@ import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
 
+
 class NavBar extends Component {
 	constructor() {
 		super()
@@ -36,21 +37,17 @@ class NavBar extends Component {
 				}
 			</nav>	
 				{
-					this.props.user.id === undefined?
+					this.props.user.id === undefined ? (
 					<div id="register-container">
 						<Register/>
 						<div>
 							<h3>About us</h3>
 							<p>
-								Dashboard analytics and reporting provide insight into what drives donations, 
-								and organizations can send personalized email communications through Constant Contact to donors and supporters. 
-								Integrated online forms automatically enter gift information into the donor database, and it can accept and process 
-								recurring donations. Development professionals can use DonorPerfect to track information about donors, prospects, 
-								volunteers, staff and other constituents, 
-								and event managers can use auction management tools to manage silent, live, mobile and online charity auctions.
+								Welcome to VolunteerIn, your volunteer community hub! Here you will be able to create a profile that will include your favorite quotes and interests. You will also be able to create an event you would like to host and see other volunteer events in your area.  You can also follow other users and see what events they have attended and created.
 							</p>
+              <img src = "Volunteering.png"/>
 						</div>
-					</div>: null
+					</div>): null
 				}
 			</div>
 		);

@@ -4,10 +4,10 @@ const { db, User, Events } = require('./server/db/index.js');
 
 // dummy users
 const users = [{
-  first_name: 'Rosmunda', last_name: 'Shallo', friends:[2,3,5,8], gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
+  first_name: 'Rosmunda', last_name: 'Shallo', friends:[2,3,5,8], favorite_quote: ' "Be the change you want to see in the world."', interests: "Working with kids and seniors", date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
 },
 {
-  first_name: 'Olly', last_name: 'Dufour', gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'odufour1@wikispaces.com', password: 'EUzSqPtV7j',
+  first_name: 'Olly', last_name: 'Dufour', favorite_quote: '"Do what you have to do until you can do what you want to do."', interests: "Serving the poor", date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'odufour1@wikispaces.com', password: 'EUzSqPtV7j',
 },
 // {
 //   first_name: 'Tracee', last_name: 'Mattsson', gender: 'Female', date_of_birth: '11/10/1980', phone: '650-822-0995', email: 'tmattsson2@salon.com', password: 'PkR7NvA',
@@ -151,11 +151,11 @@ const users = [{
 //   first_name: 'Daren', last_name: 'Puttrell', gender: 'Male', date_of_birth: '08/30/1976', phone: '310-451-9540', email: 'dputtrell1c@de.vu', password: 'QryHh1K3',
 // },
 {
-  first_name: 'Freddy', last_name: 'Blakeston', gender: 'Male', date_of_birth: '12/17/1988', phone: '818-210-6335', email: 'fblakeston1d@youtu.be', password: 'zl5P76H',
+  first_name: 'Freddy', last_name: 'Blakeston', favorite_quote: ' "When people show you who they are, believe them."', interests: "Recycling and outdoor activities", date_of_birth: '12/17/1988', phone: '818-210-6335', email: 'fblakeston1d@youtu.be', password: 'zl5P76H',
 }];
 
 const events = [{
-  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$602.28', comments: 'Proactive reciprocal projection',
+  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets!', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '100 W 33rd St', city: 'New York', state: 'NY', zip_code: '10001', donation: '$602.28', comments: 'Proactive reciprocal projection',
 },
 {
   title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address:'8500 Beverly Blvd', city: 'Los Angeles', state: 'CA', zip_code: '98848', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',
@@ -212,7 +212,7 @@ const events = [{
 //   title: 'ultrices posuere cubilia curae donec', description: 'ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a', date: '03/26/2021', time: '7:44 AM', duration: 1, street_address: '21504 Debra Junction', city: 'Dallas', state: 'Texas', zip_code: '75265', donation: '$940.35', comments: 'De-engineered asymmetric concept',
 // },
 {
-  title: 'Food for Friends', description: 'Taking some quality time to share a meal with those in need', date: '04/18/2021', time: '7:23 PM', duration: 3.5, street_address: '8001 S Orange Blossom Trail', city: 'Orlando', state: 'FL', zip_code: '32809', donation: '$1251.05', comments: 'Face to face exuding paradigm',
+  title: 'Food for Friends', description: 'Taking some quality time to share a meal with those in need!', date: '04/18/2021', time: '7:23 PM', duration: 3.5, street_address: '8001 S Orange Blossom Trail', city: 'Orlando', state: 'FL', zip_code: '32809', donation: '$1251.05', comments: 'Face to face exuding paradigm',
 }];
 
 const seed = async () => {

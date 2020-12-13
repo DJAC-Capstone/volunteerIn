@@ -51,7 +51,7 @@ class Events extends Component {
 				{
 					events.map(event => (
 						<div className='oneEvent' key={event.id}>
-							<img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+							{/* <img src="/"> */}
 							<ul>
 								<Link to={`/events/${event.id}`}>{event.title}</Link>
 								<h5>{event.city},{' '}{event.state}{' '}</h5>
