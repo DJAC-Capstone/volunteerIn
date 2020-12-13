@@ -49,7 +49,7 @@ class UpdateProfile extends Component {
              <h2></h2>
                <h3>Personal Info</h3>
                <div className="form-group">
-                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button>Update</button>
+                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button onSubmit={() => { this.props.dispatchUpdateCostum(this.state.costumeId, { price: this.state.price }); }}>Update</button>
                </div>
                <div className="form-group">
                  <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button>Update</button>

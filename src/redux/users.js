@@ -7,7 +7,7 @@ const SIGN_UP = 'SIGN_UP';
 const FIND_USER='FIND_USER';
 const FOLLOW_USER = 'FOLLOW_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
-
+const UPDATE_USER = 'UPDATE_USER';
 
 const initialState = {
   user: {},
@@ -92,6 +92,26 @@ const followFrined = (id,arr) => async (dispatch) => {
   dispatch(_followFrined(res.data));
 };
 
+{
+  function updateUser(costume) {
+    return {
+      type: UPDATE_COSTUME,
+      payload: costume,
+    };
+  }
+  
+  export function updateUser(costumeId, changeObject) {
+    console.log('update costume thunk being called');
+    return async (dispatch) => await axios
+      .put(`/api/costumes/${costumeId}`, changeObject)
+      .then((res) => {
+        console.log('axios update response: ', res.data[1][0]);
+        dispatch(updateCostume(res.data[1][0]));
+      })
+      .catch((e) => console.log(e));
+  }
+
+}
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
