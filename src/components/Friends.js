@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {getAllUsers, followFrined, getUser} from '../redux/users';
+import {getAllUsers, followFrined, findUser} from '../redux/users';
 import {Link} from 'react-router-dom'
 
 
@@ -11,11 +11,13 @@ class Friends extends Component {
       this.state = {
         username:'',
         userDetail:null,
-        
+        frindList:[]
       }
       this.addFriend=this.addFriend.bind(this)
       this.handleSearch=this.handleSearch.bind(this)
       this.handleSubmit=this.handleSubmit.bind(this)
+      this.getFriendProfile = this.getFriendProfile.bind(this)
+      this.unFollow = this.unFollow.bind(this)
     }
      componentDidMount(){
      this.props.getAllUsers()
@@ -23,29 +25,49 @@ class Friends extends Component {
     }
   
     handleSearch (e) {
+      console.log("eeeeeee",e.target)
       this.setState({ username: e.target.value })
     }
   
     handleSubmit (e) {
       e.preventDefault()
+      this.props.findUser()
     }
 
     addFriend(user,friendId){
-      
+
+      console.log("userrrrrrr",user,"friendIddddddd",friendId)
       if(user.friends === null){
         const arr=[friendId]
+        this.setState({username: ''})
         this.props.followFrined(user.id, arr)
       }else{ 
         const arr=[...user.friends ,friendId]
+        this.setState({username: ''})
         this.props.followFrined(user.id, arr)
       }
    
+    }
+    getFriendProfile(id){
+      console.log("usernameeee",this.state)
+      this.setState({username: ''})
+      this.props.findUser(id)
+    }
+    unFollow(user,friendId){
+      const arr=[]
+      for(let i=0; i<user.friends.length;i++){
+        if(user.friends[i]!==friendId){
+          arr.push(user.friends[i])
+        }
+      }
+        this.setState({username: ''})
+        this.props.followFrined(user.id, arr)
     }
 
     render () {
       const{handleSearch,handleSubmit}=this
       const {username} = this.state
-      const {users}= this.props
+      const {users, logedInUser}= this.props
       return (
       
         <div className='searchbar-container'>
@@ -60,8 +82,14 @@ class Friends extends Component {
                       return (
                         <div key ={user.id}>
                           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-                          <Link to={`/users/${user.id}`}  >{user.first_name}</Link>
-                          <button onClick={()=>this.addFriend(this.props.user, user.id)}>Follow</button>
+                          <Link to={`/users/${user.id}`} onClick={() =>this.getFriendProfile(user.id)}>{user.first_name}</Link>
+                          {         
+                          logedInUser.friends?                
+                            logedInUser.friends.indexOf(user.id) > -1 ?
+                            <button onClick={()=>this.unFollow(this.props.logedInUser, user.id)}>Unfollow</button>:
+                            <button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
+                            :<button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
+                          }
                         </div>
                       )
                     }
@@ -75,13 +103,14 @@ class Friends extends Component {
   const mapStateToProps=(state)=>{
     return{
       users:state.users.users,
-      user:state.users.user
+      logedInUser:state.users.user
     }
   }
  const mapDispatchToProps=(dispatch)=>{
     return{
       followFrined:(id, arr)=>dispatch(followFrined(id, arr)),
-      getAllUsers:()=>dispatch(getAllUsers())
+      getAllUsers:()=>dispatch(getAllUsers()),
+      findUser: (id) => dispatch(findUser(id))
     }
   };
   

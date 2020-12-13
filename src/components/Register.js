@@ -37,7 +37,7 @@ class Register extends Component {
         last_name: '',
         phone: '',
     });	
-    this.props.history.push('/home')
+    window.location.hash = "#/home"
   }
 
   render() {

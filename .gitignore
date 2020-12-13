@@ -3,4 +3,6 @@ node_modules
 .DS_Store
 dist/main.js
 bundle.js
-bundle.js.map
+bundle.js.git map
+secrets.js
+server/public/bundle.js.map

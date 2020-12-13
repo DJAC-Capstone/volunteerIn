@@ -1,7 +1,7 @@
 module.exports = (io) => {
-  io.on('connect', (socket) => {
+  io.on('connection', (socket) => {
     socket.on('send-message', (message) => {
-      socket.broadcast.emit('get-message', message);
+      io.emit('get-message', message);
     });
   });
 };

@@ -1,44 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { singleEvent, followEvent } from '../redux/events';
-import faker from 'faker'
+import { singleEvent, followEvent,unFollowEvent } from '../redux/events';
+import DisplayMaps from './DisplayMap'
 
 class SingleEvent extends Component{
     constructor(){
         super();
         this.state = {
-            id: 1,
-            event: {},
-            arr:[]
-          };
-        }
+            id: 0,
+            event: {id:0},
+            arr:[],
+            user: {},
+          }
+        this.getArr =this.getArr.bind(this)
+		this.addEvent = this.addEvent.bind(this)
+		this.removeEvent =this.removeEvent.bind(this)
+    }
 
    async componentDidMount(){
        await this.props.singleEvent(this.props.match.params.id)
     }
 
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         if (this.state.id !== this.props.match.params.id){
-          this.setState({event: this.props.event})
-          this.setState({id: this.props.match.params.id})
+			this.getArr()
+            this.setState({
+                event: this.props.event,
+                user: this.props.user,
+                id: this.props.match.params.id
+            })
         }
       }
-      addEvent(event){	
-		const eventArr= [...this.state.arr]
+    addEvent(event){
+        const newArr=[...this.state.arr]
+		newArr.push(event.id)
+        this.setState({arr: newArr})
 		this.props.followEvent(this.props.user, event)
-		eventArr.push(event.id)
-		this.setState({arr: eventArr})
-    }
-    
-    removeEvent(event){
+	}
+	removeEvent(event){
         const newArr=[]
         for(let i=0; i< this.state.arr.length; i++){
             if(this.state.arr[i] !== event.id){
                 newArr.push(this.state.arr[i])
             }
-        }
-        this.setState({arr : newArr})
-    }
+		}
+		this.props.unFollowEvent(this.props.user, event)
+		this.getArr()
+        this.setState({arr: newArr})
+	}
+	getArr(){
+		const newArr=[]
+		this.props.user.events?
+			this.props.user.events.forEach(index =>{
+				newArr.push(index.id)
+			})
+		:null
+		this.setState({arr: newArr})
+	}
+
 
 
     render(){
@@ -52,13 +71,14 @@ class SingleEvent extends Component{
                     <div className='titleContainer'>   
                         <ul>
                             <h2>{event.title}</h2>
-                            <h4>Start Date: {new Date(event.date).toDateString()}</h4>
-                            <h4>End Date: {new Date(event.duration).toDateString()}</h4>
+                            <h4>Date: {new Date(event.date).toDateString()}</h4>
                         </ul>
                             {
-								arr.indexOf(event.id) === -1 ? 
-                                <button onClick={()=> this.addEvent(event)}>Join</button>:
-								<button onClick={()=> this.removeEvent(event)}> Cancel </button>
+								arr ?
+                                    arr.indexOf(event.id) === -1?
+                                    <button onClick={()=> this.addEvent(event)}> Join </button>:
+                                    <button onClick={()=> this.removeEvent(event)}> Cancel </button>
+							    :null
 							}
                     </div>
                 <div className='dataContainer'>
@@ -70,8 +90,8 @@ class SingleEvent extends Component{
                         <h4>Location</h4>
                         <h5>{event.city}</h5>
                         <h5>{event.state}</h5>
-                        <div className='mapContainer'>
-                            location in map
+                        <div>
+                        <DisplayMaps event ={event}/>
                         </div>
                     </div>
                 </div>
@@ -88,7 +108,9 @@ export default connect(
       }),
       (dispatch) => ({
         singleEvent: (id) => dispatch(singleEvent(id)),
-        followEvent: (userID, EventTd) => dispatch(followEvent(userID, EventTd))
+        followEvent: (userID, EventTd) => dispatch(followEvent(userID, EventTd)),
+		unFollowEvent: (userID, EventTd) => dispatch(unFollowEvent(userID, EventTd)),
+
       })
 )(SingleEvent)
 
