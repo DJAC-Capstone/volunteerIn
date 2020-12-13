@@ -19,7 +19,7 @@ html> body{
 .left-container {
     display: flex;
     flex-direction: column;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     padding-right: 50px;
     margin-top: 100px;
     width: 500px;
@@ -54,6 +54,7 @@ html> body{
     padding: 20px;
     border-width: 2px;
     border-style: solid;
+    background-color: #f8f8f8;
     border-color: grey;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -182,7 +183,7 @@ html> body{
 .middle-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     width:700px;
     margin-top:100px
     
@@ -560,8 +561,11 @@ a {
   }
   .oneEvent{
     margin: 1.5rem;
-    height: 28rem;
-    width: 30rem;
+    /* height: 28rem; */
+    /* width: 30rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     border: black 1px solid;
     border-radius: 10px;
     padding: 1rem;
