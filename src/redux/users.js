@@ -108,5 +108,5 @@ export default function usersReducer(state = initialState, action) {
 }
 
 export {
-  getUser, signUp, logoutUser, loginUser, getAllUsers,findUser, followFrined
+  getUser, signUp, logoutUser, loginUser, getAllUsers, findUser, followFrined
 };

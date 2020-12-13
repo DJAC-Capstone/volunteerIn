@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import { getAllUsers, getUser } from '../redux/users';
 
+// components
+import Messages from './Messages';
 
 class Chat extends Component {
   constructor() {
@@ -10,9 +12,10 @@ class Chat extends Component {
     this.state = {
       message: '',
       class: "chatBoxClose",
+      openedChats: []
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.oppenMessage =this.oppenMessage.bind(this);
     this.newMessage = this.newMessage.bind(this);
   }
@@ -27,21 +30,6 @@ class Chat extends Component {
     });
   }
 
-  handleSubmit(ev) {
-    ev.preventDefault();
-    const socket = io(window.location.origin);
-    socket.on('connect', () => {
-      socket.emit('send-message', this.state.message);
-    });
-    socket.on('get-message', (test) => {
-      const messageBox = document.querySelector('#message-container');
-      const message = document.createElement('div');
-      message.className = 'textMessage';
-      message.innerText = test;
-      messageBox.append(message);
-    });
-  }
-
   oppenMessage(){
       if (this.state.class === 'showAllUsers'){
           this.setState({class: 'chatBoxClose'})
@@ -49,24 +37,28 @@ class Chat extends Component {
           this.setState({class: "showAllUsers"})
       }
   }
-  newMessage(){
-    const { handleChange, handleSubmit } = this;
-    const messageBox = document.querySelector('.messages');
-    const message = document.createElement('div');
-    message.className = "chatBox";
-    message.innerHTML = `
-      <div id="message-container"> </div>
-      <form onSubmit=${handleSubmit} >
-        <input type="text" id="message-input" onChange=${handleChange} />
-        <button type="submit" id="send-button">Sned</button>
-      </form>
-  `;
-    messageBox.appendChild(message);
+  newMessage(user){
+    console.log(user);
+    this.setState({ openedChats: [...this.state.openedChats, user] });
+
+  //   const { handleChange, handleSubmit } = this;
+  //   const messageBox = document.querySelector('.messages');
+  //   const message = document.createElement('div');
+  //   message.className = "chatBox";
+  //   message.innerHTML = `
+  //     <div id="message-container"> </div>
+  //     <form onSubmit=${handleSubmit} >
+  //       <input type="text" id="message-input" onChange=${handleChange} />
+  //       <button type="submit" id="send-button">Sned</button>
+  //     </form>
+  // `;
+  //   messageBox.appendChild(message);
   }
 
   render() {
     const { handleChange, handleSubmit, newMessage } = this;
     const {users}=this.props
+    const { openedChats } = this.state;
     return (
       <div className='messages' >
        
@@ -74,12 +66,17 @@ class Chat extends Component {
           {
             users.map(user =>{
               return (
-              <ul key={user.id} onClick={()=>newMessage()}>{user.first_name}</ul>
+              <ul key={user.id} onClick={()=>newMessage(user)}>{user.first_name}</ul>
               )
             })
           }
         </div>
         <button onClick={()=>this.oppenMessage()}>Messages</button>
+          {
+            openedChats.length && openedChats.map(chat => (
+              <Messages chat={chat} />
+            ))
+          }
       </div>
     );
   }
