@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getEvents, followEvent, getUser } from '../redux/events';
+import { getUser} from '../redux/users';
+import { getEvents, followEvent, unFollowEvent } from '../redux/events';
 import { Link } from 'react-router-dom';  
 
 
@@ -8,27 +9,29 @@ class Events extends Component {
 	constructor() {
 		super()
 		this.state = {
-			arr:[]
+			arr:[],
+            user: {id:0},
 		}
+		this.getArr =this.getArr.bind(this)
+		this.addEvent = this.addEvent.bind(this)
+		this.removeEvent =this.removeEvent.bind(this)
 	  }
 	async componentDidMount() {
 		await this.props.getEvents();
+		await this.props.getUser()
 	}
-	// componentDidUpdate(){
-	// 	if(this.state.arr.length === 0){
-	// 		this.props.getUser()
-	// 		const newArr = this.props.user.events.map(item => {
-	// 					return item.id
-	// 	  })
-	// 		this.setState({arr: newArr})
-	// 	}
-	// }
+	componentDidUpdate(prevProps){
+        if(this.props.user.events === 'undefined'|| prevProps.user.id !== this.state.user.id){
+			this.getArr()
+			this.setState({user:this.props.user})
+		}
+	}
 
-	addEvent(event){	
-		const eventArr= [...this.state.arr]
+	addEvent(event){
+        const newArr=[...this.state.arr]
+		newArr.push(event.id)
+        this.setState({arr: newArr})
 		this.props.followEvent(this.props.user, event)
-		eventArr.push(event.id)
-		this.setState({arr: eventArr})
 	}
 	removeEvent(event){
         const newArr=[]
@@ -36,14 +39,23 @@ class Events extends Component {
             if(this.state.arr[i] !== event.id){
                 newArr.push(this.state.arr[i])
             }
-        }
-        this.setState({arr : newArr})
-    }
+		}
+		this.props.unFollowEvent(this.props.user, event)
+		this.getArr()
+        this.setState({arr: newArr})
+	}
+	getArr(){
+		const newArr=[]
+		this.props.user.events?
+			this.props.user.events.forEach(index =>{
+				newArr.push(index.id)
+			})
+		:null
+		this.setState({arr: newArr})
+	}
 
 
 	render() {
-		console.log(this.props.state);
-		
 		const {arr} =this.state
 		const { events } = this.props;
 		return (
@@ -58,9 +70,11 @@ class Events extends Component {
 								<li>{event.description}</li>
 							</ul>
 							{
-								arr.indexOf(event.id) === -1 ? 
-								<button onClick={()=> this.addEvent(event)}>Join</button>:
+							arr ?
+								arr.indexOf(event.id) === -1?
+								<button onClick={()=> this.addEvent(event)}> Join </button>:
 								<button onClick={()=> this.removeEvent(event)}> Cancel </button>
+							:null
 							}
 						</div>
 					))
@@ -81,7 +95,8 @@ export default connect(
 		return {
 			getEvents: () => dispatch(getEvents()),
 			followEvent: (userID, EventTd) => dispatch(followEvent(userID, EventTd)),
-			getUser: () => dispatch(getUser())
+			unFollowEvent: (userID, EventTd) => dispatch(unFollowEvent(userID, EventTd)),
+			getUser: () => dispatch(getUser()),
 		};
 	},
 )(Events);

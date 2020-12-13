@@ -63,5 +63,14 @@ router.post('/follow', async (req, res, next) => {
     next(err);
   }
 });
+router.post('/unfollow', async (req, res, next) => {
+  try {
+    const signupEvent = await Events.findByPk(req.body.event.id);
+    await signupEvent.removeUser(req.body.user.id);
+   
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

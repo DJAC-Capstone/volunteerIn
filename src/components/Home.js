@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-
+import {Link} from 'react-router-dom'
 import  { getEvents } from '../redux/events'
-import { getAllUsers } from '../redux/users'
+import { getAllUsers, findUser } from '../redux/users'
 
 
 export class Home extends Component {
@@ -16,7 +16,7 @@ export class Home extends Component {
       showUserComponent: false
     }
     this.createEventButton = this.createEventButton.bind(this)
-    this.handleUserNameClick = this.handleUserNameClick.bind(this)
+    // this.handleUserNameClick = this.handleUserNameClick.bind(this)
   }
 
   async componentDidMount() {
@@ -25,18 +25,10 @@ export class Home extends Component {
     this.setState({
       events: this.props.events,
       allUsers: this.props.allUsers,
-      user: this.props.allUsers.users[Math.floor(Math.random()*(3-1)+1)]
+      user: this.props.allUsers.user
     });
-     const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
-     document.getElementById('userName').innerHTML = userFullName
-  }
-
-  handleUserNameClick(){
-    const u = document.getElementById('userName').innerHTML
-    this.setState({
-      user: u,
-      showUserComponent: true
-     })
+    //  const userFullName = this.state.user.first_name + ' ' + this.state.user.last_name
+    //  document.getElementById('userName').innerHTML = userFullName
   }
 
   createEventButton () {
@@ -44,22 +36,12 @@ export class Home extends Component {
   }
 
   render() {
+    const {user}= this.state
     return (
       <div className="main-container">
         <div className="left-container">
           <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-          <p id="userName" onClick={this.handleUserNameClick}></p>
-          {this.state.showUserComponent ? <Redirect 
-          to={{
-            pathname: `/${this.state.user.split(' ').join('').toLowerCase()}`, 
-            state: {
-              fullName: this.state.user, 
-              users: this.state.allUsers.users, 
-              events: this.state.events,
-              user: this.state.user
-            }
-          }}
-          /> : null}
+           <Link to={`/users/profile/${user.id}`}>{user.first_name} {user.last_name}</Link>
 
           <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
@@ -78,14 +60,10 @@ export class Home extends Component {
               <div key={ev.id} className="other-users-post-container">
                 <div className="profile-pic-and-name-container">
                   <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
-                  {/* {this.state.allUsers.users.map(usr=>{
-                    return ( */}
                     <div className="other-users-post-text">
-                      <p className="full-name">{`${this.state.allUsers.users[randID].first_name} ${this.state.allUsers.users[randID].last_name}`}</p>
+                    <Link to={`/users/${this.state.allUsers.users[randID].id}`} onClick={() => this.props.findUser(this.state.allUsers.users[randID].id)}>{`${this.state.allUsers.users[randID].first_name} ${this.state.allUsers.users[randID].last_name}`}</Link>
                       <p className="event-description">{ev.description}</p>
                     </div>
-                    {/* )
-                  })} */}
                 </div>
               </div>
            )
@@ -107,7 +85,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchEvents: () => dispatch(getEvents()),
-    fetchAllUsers: () => dispatch(getAllUsers())
+    fetchAllUsers: () => dispatch(getAllUsers()),
+    findUser: (id) => dispatch(findUser(id))
+    
   }
 }
 

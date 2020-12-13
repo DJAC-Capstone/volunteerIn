@@ -1,38 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; 
-import { getUser } from '../redux/users';
+import { findUser } from '../redux/users';
 
 
-class User extends Component {
+class FriendProfile extends Component {
     constructor(props){
         super(props)
         this.state = {
-            user: '',
+            user: {id:0},
             events: [],
-            friends: []
+            friends: [],
         }
     }
     async componentDidMount(){
-		await this.props.getUser()
-	}
-    componentDidUpdate(){
-        if(this.state.user === ''){
-            this.setState({user: this.props.user, events: this.props.user.events, friends: this.props.user.friends})
+        await this.props.findUser( this.props.match.params.id)
+        
+    }
+    componentDidUpdate(prevProps){
+        if(prevProps.user.id !== this.state.user.id){
+            this.setState({
+                user: this.props.user, 
+                events: this.props.user.events? this.props.user.events: [], 
+                friends: this.props.user.friends ? this.props.user.friends: []
+            })
         }
     }
     render(){
-        const {events, user, friends} = this.state
+        const {user}= this.props
+        const {events, friends}= this.state
         return( 
             <div id="user-profile-main-container">
                 <div className='user-mini-profile'> 
 					<img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
                     <h2>{user.first_name} {user.last_name}</h2>
-                    <h4>Friends: {friends !==  null ? friends.length: 0}</h4>
+                    <h4>Friends: {friends? friends.length:0}</h4>
                     <h4>Events: {events.length}</h4>
                 </div>   
                 <div className="activities">
-                        {events.map(event =>
+                        {
+                         events.map(event =>
                             {
                             return (
                             <div className='oneEvent-users-profile' key={event.id}>
@@ -61,8 +68,9 @@ class User extends Component {
 
 export default connect(
 	(state) => ({
-		user: state.users.user
+        user: state.users.foundUser,
+        state
       }),(dispatch) => ({
-        getUser: () => dispatch(getUser()),
+        findUser: (id) => dispatch(findUser(id))
       })
-  )(User)
+  )(FriendProfile)

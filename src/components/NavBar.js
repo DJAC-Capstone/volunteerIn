@@ -30,7 +30,7 @@ class NavBar extends Component {
 						<Friends/>
 						<Link to="/home" >Home</Link>
 						<Link to="/events">Events</Link>
-						<Link to="#"><img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>Hi {user.first_name}</Link>
+						<Link to={`/users/profile/${user.id}`}><img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>Hi {user.first_name}</Link>
 						<i className="fa fa-sign-out fa-3x" onClick={()=>this.handleLogout()}></i>
 					</div>
 				}

@@ -14,6 +14,7 @@ import Friends from './Friends'
 import CreateEvent from './CreateEvent'
 import User from './User'
 import SingleEvent from './SingleEvent'
+import FriendProfile from './FriendProfile'
 
 
 class App extends Component {
@@ -26,7 +27,7 @@ class App extends Component {
 			<Router>
 				<main>
 					<NavBar />
-					 {/* <Chatbox /> */}
+					 <Chatbox />
 					<Switch>
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />
@@ -34,7 +35,8 @@ class App extends Component {
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/createEvent" component={CreateEvent} />
-						<Route exact path="/:userName" component={User} />
+						<Route exact path="/users/profile/:id" component={User} />
+						<Route exact path="/users/:id" component={FriendProfile} />
 						<Route exact path="/events/:id" component = { SingleEvent } />
 					</Switch>
 				</main>
@@ -44,7 +46,9 @@ class App extends Component {
 }
 
 export default connect(
-	null,
+	(state) => ({
+		user: state.users.user
+      }),
 	(dispatch) => ({
 	  getUser: () => dispatch(getUser())
 	}),
