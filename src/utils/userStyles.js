@@ -53,10 +53,15 @@ const button = {
 }
 
 const img = {
-  width: '300px',
-  height: '200px',
+  width: '700px',
+  height: '400px',
   borderRadius: '7px',
-  marginLeft: "550px"
+  marginTop: "100",
+  marginLeft: "600px",
+   position:"absolute",
+   zIndex: "-1",
+  boxShadow: "1px 1px 2px black, 0 0 25px rgb(204, 123, 121), 0 0 5px rgb(139, 32, 0)",
+ 
 }
 
 export {userStyles, eventStyles, updateForm, img};

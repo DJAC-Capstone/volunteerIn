@@ -43,6 +43,8 @@ class UpdateProfile extends Component {
     return (
 
       // <div >Hello world</div>)}}
+      <div>
+        <div><img style = {img} src = "./makeADifference.jpg"/></div>
       <div style={{marginLeft: "50px"}}>
         <h3 style={{ fontFamily: "Josefin Sans", marginTop: "100px"}}>
          Update Account Information: {user.first_name}{' '}{user.last_name}
@@ -58,33 +60,33 @@ class UpdateProfile extends Component {
                </div>
                <div className="form-group">
                <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.last_name }); }}>
-                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button button style={{ margin: '5px' }} type = "submit">Update</button>
+                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button style={{ margin: '5px' }} type = "submit">Update</button>
                  </form>
                </div>
                <hr />
                <h3>Contact Info</h3>
                <div className="form-group">
                <form onSubmit={() => {this.props.updateUser(user.id, { phone: this.state.phone }); }}>
-                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button button style={{ margin: '5px' }} type = "submit">Update</button></form>
+                 <input style ={{width: "300px"}} type="text" className="form-control" id="phone" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button style={{ margin: '5px' }} type = "submit">Update</button></form>
                </div>
                <div className="form-group">
-                 <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
-                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button  button style={{ margin: '5px' }} type = "submit">Update</button></form>
+                 <form onSubmit={() => {this.props.updateUser(user.id, { email: this.state.email }); }}>
+                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button style={{ margin: '5px' }} type = "submit">Update</button></form>
                </div>
-               <hr />
+               {/* <hr />
                <h3>Create New Password</h3>
                <div className="form-group">
-               <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
-                 <input type="password" className="form-control" id="password" autoComplete="current-password" placeholder= '*******' name="password" onChange={handleChange} value={this.state.password} /><button button style={{ margin: '5px' }}>Update</button></form>
-               </div>
+               <form onSubmit={() => {this.props.updateUser(user.id, { password: this.state.password }); }}>
+                 <input type="password" className="form-control" id="password" autoComplete="current-password" placeholder= '*******' name="password" onChange={handleChange} value={this.state.password} /><button style={{ margin: '5px' }}>Update</button></form>
+               </div> */}
                {/* <button type="submit" className="btn btn-primary"> Update All</button> */}
              </div>
            </div>
          </div>
-         <div>
-      </div>
-      <img style = {img} src = "./makeADifference.jpg"/>
-      </div>
+         
+      
+      
+      </div></div>
     );
   }
 }
