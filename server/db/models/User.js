@@ -26,7 +26,6 @@ const User = db.define('user', {
 
   imgURL: {
     type: STRING,
-    defaultValue: './0.jpg'
   },
 
   email: {
@@ -40,6 +39,7 @@ const User = db.define('user', {
   },
   friends: {
     type: ARRAY(Sequelize.INTEGER),
+    defaultValue:[1]
   },
   gender: {
     type: STRING,

@@ -29,17 +29,16 @@ export class Home extends Component {
     const {user} = this.props.allUsers
     const {users} = this.props.allUsers
     const userInfo = users.filter(u=>u.id === user.id)
-    let i = 0
-    if (Object.keys(user).length === 0 || userInfo.length === 0 || userInfo[0].friends === null){
+    if (userInfo.length === 0 || userInfo.events === null ){
       return (
-        <div></div>
+        null
       ) 
     }
     return (
       <div className="main-container">
         <div className="left-container">
           <div className="profile-picture">
-            <img src={user.imgURL}/>
+            <img src={`0.jpg`}/>
             <Link to={`/users/${user.id}`}>{`${user.first_name}${user.last_name}`}</Link>
           </div>
           <div className="user-post-container">
@@ -65,29 +64,33 @@ export class Home extends Component {
         </div>
         
         <div className="middle-container">
-          {user.friends.map (friendID => {
-            let friendInfo = users.find((friend) => friend.id === friendID)
-            console.log("user.friends",user.friends)
-            return (
-              <div key={uuid()} className="other-users-post-container">
-                <div className="profile-pic-and-name-container">
-                  <img className="profile-pic" src={`${friendInfo.imgURL}`}/>
-                  <div>
-                    <Link to={`/users/${friendInfo.id}`}>{`${friendInfo.first_name} ${friendInfo.last_name}`}</Link>
-                    {friendInfo.events.length === 0 ? <div>No Events Found</div> :
-                    <div className="friends-events-details">
-                      <p>{`${friendInfo.events[0].title}`}</p>
-                      <p>{`${friendInfo.events[0].description}`}</p>
-                    </div>
-                    }
+
+          {user.friends.length === 0 || user.friends === undefined || user.friends === null ?
+          <p></p>
+          :
+          user.friends.map (friendID => {
+          let friendInfo = users.find((friend) => friend.id === friendID)
+          console.log("user.friends",user.friends)
+          return (
+            <div key={uuid()} className="other-users-post-container">
+              <div className="profile-pic-and-name-container">
+                <img className="profile-pic" src={`${friendInfo.imgURL}`}/>
+                <div>
+                  <Link to={`/users/${friendInfo.id}`}>{`${friendInfo.first_name} ${friendInfo.last_name}`}</Link>
+                  {friendInfo.events.length === 0 ? <div>No Events Found</div> :
+                  <div className="friends-events-details">
+                    <p>{`${friendInfo.events[0].title}`}</p>
+                    <p>{`${friendInfo.events[0].description}`}</p>
                   </div>
-                    )
+                  }
                 </div>
+                  )
               </div>
-           )
-           })}
-        </div>
+            </div>
+          )
+          })}
       </div>
+    </div>
     )
   }
 }
