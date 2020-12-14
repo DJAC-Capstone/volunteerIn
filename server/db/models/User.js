@@ -23,6 +23,12 @@ const User = db.define('user', {
       isAlpha: true,
     },
   },
+
+  imgURL: {
+    type: STRING,
+    defaultValue: './0.jpg'
+  },
+
   email: {
     type: STRING,
     unique: true,

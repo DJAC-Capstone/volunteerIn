@@ -25,7 +25,6 @@ class Friends extends Component {
     }
   
     handleSearch (e) {
-      console.log("eeeeeee",e.target)
       this.setState({ username: e.target.value })
     }
   
@@ -35,8 +34,6 @@ class Friends extends Component {
     }
 
     addFriend(user,friendId){
-
-      console.log("userrrrrrr",user,"friendIddddddd",friendId)
       if(user.friends === null){
         const arr=[friendId]
         this.setState({username: ''})
@@ -46,8 +43,8 @@ class Friends extends Component {
         this.setState({username: ''})
         this.props.followFrined(user.id, arr)
       }
-   
     }
+
     getFriendProfile(id){
       console.log("usernameeee",this.state)
       this.setState({username: ''})
@@ -79,15 +76,16 @@ class Friends extends Component {
                 {
                 users.map( user => {
                   if (user.first_name.toLowerCase().indexOf(username.toLowerCase()) > -1 && username!== '') {
+                    console.log("userrr", user)
                       return (
                         <div key ={user.id}>
-                          <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                          <img src={user.imgURL}/>
                           <Link to={`/users/${user.id}`} onClick={() =>this.getFriendProfile(user.id)}>{user.first_name}</Link>
                           {         
                           logedInUser.friends?                
                             logedInUser.friends.indexOf(user.id) > -1 ?
                             <button onClick={()=>this.unFollow(this.props.logedInUser, user.id)}>Unfollow</button>:
-                            <button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
+                            <button onClick={(ev)=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
                             :<button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
                           }
                         </div>

@@ -8,7 +8,7 @@ class FriendProfile extends Component {
     constructor(props){
         super(props)
         this.state = {
-            user: {id:0},
+            user: {},
             events: [],
             friends: [],
         }
@@ -32,7 +32,7 @@ class FriendProfile extends Component {
         return( 
             <div id="user-profile-main-container">
                 <div className='user-mini-profile'> 
-					{/* <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/> */}
+					<img src={user.imgURL}/>
                     <h2>{user.first_name} {user.last_name}</h2>
                     <h4>Friends: {friends? friends.length:0}</h4>
                     <h4>Events: {events.length}</h4>
@@ -43,7 +43,7 @@ class FriendProfile extends Component {
                             {
                             return (
                             <div className='oneEvent-users-profile' key={event.id}>
-                                <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                                <img src={`${user.imgURL}`}/>
                                 <ul>
                                     <Link to={`/events/${event.id}`}>{event.title}</Link>
                                     <li>{event.description}</li>

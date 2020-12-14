@@ -396,7 +396,7 @@ html> body{
     width: 100%;
     display: flex;
     justify-content: space-around;
-    /* background-image: url(./volunteer-bg.jpg); */
+    background-image: url(./volunteer-bg.jpg);
     background-repeat: no-repeat;
     background-size: auto;
     background-color: #f8f8f8;

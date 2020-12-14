@@ -30,7 +30,6 @@ class App extends Component {
 			<Router>
 				{/* <main> */}
 					<NavBar />
-					
 					 {/* <Chatbox /> */}
 					<Switch>
 						<Route exact path="/login" component={Login} />

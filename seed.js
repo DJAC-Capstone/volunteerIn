@@ -2,66 +2,67 @@
 const { green, red } = require('chalk');
 const { db, User, Events } = require('./server/db/index.js');
 
+
 // dummy users
 const users = [{
-  first_name: 'Rosmunda', last_name: 'Shallo', gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
+  first_name: 'Rosmunda', last_name: 'Shallo', imgURL:'1.jpg', gender: 'Female', date_of_birth: '09/27/1974', phone: '814-945-7229', email: 'rshallo0@elpais.com', password: 'F2FyVTnjSl',
 },
 {
-  first_name: 'Olly', last_name: 'Dufour', gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'ooo@ooo.com', password: '123', 
+  first_name: 'Olly', last_name: 'Dufour',imgURL:'2.jpg', gender: 'Male', date_of_birth: '12/23/2001', phone: '443-592-6197', email: 'ooo@ooo.com', password: '123', 
 },
 {
-  first_name: 'Tracee', last_name: 'Mattsson', gender: 'Female', date_of_birth: '11/10/1980', phone: '650-822-0995', email: 'tmattsson2@salon.com', password: 'PkR7NvA',
+  first_name: 'Tracee', last_name: 'Mattsson',imgURL:'3.jpg', gender: 'Female', date_of_birth: '11/10/1980', phone: '650-822-0995', email: 'tmattsson2@salon.com', password: 'PkR7NvA',
 },
 {
-  first_name: 'Blair', last_name: 'Cordingly', gender: 'Female', date_of_birth: '03/23/1991', phone: '543-637-8643', email: 'bcordingly3@instagram.com', password: '8L6qab',
+  first_name: 'Blair', last_name: 'Cordingly',imgURL:'4.jpg', gender: 'Female', date_of_birth: '03/23/1991', phone: '543-637-8643', email: 'bcordingly3@instagram.com', password: '8L6qab',
 },
 {
-  first_name: 'Bethina', last_name: 'Penella', gender: 'Female', date_of_birth: '08/08/1977', phone: '748-233-2263', email: 'bpenella4@usda.gov', password: 'QOzFoa4i',
+  first_name: 'Bethina', last_name: 'Penella',imgURL:'5.jpg', gender: 'Female', date_of_birth: '08/08/1977', phone: '748-233-2263', email: 'bpenella4@usda.gov', password: 'QOzFoa4i',
 },
 {
-  first_name: 'Sadella', last_name: 'Farmery', gender: 'Female', date_of_birth: '06/30/1981', phone: '359-818-3576', email: 'sfarmery5@stumbleupon.com', password: '7F4wU9JuEfe',
+  first_name: 'Sadella', last_name: 'Farmery',imgURL:'6.jpg', gender: 'Female', date_of_birth: '06/30/1981', phone: '359-818-3576', email: 'sfarmery5@stumbleupon.com', password: '7F4wU9JuEfe',
 },
 {
-  first_name: 'Christos', last_name: 'Musson', gender: 'Male', date_of_birth: '10/31/1971', phone: '791-444-9786', email: 'cmusson6@facebook.com', password: 'Pxo013Dinb',
+  first_name: 'Christos', last_name: 'Musson',imgURL:'7.jpg', gender: 'Male', date_of_birth: '10/31/1971', phone: '791-444-9786', email: 'cmusson6@facebook.com', password: 'Pxo013Dinb',
 },
 {
-  first_name: 'Wilden', last_name: 'Crossfeld', gender: 'Male', date_of_birth: '10/12/1993', phone: '803-102-6204', email: 'wcrossfeld7@nps.gov', password: 'xS27yn',
+  first_name: 'Wilden', last_name: 'Crossfeld',imgURL:'8.jpg', gender: 'Male', date_of_birth: '10/12/1993', phone: '803-102-6204', email: 'wcrossfeld7@nps.gov', password: 'xS27yn',
 },
 {
-  first_name: 'Abbey', last_name: 'Ethelstone', gender: 'Male', date_of_birth: '10/21/1980', phone: '105-646-4518', email: 'aethelstone8@europa.eu', password: '0TXdOtJ',
+  first_name: 'Abbey', last_name: 'Ethelstone',imgURL:'9.jpg', gender: 'Male', date_of_birth: '10/21/1980', phone: '105-646-4518', email: 'aethelstone8@europa.eu', password: '0TXdOtJ',
 },
 {
-  first_name: 'Roscoe', last_name: 'Reynoollds', gender: 'Male', date_of_birth: '03/26/1973', phone: '948-109-6844', email: 'rreynoollds9@dedecms.com', password: 'abBz2TVc',
+  first_name: 'Roscoe', last_name: 'Reynoollds',imgURL:'10.jpg', gender: 'Male', date_of_birth: '03/26/1973', phone: '948-109-6844', email: 'rreynoollds9@dedecms.com', password: 'abBz2TVc',
 },
 {
-  first_name: 'Daria', last_name: 'Gallier', gender: 'Female', date_of_birth: '12/03/1976', phone: '220-425-3855', email: 'dgalliera@cisco.com', password: 'bEZPWXpVr9F6',
+  first_name: 'Daria', last_name: 'Gallier',imgURL:'11.jpg', gender: 'Female', date_of_birth: '12/03/1976', phone: '220-425-3855', email: 'dgalliera@cisco.com', password: 'bEZPWXpVr9F6',
 },
 {
-  first_name: 'Alric', last_name: 'Mallaby', gender: 'Male', date_of_birth: '08/17/1995', phone: '116-646-8872', email: 'amallabyb@nasa.gov', password: 'd3oKQe3egDKA',
+  first_name: 'Alric', last_name: 'Mallaby',imgURL:'12.jpg', gender: 'Male', date_of_birth: '08/17/1995', phone: '116-646-8872', email: 'amallabyb@nasa.gov', password: 'd3oKQe3egDKA',
 },
 {
-  first_name: 'Antoni', last_name: 'Iles', gender: 'Male', date_of_birth: '09/02/1999', phone: '629-423-4260', email: 'ailesc@a8.net', password: 'N3Pgs4Yw',
+  first_name: 'Antoni', last_name: 'Iles',imgURL:'13.jpg', gender: 'Male', date_of_birth: '09/02/1999', phone: '629-423-4260', email: 'ailesc@a8.net', password: 'N3Pgs4Yw',
 },
 {
-  first_name: 'Vin', last_name: 'Garratty', gender: 'Female', date_of_birth: '06/18/1993', phone: '404-195-1038', email: 'vgarrattyd@is.gd', password: 'vDeJZDrS',
+  first_name: 'Vin', last_name: 'Garratty',imgURL:'14.jpg', gender: 'Female', date_of_birth: '06/18/1993', phone: '404-195-1038', email: 'vgarrattyd@is.gd', password: 'vDeJZDrS',
 },
 {
-  first_name: 'Annetta', last_name: 'McVity', gender: 'Female', date_of_birth: '01/03/1980', phone: '290-481-5387', email: 'amcvitye@java.com', password: 'WXIXDWiM7',
+  first_name: 'Annetta', last_name: 'McVity',imgURL:'15.jpg', gender: 'Female', date_of_birth: '01/03/1980', phone: '290-481-5387', email: 'amcvitye@java.com', password: 'WXIXDWiM7',
 },
 {
-  first_name: 'Ram', last_name: 'Cochet', gender: 'Male', date_of_birth: '08/29/1981', phone: '547-539-4480', email: 'rcochetf@harvard.edu', password: 'bQtXtnxbEIk',
+  first_name: 'Ram', last_name: 'Cochet',imgURL:'16.jpg', gender: 'Male', date_of_birth: '08/29/1981', phone: '547-539-4480', email: 'rcochetf@harvard.edu', password: 'bQtXtnxbEIk',
 },
 {
-  first_name: 'Park', last_name: 'Miche', gender: 'Male', date_of_birth: '09/18/1995', phone: '530-882-1763', email: 'pmicheg@simplemachines.org', password: 'ykg2AX',
+  first_name: 'Park', last_name: 'Miche',imgURL:'17.jpg', gender: 'Male', date_of_birth: '09/18/1995', phone: '530-882-1763', email: 'pmicheg@simplemachines.org', password: 'ykg2AX',
 },
 {
-  first_name: 'Karalynn', last_name: 'Corradini', gender: 'Female', date_of_birth: '03/30/1972', phone: '482-803-6021', email: 'kcorradinih@about.com', password: 'QNLEXoub',
+  first_name: 'Karalynn', last_name: 'Corradini', imgURL:'18.jpg', gender: 'Female', date_of_birth: '03/30/1972', phone: '482-803-6021', email: 'kcorradinih@about.com', password: 'QNLEXoub',
 },
 {
-  first_name: 'Odessa', last_name: 'Bonhomme', gender: 'Female', date_of_birth: '01/29/1971', phone: '209-318-8421', email: 'obonhommei@prweb.com', password: 'vRF3X7',
+  first_name: 'Odessa', last_name: 'Bonhomme',imgURL:'19.jpg', gender: 'Female', date_of_birth: '01/29/1971', phone: '209-318-8421', email: 'obonhommei@prweb.com', password: 'vRF3X7',
 },
 {
-  first_name: 'Sully', last_name: 'Klees', gender: 'Male', date_of_birth: '01/01/2001', phone: '539-159-4350', email: 'skleesj@ustream.tv', password: 'raXzKPo',
+  first_name: 'Sully', last_name: 'Klees',imgURL:'20.jpg', gender: 'Male', date_of_birth: '01/01/2001', phone: '539-159-4350', email: 'skleesj@ustream.tv', password: 'raXzKPo',
 },
 // {
 //   first_name: 'Vincents', last_name: 'MacGauhy', gender: 'Male', date_of_birth: '12/23/1972', phone: '489-119-5726', email: 'vmacgauhyk@acquirethisname.com', password: 'fq8woCKDS4U3',
@@ -220,6 +221,8 @@ const seed = async () => {
     await db.sync({ force: true });
     const createdEvents = await Promise.all(events.map((event) => Events.create({ ...event })));
     const createdUsers = await Promise.all(users.map((user) => User.create({ ...user })));
+    // const createdUsers = users.map(async (u) => await User.create(u))
+    
     for (let i = 0; i < createdEvents.length; i++) {
       await createdEvents[i].setUsers(createdUsers[Math.floor(Math.random() * createdUsers.length)]);
     }
