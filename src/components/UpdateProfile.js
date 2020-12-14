@@ -67,15 +67,16 @@ class UpdateProfile extends Component {
                  <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button type = "submit">Update</button></form>
                </div>
                <div className="form-group">
-                 <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.last_name }); }}></form>
-                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button type = "submit">Update</button>
+                 <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
+                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button type = "submit">Update</button></form>
                </div>
                <hr />
                <h3>Create New Password</h3>
                <div className="form-group">
-                 <input type="password" className="form-control" id="password" autoComplete="current-password" laceholder= {user.password} name="password" onChange={handleChange} value={this.state.password} /><button>Update</button>
+               <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
+                 <input type="password" className="form-control" id="password" autoComplete="current-password" placeholder= '*******' name="password" onChange={handleChange} value={this.state.password} /><button>Update</button></form>
                </div>
-               <button type="submit" className="btn btn-primary"> Update All</button>
+               {/* <button type="submit" className="btn btn-primary"> Update All</button> */}
              </div>
            </div>
          </div>

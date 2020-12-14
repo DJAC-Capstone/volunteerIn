@@ -43,13 +43,15 @@ router.put('/:id', async (req, res, next) => {
  
   // const hashed = await bcrypt.hash(password, 10)
   // console.log(first_name)
+  // const password = req.body.password
+  // const hashedPass = await bcrypt.hash(password, 10)
   const updatedUser = await User.update(
     {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       phone: req.body.phone,
       email: req.body.email,
-      password: hashed
+      password: req.body.password
     },
     { returning: true, where: { id: req.params.id} },
   );
