@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {userStyles} from '../utils/userStyles'
+import {userStyles1,img} from '../utils/userStyles'
 import {createEvent} from '../redux/events'
 
 class CreateEvent extends Component {
@@ -43,8 +43,11 @@ class CreateEvent extends Component {
   render(){
 const {handleChange, handleSubmit} = this
     return (
+    <div>
+      <div><img style = {img} src = "./volunteer-hands-image.jpg"/></div>
       <div className='createEvent'>
-        <form style={userStyles} onSubmit={handleSubmit}>
+        
+        <form style={userStyles1} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
             <h3>Event Info</h3>
             <div className="form-group">
@@ -67,6 +70,7 @@ const {handleChange, handleSubmit} = this
             <button type="submit" className="btn btn-primary"> Submit </button>
           </div>
         </form>
+      </div>
       </div>
     );
   }

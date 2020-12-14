@@ -11,6 +11,19 @@ const userStyles = {
 	// height: '300px',
 };
 
+const userStyles1 = {
+
+  
+	fontFamily: 'Josefin Sans, sans-serif',
+	borderStyle: 'solid',
+	borderWidth: '2px',
+	borderColor: 'gray',
+	borderRadius: '10px',
+	marginLeft: '50px',
+	width: '500px',
+	// height: '300px',
+};
+
 
 const eventStyles = {
   display: 'inline-block',
@@ -64,4 +77,4 @@ const img = {
  
 }
 
-export {userStyles, eventStyles, updateForm, img};
+export {userStyles, eventStyles, userStyles1, updateForm, img};

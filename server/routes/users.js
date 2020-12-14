@@ -38,7 +38,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-  console.log(req.params);
+  // console.log(req.params);
   console.log('put is being called');
  
   // const hashed = await bcrypt.hash(password, 10)

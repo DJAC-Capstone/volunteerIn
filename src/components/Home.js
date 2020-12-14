@@ -14,8 +14,6 @@ export class Home extends Component {
       user: '',
       showUserComponent: false
     }
-    this.createEventButton = this.createEventButton.bind(this)
-    // this.handleUserNameClick = this.handleUserNameClick.bind(this)
   }
 
   async componentDidMount() {
@@ -29,9 +27,7 @@ export class Home extends Component {
     });
   }
 
-  createEventButton () {
-    window.location.hash = "#/createEvent"
-  }
+
 
   render() {
     const {user}= this.state
@@ -43,9 +39,7 @@ export class Home extends Component {
             <div className="user-post-container">
             <input placeholder="Share A Thought"></input>
             <div className="other-type-of-posts-container">
-              <button onClick = {this.createEventButton}>Create Event</button>
-              <button>Upload Photo</button>
-              <button>Upload Video</button>
+              <button><Link to = "/createEvent">Create Event</Link></button>
               <button><Link to =  "/updateUser">Update Profile</Link></button>
             </div>
           </div>

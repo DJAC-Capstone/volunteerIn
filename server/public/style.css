@@ -74,10 +74,19 @@ html> body{
 .middle-container {
     background-color: #f8f8f8;
     margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color:grey;
+    border-width: 2px;
+    border-style: solid
+
 }
 
 .other-users-post-container {
-    padding-top: 50px;
+    padding: 10px;
+    margin: 20px;
+;
+
 }
 
 .profile-pic-and-name-container {
@@ -379,7 +388,8 @@ html> body{
   }
   .singleeventContainer >img {
     border-radius: 10px;
-    width: 70rem;
+    width: 65rem;
+    height: 15rem;
     box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px rgb(0, 107, 139);
   }
   .titleContainer{
@@ -394,16 +404,18 @@ html> body{
     color: white;
   }
   .titleContainer > ul > h4 {
-    color: rgb(235, 63, 63);
+    color:blueviolet;
   }
 
   .description,  .eventLocation {
       border: black 1px solid;
-      width: 34rem;
-      height: 40rem;
+      width: 63rem;
+      height: 45rem;
       border-radius: 10px;
-      padding: 2rem;
-      background-color: rgba(246, 244, 242, 0.726);
+      padding: 1rem;
+      background-color: #f8f8f8;
+      margin-left: auto;
+      margin-right: auto;
   }
 
   .dataContainer{
@@ -464,7 +476,7 @@ html> body{
 
   .createEvent{
       padding-top: 90px;
-      margin-left: auto;
+      margin-left: 40px;
       margin-right: auto;
       width: 70rem;
   }
