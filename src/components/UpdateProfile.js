@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from '../redux/users'
-import{ userStyles} from '../utils/userStyles'
+import{ userStyles, img} from '../utils/userStyles'
 import {updateUser} from '../redux/users'
+
 
 
 class UpdateProfile extends Component {
@@ -42,9 +43,9 @@ class UpdateProfile extends Component {
     return (
 
       // <div >Hello world</div>)}}
-      <div>
-        <h3 style={{marginTop: "200px"}}>
-          {user.first_name}{' '}{user.last_name}
+      <div style={{marginLeft: "50px"}}>
+        <h3 style={{ fontFamily: "Josefin Sans", marginTop: "100px"}}>
+         Update Account Information: {user.first_name}{' '}{user.last_name}
           </h3>
            <div>
            <div style={userStyles}>
@@ -53,28 +54,28 @@ class UpdateProfile extends Component {
                <h3>Personal Info</h3>
                <div className="form-group">
                  <form onSubmit={() => {this.props.updateUser(user.id, { first_name: this.state.first_name }); }}>
-                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button type = 'submit' >Update</button></form>
+                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button style={{ margin: '5px' }}type = 'submit' >Update</button></form>
                </div>
                <div className="form-group">
                <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.last_name }); }}>
-                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button type = "submit">Update</button>
+                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button button style={{ margin: '5px' }} type = "submit">Update</button>
                  </form>
                </div>
                <hr />
                <h3>Contact Info</h3>
                <div className="form-group">
                <form onSubmit={() => {this.props.updateUser(user.id, { phone: this.state.phone }); }}>
-                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button type = "submit">Update</button></form>
+                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button button style={{ margin: '5px' }} type = "submit">Update</button></form>
                </div>
                <div className="form-group">
                  <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
-                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button type = "submit">Update</button></form>
+                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button  button style={{ margin: '5px' }} type = "submit">Update</button></form>
                </div>
                <hr />
                <h3>Create New Password</h3>
                <div className="form-group">
                <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.email }); }}>
-                 <input type="password" className="form-control" id="password" autoComplete="current-password" placeholder= '*******' name="password" onChange={handleChange} value={this.state.password} /><button>Update</button></form>
+                 <input type="password" className="form-control" id="password" autoComplete="current-password" placeholder= '*******' name="password" onChange={handleChange} value={this.state.password} /><button button style={{ margin: '5px' }}>Update</button></form>
                </div>
                {/* <button type="submit" className="btn btn-primary"> Update All</button> */}
              </div>
@@ -82,6 +83,7 @@ class UpdateProfile extends Component {
          </div>
          <div>
       </div>
+      <img style = {img} src = "./makeADifference.jpg"/>
       </div>
     );
   }

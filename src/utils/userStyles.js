@@ -45,5 +45,18 @@ const updateForm = {
 	// height: '300px',
 };
 
-export {userStyles, eventStyles, updateForm};
 
+
+const button = {
+  margin: '15px',
+  color: 'blue'
+}
+
+const img = {
+  width: '300px',
+  height: '200px',
+  borderRadius: '7px',
+  marginLeft: "550px"
+}
+
+export {userStyles, eventStyles, updateForm, img};
