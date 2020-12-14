@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {getUser} from '../redux/users'
 import{ userStyles} from '../utils/userStyles'
+import {updateUser} from '../redux/users'
 
 
 class UpdateProfile extends Component {
@@ -15,7 +16,7 @@ class UpdateProfile extends Component {
       password: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -27,13 +28,15 @@ class UpdateProfile extends Component {
     this.setState({
       [name]: value,
     });
+    console.log(this.state)
   }
-  handleSubmit(ev){
-    console.log('submit being handled')
-  }
+  // handleSubmit(ev){
+  //   console.log('submit being handled')
+  // }
 
   render() {
     const {user} = this.props;
+    console.log(user)
     const {handleChange, handleSubmit }= this
     
     return (
@@ -41,26 +44,31 @@ class UpdateProfile extends Component {
       // <div >Hello world</div>)}}
       <div>
         <h3 style={{marginTop: "200px"}}>
-          {user.first_name}{user.last_name}
+          {user.first_name}{' '}{user.last_name}
           </h3>
            <div>
-           <form style={userStyles} onSubmit={handleSubmit}>
+           <div style={userStyles}>
              <div style={{ margin: '20px' }}>
              <h2></h2>
                <h3>Personal Info</h3>
                <div className="form-group">
-                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button onSubmit={() => { this.props.dispatchUpdateCostum(this.state.costumeId, { price: this.state.price }); }}>Update</button>
+                 <form onSubmit={() => {this.props.updateUser(user.id, { first_name: this.state.first_name }); }}>
+                 <input type="text" className="form-control" id="firstName" placeholder={user.first_name} name="first_name" onChange={handleChange} value={this.state.first_name } /><button type = 'submit' >Update</button></form>
                </div>
                <div className="form-group">
-                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button>Update</button>
+               <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.last_name }); }}>
+                 <input type="text" className="form-control" id="lastName" placeholder={user.last_name} name="last_name" onChange={handleChange} value={this.state.last_name} /><button type = "submit">Update</button>
+                 </form>
                </div>
                <hr />
                <h3>Contact Info</h3>
                <div className="form-group">
-                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button>Update</button>
+               <form onSubmit={() => {this.props.updateUser(user.id, { phone: this.state.phone }); }}>
+                 <input style ={{width: "300px"}} type="text" className="form-control" id="phoneNumber" placeholder={user.phone} name="phone" onChange={handleChange} value={this.state.phone} /><button type = "submit">Update</button></form>
                </div>
                <div className="form-group">
-                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button>Update</button>
+                 <form onSubmit={() => {this.props.updateUser(user.id, { last_name: this.state.last_name }); }}></form>
+                 <input type="email" className="form-control" id="email" autoComplete="email" placeholder={user.email} name="email" onChange={handleChange} value={this.state.email} /><button type = "submit">Update</button>
                </div>
                <hr />
                <h3>Create New Password</h3>
@@ -69,7 +77,7 @@ class UpdateProfile extends Component {
                </div>
                <button type="submit" className="btn btn-primary"> Update All</button>
              </div>
-           </form>
+           </div>
          </div>
          <div>
       </div>
@@ -84,7 +92,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getUser: () => dispatch(getUser())
+  getUser: () => dispatch(getUser()),
+  updateUser: (userId, changeObject) => dispatch(updateUser(userId, changeObject))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateProfile);
