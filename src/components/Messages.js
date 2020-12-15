@@ -57,14 +57,13 @@ class Messages extends Component{
                 {
                    allMessages.map(message => {
                         return (
-                            message.length !== 0?
-                            <p key={nr++}>{message}</p>:null
+                            <p key={nr++}>{message}</p>
                         )
                     })
                 }
             </div>
             <form onSubmit={handleSubmit}>
-                <input type='text' id='message-input' onChange={handleChange} value={message} />
+                <input type='text' id='message-input' autoComplete="off" onChange={handleChange} value={message} />
                 <button type='submit' id='send-button'>Send</button>
             </form>
             <h4 onClick={oppenMessage}>{`${chat.first_name} ${chat.last_name}`}</h4>

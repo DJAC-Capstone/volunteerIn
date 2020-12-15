@@ -57,8 +57,8 @@ class Chat extends Component {
         </div>
         <button onClick={()=>this.oppenMessage()}>Messages</button>
           {
-            openedChats.length && openedChats.map(chat => (
-              <Messages chat={chat} />
+            openedChats.length > 0 && openedChats.map(chat => (
+              <Messages chat={chat} key={chat.id} />
             ))
           }
       </div>
