@@ -20,6 +20,9 @@ class Events extends Component {
 		await this.props.getEvents();
 		await this.props.getUser()
 	}
+	editEventButton(){
+		window.location.hash=`#/editEvent`
+	}
 	componentDidUpdate(prevProps){
         if(this.props.user.events === 'undefined'|| prevProps.user.id !== this.state.user.id){
 			this.getArr()

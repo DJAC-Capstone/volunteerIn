@@ -8,10 +8,13 @@ const path = require('path');
 const chalk = require('chalk');
 const volleyball = require('volleyball');
 const cookieParser = require('cookie-parser');
+const bodyParser=require('body-parser')
 const authMiddleware = require('./middleware/auth');
 
 // logging middleware
-app.use(volleyball);
+app.use(volleyball); 
+
+app.use(bodyParser.raw({  type: 'image/jpg',  limit: '10mb'}));
 
 // body pasing middleware
 
@@ -25,7 +28,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, './public/index.html'));
+	res.sendFile(path.join(__dirname, './public/index.html')); // './public/index.html'
 });
 
 

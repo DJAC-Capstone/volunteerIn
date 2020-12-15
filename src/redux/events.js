@@ -1,6 +1,7 @@
 import axios from 'axios';
 const GET_EVENTS = 'GET_EVENTS';
 const CREATE_EVENT = 'CREATE_EVENT';
+const UPDATE_EVENT='UPDATE_EVENT'
 const SINGLE_EVENT = 'SINGLE_EVENT'
 
 const initialState = {
@@ -36,7 +37,14 @@ export const getEvents = () => {
     const res = await axios.post('/api/events/create', infoObject);
     dispatch(_createEvent(res.data));
   };
-
+  export const _updateEvent = (event) => ({
+    type: UPDATE_EVENT,
+    event,
+  });
+  export const updateEvent = ( event ,id) => async (dispatch) => {
+        const res = await axios.put(`/api/events/${id}/editEvent`, event );
+        dispatch(_updateEvent(res.data));
+      };
   export const _singleEvent = (event) => {
     return {
     type: SINGLE_EVENT,
@@ -68,6 +76,7 @@ export const unFollowEvent = (user, event) => {
       case GET_EVENTS: return { ...state, events: action.events };
       case CREATE_EVENT: return { ...state, event: action.event };
       case SINGLE_EVENT: return { ...state, event: action.event };
+      case UPDATE_EVENT: return { ...state, event: action.event };
       default:
         return state
     }

@@ -11,10 +11,13 @@ import Login from './Login';
 import Events from './Events'
 import Friends from './Friends'
 import CreateEvent from './CreateEvent'
+import Posts from './Posts'
+import EditEvent from './EditEvent'
 import User from './User'
 import SingleEvent from './SingleEvent'
 import FriendProfile from './FriendProfile'
 import UpdateProfile from './UpdateProfile'
+
 
 
 class App extends Component {
@@ -35,7 +38,10 @@ class App extends Component {
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
+						<Route exact path="/events/:id/editEvent" component={EditEvent} />
 						<Route exact path="/createEvent" component={CreateEvent} />
+						<Route exact path="/posts" component={Posts} />
+						{/* <Route exact path="/uploadPhoto" component={UploadPhoto} /> */}
 						<Route exact path="/users/profile/:id" component={User} />
 						<Route exact path="/users/:id" component={FriendProfile} />
 					  	<Route exact path="/updateUser" component={UpdateProfile} />

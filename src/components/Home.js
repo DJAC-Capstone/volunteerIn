@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {getPosts} from '../redux/posts'
 import uuid from 'react-uuid'
-
-
 import  { getEvents } from '../redux/events'
-
 export class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      posts:[],
       events: [],
       allUsers: [],
       userEvents: [],
       img:'0.jpg'
     }
   }
-
   componentDidMount() {
     this.props.fetchEvents()
     if(this.props.allUsers.user.imgURL !== null){
       this.setState({img: this.props.allUsers.user.imgURL })
     }
+    this.props.fetchPosts()
+    this.setState({  posts:this.props.posts})
   }
-
-
-
   render() {
     console.log("props in render", this.props)
     const {user} = this.props.allUsers
@@ -49,6 +46,8 @@ export class Home extends Component {
               <button><Link to = "/createEvent">Create Event</Link></button>
               {/* <button>Upload Photo</button> */}
               <button>Post</button>
+              <button><Link to =  "/updateUser">Update Profile</Link></button>
+              <button><Link to = "/posts">Create Post</Link></button>
             </div>
           </div>
           <div className="last-post">
@@ -63,10 +62,18 @@ export class Home extends Component {
             <p className="post-title">Had a great time with friends volunteering at the soup kitchen</p>
             <img className="image-post" src="https://media.istockphoto.com/photos/people-planting-tree-in-park-picture-id1022255954?k=6&m=1022255954&s=612x612&w=0&h=kGMlSfixvVec2FSsrmoE785K5_m4pPcj0tYl3TdKYvk=" />
           </div>
+          <div >
+         {this.state.posts.map(post=>{
+           console.log(post.imagePreviewUrl)
+              return (<div key={post.id}>
+                  <img src={post.imagePreviewUrl}/>
+                  <h5>{post.comment}</h5>
+                  <img id='new-img'/>
+              </div>)
+            })}
+         </div>
         </div>
-        
         <div className="middle-container">
-
           {user.friends.length === 0 || user.friends === undefined || user.friends === null ?
           <p></p>
           :
@@ -94,23 +101,21 @@ export class Home extends Component {
     )
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     events: state.events.events,
     allUsers: state.users,
-    user: state.users.user
+    user: state.users.user,
+    posts: state.posts.posts,
   }
 }
-
 const mapDispatchToProps = (dispatch) => {
   return {
     // getUser: ()=> dispatch(getUser()),
-    fetchEvents: () => dispatch(getEvents()),
+    fetchEvents: () => dispatch(getEvents()),  
+    fetchPosts: () => dispatch(getPosts()),
     // fetchAllUsers: () => dispatch(getAllUsers()),
     // findUser: (id) => dispatch(findUser(id))
-    
   }
 }
-
 export default connect(mapStateToProps,mapDispatchToProps)(Home)

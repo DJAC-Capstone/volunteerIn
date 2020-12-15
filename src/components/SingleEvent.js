@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { singleEvent, followEvent,unFollowEvent } from '../redux/events';
-import DisplayMaps from './DisplayMap'
+import DisplayMaps from './DisplayMap';
+import { Link } from 'react-router-dom';  
+
 
 class SingleEvent extends Component{
     constructor(){
@@ -72,6 +74,7 @@ class SingleEvent extends Component{
                             <h3>Date: {new Date(event.date).toDateString()}</h3>
                             <h4>Description: {event.description}</h4>
                         </ul>
+                        <div className='button-container'>
                             {
 								arr ?
                                     arr.indexOf(event.id) === -1?
@@ -79,6 +82,8 @@ class SingleEvent extends Component{
                                     <button onClick={()=> this.removeEvent(event)}> Cancel </button>
 							    :null
 							}
+							<Link  to={`${event.id}/editEvent`}><button>Edit</button></Link>
+                        </div>
                     </div>
                 <div className='dataContainer'>
                     <div className="eventLocation">

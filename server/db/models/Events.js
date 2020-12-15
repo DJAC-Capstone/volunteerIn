@@ -49,6 +49,10 @@ const Events = db.define('events', {
   },
   image:{
     type: Sequelize.STRING,
+  },
+  imagePreviewUrl:{
+    type: Sequelize.STRING,
+    // defaultValue: '',   
   }
 });
 
