@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {loginUser, getUser} from '../redux/users'
 import { connect } from 'react-redux'
 
+import {getEvents} from '../redux/events'
+
 class Login extends Component {constructor() {
     super()
     this.state = {
@@ -10,6 +12,10 @@ class Login extends Component {constructor() {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount(){
+    this.props.fetchEvents()
   }
 
   handleChange(ev) {
@@ -44,10 +50,13 @@ class Login extends Component {constructor() {
 }
 
 export default connect(
-	null,
+	(state) => ({
+	  events: state.events,
+	}),
 	(dispatch) => {
 	  return {
     loginUser: (credentials) => dispatch(loginUser(credentials)),
+    fetchEvents: () => dispatch(getEvents()),
     getUser: () => dispatch(getUser())
 	}
   }

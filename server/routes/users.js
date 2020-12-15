@@ -5,7 +5,7 @@ const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ include: [Events] });
     res.send(users);
   } catch (err) {
     next(err);
