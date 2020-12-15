@@ -6,7 +6,6 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
 import NavBar from './NavBar'
-import Chatbox from './Chatbox'
 import Register from './Register';
 import Login from './Login';
 import Events from './Events'
@@ -28,7 +27,6 @@ class App extends Component {
 			<Router>
 				<main>
 					<NavBar />
-					 {/* <Chatbox /> */}
 					<Switch>
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/home" component={Home} />

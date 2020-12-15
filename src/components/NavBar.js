@@ -5,6 +5,8 @@ import { getAllUsers, logoutUser, getUser } from '../redux/users';
 import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
+import Chatbox from './Chatbox'
+
 
 
 class NavBar extends Component {
@@ -29,6 +31,7 @@ class NavBar extends Component {
 					<Login/>:
 					<div>
 						<Friends/>
+					 	<Chatbox />
 						<Link to="/home" >Home</Link>
 						<Link to="/events">Events</Link>
 						<Link to={`/users/profile/${user.id}`}><img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>Hi {user.first_name}</Link>

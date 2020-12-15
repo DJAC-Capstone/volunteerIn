@@ -185,7 +185,7 @@ html> body{
     z-index: 3;
     position: fixed;
     float: left;
-    padding-left: 17rem;
+    padding-left: 20rem;
 }
 .chatBox{
     border: black solid 1px;
@@ -196,7 +196,6 @@ html> body{
     border-top-right-radius: 10px;
     bottom: 2rem;
 }
-
 .chatBox >h4{
     text-align: center;
     border: black solid 1px;
@@ -216,6 +215,7 @@ html> body{
     bottom: -8px;
     left: -8px;
     position: fixed;
+
 }
 .chatBoxClose > form{
     margin-bottom: -1px;
@@ -223,23 +223,9 @@ html> body{
     bottom: -8px;
     left: -8px;
     position: fixed;
-}
 
-.message-history{
-    margin-left: 3rem;
-    margin-top: 2rem;
-    border-radius: 10px;
-    width: 25rem;
-    margin-bottom: 2rem;
-    padding:1rem;
-    height: 23rem;
-    overflow: auto;
-    text-decoration: none;
 }
-
 .showAllUsers{
-    /* padding-top: 1rem; */
-    overflow: auto;
     margin-left: 2rem;
     border: black solid 1px;
     height: 28rem;
@@ -265,7 +251,7 @@ html> body{
 }
 
 .showAllUsers > ul:hover{
-    background-color: rgba(173, 171, 171, 0.876);
+    background-color: rgb(173, 171, 171);
 }
 
 .messages > button{
@@ -276,9 +262,6 @@ html> body{
     width: 28rem;
     position: fixed;
     margin-left: 2rem;
-    height: 3rem;
-    background-color: rgb(169, 169, 169);
-
 }
 
 .chatBox > form {
