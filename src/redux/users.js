@@ -7,7 +7,7 @@ const SIGN_UP = 'SIGN_UP';
 const FIND_USER='FIND_USER';
 const FOLLOW_USER = 'FOLLOW_USER';
 const LOGOUT_USER = 'LOGOUT_USER';
-
+const UPDATE_USER = 'UPDATE_USER';
 
 const initialState = {
   user: {},
@@ -92,6 +92,24 @@ const followFrined = (id,arr) => async (dispatch) => {
   dispatch(_followFrined(res.data));
 };
 
+
+  function _updateUser(updatedUser) {
+    return {
+      type: UPDATE_USER,
+      updatedUser,
+    };
+  }
+  
+  export function updateUser(userId, changeObject) {
+    console.log('updated user being called');
+    return async (dispatch) => await axios
+      .put(`/api/users/${userId}`, changeObject)
+      .then((res) => {
+        console.log('axios update response: ', res.data[1][0]);
+        dispatch(_updateUser(res.data[1][0]));
+      })
+      .catch((e) => console.log(e));
+}
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {

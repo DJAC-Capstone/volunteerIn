@@ -20,9 +20,7 @@ export class Home extends Component {
     this.props.fetchEvents()
   }
 
-  createEventButton () {
-    window.location.hash = "#/createEvent"
-  }
+
 
   render() {
     console.log("props in render", this.props)
@@ -44,9 +42,14 @@ export class Home extends Component {
           <div className="user-post-container">
             <input placeholder="Post"></input>
             <div className="other-type-of-posts-container">
+
+              <button><Link to = "/createEvent">Create Event</Link></button>
+              <button><Link to =  "/updateUser">Update Profile</Link></button>
+
               <button onClick = {this.createEventButton}>Create Event</button>
               <button>Upload Photo</button>
               <button>Post</button>
+
             </div>
           </div>
           <div className="last-post">

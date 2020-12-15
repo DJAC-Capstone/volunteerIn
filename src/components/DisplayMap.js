@@ -6,8 +6,8 @@ import { MAP_API } from './secrets'
 const containerStyle = {
   margin: "1rem",
   border:"black 1px solid",
-  width: "25rem",
-  height: "25rem",
+  width: "55rem",
+  height: "35rem",
 };
  
 function DisplayMaps({event}) {
