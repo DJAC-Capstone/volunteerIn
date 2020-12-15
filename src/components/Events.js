@@ -63,7 +63,7 @@ class Events extends Component {
 				{
 					events.map(event => (
 						<div className='oneEvent' key={event.id}>
-							<img src={`https://d3n8a8pro7vhmx.cloudfront.net/lwvmaryland/pages/2024/attachments/original/1506612360/VOLUNTEER_%281%29.png?1506612360`}/>
+							<img src={event.image}/>
 							<ul>
 								<Link to={`/events/${event.id}`}>{event.title}</Link>
 								<h5>{event.city},{' '}{event.state}{' '}</h5>

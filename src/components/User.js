@@ -35,13 +35,14 @@ export class User extends Component {
                     <h2>{user.first_name} {user.last_name}</h2>
                     <h4>Friends: {friends !==  null ? friends.length: 0}</h4>
                     <h4>Events: {events.length}</h4>
+                    <button><Link to =  "/updateUser">Update Profile</Link></button>
                 </div>   
                 <div className="activities">
                         {events.map(event =>
                             {
                             return (
                             <div className='oneEvent-users-profile' key={event.id}>
-                                <img src={user.imgURL}/>
+                                <img src={event.image}/>
                                 <ul>
                                     <Link to={`/events/${event.id}`}>{event.title}</Link>
                                     <li>{event.description}</li>

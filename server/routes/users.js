@@ -35,6 +35,24 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.put('/:id', async (req, res, next) => {
+  try {
+  const updatedUser = await User.update(
+    {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      phone: req.body.phone,
+      email: req.body.email,
+      password: req.body.password
+    },
+    { returning: true, where: { id: req.params.id} },
+  );
+  res.send(updatedUser);
+} catch (err) {
+  next(err);
+}
+});
+
 router.delete('/:id', async (req, res, next) => {
   try {
     const singleUser = await User.findByPk(req.params.id);
@@ -46,7 +64,7 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 
-router.put('/follow', async (req, res, next) => {
+router.put('/follow/frined', async (req, res, next) => {
   try {
     const followedUser = await User.findByPk(req.body.id);
     const user=await followedUser.update({friends: req.body.arr });    

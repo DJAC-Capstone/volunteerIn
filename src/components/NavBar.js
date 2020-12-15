@@ -16,7 +16,6 @@ class NavBar extends Component {
 	  }
 	async handleLogout(){
 		await this.props.logoutUser()
-		this.props.getUser()
 		window.location.hash = "#/"
 	  }
 

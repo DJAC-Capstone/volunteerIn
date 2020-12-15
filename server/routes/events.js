@@ -38,7 +38,6 @@ router.put('/:id', async (req, res, next) => {
 // create event
 router.post('/create', async (req, res, next) => {
   try {
-    console.log(req.body);
     const { title, description, date, city, state } = req.body
     const newEvent = await Events.create(
       {

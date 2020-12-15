@@ -24,9 +24,7 @@ export class Home extends Component {
     }
   }
 
-  createEventButton () {
-    window.location.hash = "#/createEvent"
-  }
+
 
   render() {
     console.log("props in render", this.props)
@@ -43,13 +41,13 @@ export class Home extends Component {
         <div className="left-container">
           <div className="profile-picture">
             <img src={this.state.img}/>
-            <Link to={`/users/profile/${user.id}`}>{`${user.first_name}${user.last_name}`}</Link>
+            <Link to={`/users/profile/${user.id}`}>{`${user.first_name} ${user.last_name}`}</Link>
           </div>
           <div className="user-post-container">
             <input placeholder="Post"></input>
             <div className="other-type-of-posts-container">
-              <button onClick = {this.createEventButton}>Create Event</button>
-              <button>Upload Photo</button>
+              <button><Link to = "/createEvent">Create Event</Link></button>
+              {/* <button>Upload Photo</button> */}
               <button>Post</button>
             </div>
           </div>
@@ -87,7 +85,6 @@ export class Home extends Component {
                   </div>
                   }
                 </div>
-                  )
               </div>
             </div>
           )

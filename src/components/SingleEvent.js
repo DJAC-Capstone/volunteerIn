@@ -63,15 +63,14 @@ class SingleEvent extends Component{
     render(){
 		const {arr} =this.state
         const {event} = this.state
-        console.log(event);
-
         return (
             <div className="singleeventContainer">
-                        <img src={`https://d3n8a8pro7vhmx.cloudfront.net/lwvmaryland/pages/2024/attachments/original/1506612360/VOLUNTEER_%281%29.png?1506612360`}/>
+                        <img src={event.image}/>
                     <div className='titleContainer'>   
                         <ul>
                             <h2>{event.title}</h2>
-                            <h4>Date: {new Date(event.date).toDateString()}</h4>
+                            <h3>Date: {new Date(event.date).toDateString()}</h3>
+                            <h4>Description: {event.description}</h4>
                         </ul>
                             {
 								arr ?
@@ -82,14 +81,8 @@ class SingleEvent extends Component{
 							}
                     </div>
                 <div className='dataContainer'>
-                    <div className="description">
-                        <h4>Details</h4>
-                        <p>{event.description}</p>
-                    </div> 
                     <div className="eventLocation">
-                        <h4>Location</h4>
-                        <h5>{event.city}</h5>
-                        <h5>{event.state}</h5>
+                  <h4>Location: {' '}{event.city}, {''}{event.state}</h4>
                         <div>
                         <DisplayMaps event ={event}/>
                         </div>
