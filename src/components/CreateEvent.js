@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {userStyles1,img} from '../utils/userStyles'
 import {createEvent} from '../redux/events'
 
+import { getEvents } from '../redux/events';
+
+
 class CreateEvent extends Component {
   constructor() {
     super();
@@ -18,8 +21,9 @@ class CreateEvent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  //   
-  // }
+  componentDidMount(){
+    this.props.fetchEvents()
+  }
 
   handleChange(ev) {
     this.setState({      
@@ -77,8 +81,9 @@ const {handleChange, handleSubmit} = this
 }
 
 export default connect(
-  null,
+  (state)=>{events: state.events},
   (dispatch) => ({
     createEvent: (infoObject) => dispatch(createEvent(infoObject)),
+    fetchEvents: ()=> dispatch(getEvents())
   }),
 )(CreateEvent);

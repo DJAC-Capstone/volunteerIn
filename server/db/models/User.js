@@ -23,6 +23,11 @@ const User = db.define('user', {
       isAlpha: true,
     },
   },
+
+  imgURL: {
+    type: STRING,
+  },
+
   email: {
     type: STRING,
     unique: true,
@@ -34,6 +39,7 @@ const User = db.define('user', {
   },
   friends: {
     type: ARRAY(Sequelize.INTEGER),
+    defaultValue:[1]
   },
   gender: {
     type: STRING,

@@ -30,10 +30,10 @@ class Friends extends Component {
   
     handleSubmit (e) {
       e.preventDefault()
+      this.props.findUser()
     }
 
     addFriend(user,friendId){
-
       if(user.friends === null){
         const arr=[friendId]
         this.setState({username: ''})
@@ -43,10 +43,11 @@ class Friends extends Component {
         this.setState({username: ''})
         this.props.followFrined(user.id, arr)
       }
-   
     }
+
     getFriendProfile(id){
-        this.setState({username: ''})
+      console.log("usernameeee",this.state)
+      this.setState({username: ''})
       this.props.findUser(id)
     }
     unFollow(user,friendId){
@@ -75,15 +76,16 @@ class Friends extends Component {
                 {
                 users.map( user => {
                   if (user.first_name.toLowerCase().indexOf(username.toLowerCase()) > -1 && username!== '') {
+                    console.log("userrr", user)
                       return (
                         <div key ={user.id}>
-                          <img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>
+                          <img src={user.imgURL}/>
                           <Link to={`/users/${user.id}`} onClick={() =>this.getFriendProfile(user.id)}>{user.first_name}</Link>
                           {         
                           logedInUser.friends?                
                             logedInUser.friends.indexOf(user.id) > -1 ?
                             <button onClick={()=>this.unFollow(this.props.logedInUser, user.id)}>Unfollow</button>:
-                            <button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
+                            <button onClick={(ev)=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
                             :<button onClick={()=>this.addFriend(this.props.logedInUser, user.id)}>Follow</button>
                           }
                         </div>

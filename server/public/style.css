@@ -5,75 +5,115 @@ html> body{
     text-align: center;
 }
 
+/* ---Home---- */
 
 .main-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    /* align-content: stretch; */
     padding: 20px;
     
 }
 
 .left-container {
     display: flex;
-    height: 400px;
     flex-direction: column;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     padding-right: 50px;
-    justify-content: center;
-    margin: 20px;
-    margin-top: 150px;
+    margin-top: 100px;
+    width: 500px;
+    
+
+}
+
+.left-container > * {
+    padding: 20px;
+   
+    
+}
+
+.profileImg-name > a {
+    margin: 5px;
+    font-size: 5rem;
+    width: 200px;
     padding: 20px;
     border-width: 2px;
     border-style: solid;
     border-color: grey;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    
+}
+.profile-picture{
+    display: flex;
+    height: 300px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: #f8f8f8;
+    border-color: grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.left-container p {
-    font-size: 20px;
+.profile-picture > a{
+    text-decoration: none;
+    font-size: 3rem;
+}
+
+.profile-picture > img {
+    border-radius: 50%;
+    height: 200px;
     width: 200px;
-    text-align: center;
 }
 
 .main-container img{
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
+  
 }
 
 .user-post-container {
-    padding: 20px;
+    background-color: #f8f8f8;
+    margin-top: 10px;;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 500px;
+    width: 100%;
     height: 100px;
-    padding: 10px;
-    border: solid 1px grey;
+    padding: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+    /* border: solid 1px grey; */
     /* background-color: #f8f8f8; */
 }
 
 .user-post-container input{
     text-align: center;
     font-size: large;
+    width: 100%;
     
 }
 
 .other-type-of-posts-container {
+    
     padding-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+  
     
 }
 
-/* -------- */
-
-.middle-container {
+.last-post {
     background-color: #f8f8f8;
-    margin: 20px;
+
+/*     margin: 20px;
     margin-left: auto;
     margin-right: auto;
     border-color:grey;
@@ -85,29 +125,119 @@ html> body{
 .other-users-post-container {
     padding: 10px;
     margin: 20px;
-;
+; */
 
+
+    margin: 10px;
+    text-align: center;
+    height:400px;
+    padding: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}  
+
+.last-post img {
+  height: 300px;
+  width: 300px;
+} 
+
+.post-title{
+    font-size: large;
+    font-weight: bold;
+}
+
+.profile-pic {
+    margin-top: 20px;
 }
 
 .profile-pic-and-name-container {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    background-color: #f8f8f8;
+    justify-content: space-evenly;
+    align-items: center;
+
+   
+
 }
 
-
+.profile-pic-and-name-container > div {
+    width: 300px;
+}
 
 .profile-pic-and-name-container img{
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 300px;
+    max-width: 300px;
     border: solid 1px black;
     border-radius: 50%;
+    margin: 10px;
+
 }
 
-.profile-pic-and-name-container div {
-    padding: 10px;
+.profileImg-name {
+    background-color:#f8f8f8;
 }
+
+.profileImg-name > img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 400px;
+    max-width: 400px;
+    border: solid 1px black;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+
+
+
+/* -------- */
+
+.middle-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    width:700px;
+    margin-top:100px
+    
+}
+
+/* .middle-container > *{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    width:700px;
+   
+} */
+
+.middle-container > div{
+    padding: 25px;
+    background-color: #f8f8f8;
+    margin: 10px;
+    
+
+}
+
+.other-users-post-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: black solid 5px ; */
+    padding: 20px;
+    height: 300px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+
+
 
 .other-users-post-text .full-name {
     font-weight: 900;
@@ -272,6 +402,7 @@ html> body{
 
 }
 /* ------------------NavBar-------------------- */
+
 #navBar {
     top: 0;
     z-index: 1;
@@ -284,7 +415,14 @@ html> body{
     background-image: url(./volunteer-bg.jpg);
     background-repeat: no-repeat;
     background-size: auto;
+    background-color: #f8f8f8;
 }
+
+a {
+    color: #f8f8f8  ;
+}
+
+
 #navBar > h1 {
     margin: 0.5rem;
 }
@@ -335,7 +473,7 @@ html> body{
     font-size: 25px;
     color: black;
 }
-#navBar > div >a>img{
+#navBar > div > a > img{
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
@@ -442,8 +580,11 @@ html> body{
   }
   .oneEvent{
     margin: 1.5rem;
-    height: 28rem;
-    width: 30rem;
+    /* height: 28rem; */
+    /* width: 30rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     border: black 1px solid;
     border-radius: 10px;
     padding: 1rem;
