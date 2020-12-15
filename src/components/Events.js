@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { eventStyles } from '../utils/userStyles';
+// import { eventStyles } from '../utils/userStyles';
 import { getEvents } from '../redux/events';
 import { Link } from 'react-router-dom';  
 

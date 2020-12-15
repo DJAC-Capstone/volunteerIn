@@ -3,7 +3,10 @@ import {connect} from 'react-redux'
 import {userStyles} from '../utils/userStyles'
 import {createEvent} from '../redux/events'
 
-class CreateEvent extends Component {
+export class CreateEvent extends Component {
+  
+   
+
   constructor() {
     super();
     this.state = {
@@ -24,6 +27,7 @@ class CreateEvent extends Component {
     this.setState({      
       [ev.target.name]: ev.target.value,
     });
+    console.log(ev.target.value)
   }
 
   async handleSubmit(ev) {

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUser } from '../redux/users';
-// import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { HashRouter as Router, Route, Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 import Home from './Home';
@@ -13,9 +12,11 @@ import Login from './Login';
 import Events from './Events'
 import Friends from './Friends'
 import CreateEvent from './CreateEvent'
+import Posts from './Posts'
 import EditEvent from './EditEvent'
+import User from './User'
 import SingleEvent from './SingleEvent'
-import UploadPhoto from './UploadPhoto'
+
 
 
 class App extends Component {
@@ -26,21 +27,23 @@ class App extends Component {
 	render() {
 		return (
 			<Router>
-				<div>
-				<Route render={() => <NavBar />} />
-				<Switch>
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/home" component={Home} />
-					<Route exact path="/register" component={Register} />
-					<Route exact path="/chat" component={Chatbox} />
-          <Route exact path="/events" component={Events} />
-					<Route exact path="/friends" component={Friends} />
-          <Route exact path="/createEvent" component={CreateEvent} />
-		  <Route exact path="/:id/editEvent" component={EditEvent} />
-		  <Route exact path="/:id" component={SingleEvent} />
-		  <Route exact path="/:id/uploadPhoto" component={UploadPhoto} />
-				</Switch>
-				</div>
+				<main>
+					<NavBar />
+					 {/* <Chatbox /> */}
+					<Switch>
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/home" component={Home} />
+						<Route exact path="/register" component={Register} />
+						<Route exact path="/friends" component={Friends} />
+						<Route exact path="/events" component={Events} />
+						<Route exact path="/:id/editEvent" component={EditEvent} />
+						<Route exact path="/createEvent" component={CreateEvent} />
+						<Route exact path="/posts" component={Posts} />
+						<Route exact path="/:userName" component={User} />
+						<Route exact path = "/events/:id" component = { SingleEvent } />
+						{/* <Route exact path="/uploadPhoto" component={UploadPhoto} /> */}
+					</Switch>
+				</main>
 			</Router>
 		);
 	}

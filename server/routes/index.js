@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 router.use('/events', require('./events'));
 
+router.use('/posts', require('./posts'));
+
 router.use('/users', require('./users'));
 
 router.use('/login', require('./login'));

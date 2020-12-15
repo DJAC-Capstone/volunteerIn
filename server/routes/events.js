@@ -43,7 +43,7 @@ router.put('/:id/editEvent', async (req, res, next) => {
 router.post('/create', async (req, res, next) => {
   try {
     console.log(req.body);
-    const { title, description, date, city, state } = req.body
+    const { title, description, date, city, state,imagePreviewUrl } = req.body
     const newEvent = await Events.create(
       {
         title,
@@ -51,6 +51,7 @@ router.post('/create', async (req, res, next) => {
         date,
         city,
         state,
+        imagePreviewUrl
       });
     res.status(201).send(newEvent);
   } catch (err) {

@@ -155,13 +155,13 @@ const users = [{
 }];
 
 const events = [{
-  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '71026 Corry Plaza', city: 'San Antonio', state: 'Texas', zip_code: '78265', donation: '$602.28', comments: 'Proactive reciprocal projection',photo: '',
+  title: 'NYC Mean Street Clean Up', description: 'Clean these mean New York City Streets', date: '01/01/2021', time: '12:55 AM', duration: 2, street_address: '71026 Corry Plaza', city: 'San Antonio', state: 'Texas', zip_code: '78265', donation: '$602.28', comments: 'Proactive reciprocal projection',
 },
 {
-  title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address: '56 La Follette Circle', city: 'Sacramento', state: 'California', zip_code: '95894', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',photo: '',
+  title: 'Mature Love Session', description: 'Spend some time with some mature citizens!', date: '09/13/2021', time: '5:43 PM', duration: 3.5, street_address: '56 La Follette Circle', city: 'Sacramento', state: 'California', zip_code: '95894', donation: '$1796.30', comments: 'Organized holistic Graphic Interface',
 },
 {
-  title: 'Kids Rockin Saturday ', description: 'Saturday morning fun zone for kids!', date: '06/15/2021', time: '7:14 PM', duration: 3, street_address: '60 Golf Street', city: 'Pompano Beach', state: 'Florida', zip_code: '33064', donation: '$937.45', comments: 'User-centric background structure',photo: '',
+  title: 'Kids Rockin Saturday ', description: 'Saturday morning fun zone for kids!', date: '06/15/2021', time: '7:14 PM', duration: 3, street_address: '60 Golf Street', city: 'Pompano Beach', state: 'Florida', zip_code: '33064', donation: '$937.45', comments: 'User-centric background structure',
 },
 // {
 //   title: 'montes nascetur ridiculus mus vivamus', description: 'iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet', date: '11/19/2021', time: '12:16 AM', duration: 2, street_address: '47 Pepper Wood Hill', city: 'San Jose', state: 'California', zip_code: '95133', donation: '$570.92', comments: 'Business-focused clear-thinking time-frame',
