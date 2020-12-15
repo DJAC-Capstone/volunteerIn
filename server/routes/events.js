@@ -4,7 +4,7 @@ const { Events , User} = require('../db');
 
 router.get('/', async (req, res, next) => {
   try {
-    const events = await Events.findAll();
+    const events = await Events.findAll({ include: [User] });
     res.send(events);
   } catch (err) {
     next(err);
@@ -35,6 +35,9 @@ router.put('/:id/editEvent', async (req, res, next) => {
 
    const event=  await signupEvent.update(req.body);
      res.send(event);
+    // const signupEvent = await Events.findByPk(req.params.id);
+    // await signupEvent.update(req.body);
+    // res.send();
   } catch (ex) {
     next(ex);
   }
@@ -42,8 +45,9 @@ router.put('/:id/editEvent', async (req, res, next) => {
 // create event
 router.post('/create', async (req, res, next) => {
   try {
-    console.log(req.body);
-    const { title, description, date, city, state,imagePreviewUrl } = req.body
+    // console.log(req.body);
+    console.log(req.params.id)
+    const { title, description, date, city, state } = req.body
     const newEvent = await Events.create(
       {
         title,
@@ -54,6 +58,25 @@ router.post('/create', async (req, res, next) => {
         imagePreviewUrl
       });
     res.status(201).send(newEvent);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/follow', async (req, res, next) => {
+  try {
+    const signupEvent = await Events.findByPk(req.body.event.id);
+    await signupEvent.addUsers(req.body.user.id);
+   
+  } catch (err) {
+    next(err);
+  }
+});
+router.post('/unfollow', async (req, res, next) => {
+  try {
+    const signupEvent = await Events.findByPk(req.body.event.id);
+    await signupEvent.removeUser(req.body.user.id);
+   
   } catch (err) {
     next(err);
   }

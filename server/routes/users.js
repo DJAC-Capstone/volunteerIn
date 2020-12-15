@@ -5,15 +5,17 @@ const Events = require('../db/models/Events');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({ include: [Events] });
     res.send(users);
   } catch (err) {
     next(err);
   }
 });
-router.get('/get-user', (req, res, next) => {
+router.get('/get-user', async (req, res, next) => {
   try {
-      res.send(req.user)
+    console.log(req)
+    const singleUser = await User.findByPk(req.user.id, { include: [Events] })
+      res.send(singleUser)
   }
   catch (err) {
       next(err)
@@ -32,6 +34,31 @@ router.get('/:id', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+router.put('/:id', async (req, res, next) => {
+  try {
+  // console.log(req.params);
+  console.log('put is being called');
+ 
+  // const hashed = await bcrypt.hash(password, 10)
+  // console.log(first_name)
+  // const password = req.body.password
+  // const hashedPass = await bcrypt.hash(password, 10)
+  const updatedUser = await User.update(
+    {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      phone: req.body.phone,
+      email: req.body.email,
+      password: req.body.password
+    },
+    { returning: true, where: { id: req.params.id} },
+  );
+  res.send(updatedUser);
+} catch (err) {
+  next(err);
+}
 });
 
 router.delete('/:id', async (req, res, next) => {

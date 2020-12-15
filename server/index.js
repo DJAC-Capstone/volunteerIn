@@ -4,7 +4,6 @@ const express = require('express');
 const socketIo = require('socket.io');
 const socketServer = require('./socketServer');
 const app = express();
-const morgan = require('morgan');
 const path = require('path');
 const chalk = require('chalk');
 const volleyball = require('volleyball');
@@ -23,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(authMiddleware);
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '/public')));

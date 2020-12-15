@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {userStyles} from '../utils/userStyles'
+import {userStyles1,img} from '../utils/userStyles'
 import {createEvent} from '../redux/events'
 
-export class CreateEvent extends Component {
-  
-   
+import { getEvents } from '../redux/events';
 
+
+class CreateEvent extends Component {
   constructor() {
     super();
     this.state = {
@@ -21,7 +21,9 @@ export class CreateEvent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  
+  componentDidMount(){
+    this.props.fetchEvents()
+  }
 
   handleChange(ev) {
     this.setState({      
@@ -46,8 +48,11 @@ export class CreateEvent extends Component {
   render(){
 const {handleChange, handleSubmit} = this
     return (
-      <div>
-        <form style={userStyles} onSubmit={handleSubmit}>
+    <div>
+      <div><img style = {img} src = "./volunteer-hands-image.jpg"/></div>
+      <div className='createEvent'>
+        
+        <form style={userStyles1} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
             <h3>Event Info</h3>
             <div className="form-group">
@@ -71,13 +76,15 @@ const {handleChange, handleSubmit} = this
           </div>
         </form>
       </div>
+      </div>
     );
   }
 }
 
 export default connect(
-  null,
+  (state)=>{events: state.events},
   (dispatch) => ({
     createEvent: (infoObject) => dispatch(createEvent(infoObject)),
+    fetchEvents: ()=> dispatch(getEvents())
   }),
 )(CreateEvent);

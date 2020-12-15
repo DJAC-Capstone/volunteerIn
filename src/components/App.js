@@ -16,6 +16,8 @@ import Posts from './Posts'
 import EditEvent from './EditEvent'
 import User from './User'
 import SingleEvent from './SingleEvent'
+import FriendProfile from './FriendProfile'
+import UpdateProfile from './UpdateProfile'
 
 
 
@@ -25,32 +27,39 @@ class App extends Component {
 		await this.props.getUser()
 	}
 	render() {
+		console.log("app props", this.props)
+
 		return (
 			<Router>
-				<main>
+				{/* <main> */}
 					<NavBar />
 					 {/* <Chatbox /> */}
 					<Switch>
 						<Route exact path="/login" component={Login} />
-						<Route exact path="/home" component={Home} />
+						<Route exact path="/home" component={Home}/>
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/friends" component={Friends} />
 						<Route exact path="/events" component={Events} />
 						<Route exact path="/:id/editEvent" component={EditEvent} />
 						<Route exact path="/createEvent" component={CreateEvent} />
 						<Route exact path="/posts" component={Posts} />
-						<Route exact path="/:userName" component={User} />
-						<Route exact path = "/events/:id" component = { SingleEvent } />
 						{/* <Route exact path="/uploadPhoto" component={UploadPhoto} /> */}
+						<Route exact path="/users/profile/:id" component={User} />
+						<Route exact path="/users/:id" component={FriendProfile} />
+					  	<Route exact path="/updateUser" component={UpdateProfile} />
+						<Route exact path="/events/:id" component = { SingleEvent } />
+          
 					</Switch>
-				</main>
+				{/* </main> */}
 			</Router>
 		);
 	}
 }
 
 export default connect(
-	null,
+	(state) => ({
+		user: state.users.user
+      }),
 	(dispatch) => ({
 	  getUser: () => dispatch(getUser())
 	}),

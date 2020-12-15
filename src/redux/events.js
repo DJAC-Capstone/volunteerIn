@@ -57,6 +57,20 @@ export const singleEvent = (id) => {
         dispatch(_singleEvent(res.data))
     }
 }
+export const followEvent = (user, event) => {
+  return async(dispatch) => {
+      await axios.post(`/api/events/follow`, {user,event})
+      const events  = await axios.get('/api/events');
+      dispatch(_getEvents(events.data));
+  }
+}
+export const unFollowEvent = (user, event) => {
+  return async(dispatch) => {
+      await axios.post(`/api/events/unfollow`, {user,event})
+      const events  = await axios.get('/api/events');
+      dispatch(_getEvents(events.data));
+  }
+}
   export default function eventsReducer(state = initialState, action) {
     switch (action.type) {
       case GET_EVENTS: return { ...state, events: action.events };

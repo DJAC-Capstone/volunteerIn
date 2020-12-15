@@ -41,10 +41,10 @@ class EditEvent extends Component {
 const { handleChange,handleSubmit} = this
 const {event}=this.props;
     return (
-      <div>
+      <div  style={{ marginTop: '100px',marginLeft:'50px' }}>
         <form style={userStyles} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
-            <h3>Event Info</h3>
+            <h3>Edit Event Info</h3>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Title" name="title" onChange={handleChange} value={this.state.title } />
             </div>
@@ -55,7 +55,7 @@ const {event}=this.props;
               <input type="text" className="form-control" placeholder="Date" name="date" onChange={handleChange} value={this.state.date} />
             </div>
             <hr/>
-            <h3>Event Location</h3>
+            <h3>Edit Event Location</h3>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="City" name="city" onChange={handleChange} value={this.state.city} />
             </div>

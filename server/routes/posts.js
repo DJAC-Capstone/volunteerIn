@@ -41,7 +41,7 @@ router.post('/create', async (req, res, next) => {
           file
           
         });
-         fs.writeFileSync(path.join(__dirname, '..', '/public', imagePreviewUrl),req.body.file);
+         //fs.writeFileSync(path.join(__dirname, '..', '/public', imagePreviewUrl),req.body.file);
          //fs.readFileSync(path.join(__dirname, '..', 'gs://volunteerin-a529f.appspot.com/images', imagePreviewUrl));
         
       res.status(201).send(newPost);

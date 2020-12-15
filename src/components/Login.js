@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {loginUser} from '../redux/users'
+import {loginUser, getUser} from '../redux/users'
 import { connect } from 'react-redux'
+
+import {getEvents} from '../redux/events'
 
 class Login extends Component {constructor() {
     super()
@@ -12,20 +14,24 @@ class Login extends Component {constructor() {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount(){
+    this.props.fetchEvents()
+  }
+
   handleChange(ev) {
     this.setState({
       [ev.target.name]: ev.target.value
     })
   }
 
-  async handleSubmit(ev){
+  handleSubmit(ev){
     ev.preventDefault()
-    await this.props.loginUser(this.state)
-    await this.setState({
+    this.props.loginUser(this.state)
+    window.location.hash = "#/home"
+    this.setState({
     email: '',
     password: ''
     })
-    this.props.history.push('/home') 
   }
 
   render(){
@@ -44,10 +50,14 @@ class Login extends Component {constructor() {
 }
 
 export default connect(
-	null,
+	(state) => ({
+	  events: state.events,
+	}),
 	(dispatch) => {
 	  return {
     loginUser: (credentials) => dispatch(loginUser(credentials)),
+    fetchEvents: () => dispatch(getEvents()),
+    getUser: () => dispatch(getUser())
 	}
   }
   )(Login)

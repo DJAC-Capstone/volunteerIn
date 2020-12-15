@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllUsers, logoutUser } from '../redux/users';
+import { getAllUsers, logoutUser} from '../redux/users';
 import Friends from './Friends'
 import Register from './Register';
 import Login from './Login';
+
 
 class NavBar extends Component {
 	constructor() {
@@ -13,6 +14,8 @@ class NavBar extends Component {
 	  }
 	async handleLogout(){
 		await this.props.logoutUser()
+		this.props.getUser()
+		window.location.hash = "#/"
 	  }
 
 	render() {
@@ -28,27 +31,23 @@ class NavBar extends Component {
 						<Friends/>
 						<Link to="/home" >Home</Link>
 						<Link to="/events">Events</Link>
-						<Link to="#"><img src={`https://randomuser.me/api/portraits/women/${Math.floor(Math.random() * (40 - 1) + 1)}.jpg`}/>Hi {user.first_name}</Link>
+						<Link to={`/users/profile/${user.id}`}><img src={user.imgURL}/>Hi {user.first_name}</Link>
 						<i className="fa fa-sign-out fa-3x" onClick={()=>this.handleLogout()}></i>
 					</div>
 				}
 			</nav>	
 				{
-					this.props.user.id === undefined?
+					this.props.user.id === undefined ? (
 					<div id="register-container">
 						<Register/>
 						<div>
 							<h3>About us</h3>
 							<p>
-								Dashboard analytics and reporting provide insight into what drives donations, 
-								and organizations can send personalized email communications through Constant Contact to donors and supporters. 
-								Integrated online forms automatically enter gift information into the donor database, and it can accept and process 
-								recurring donations. Development professionals can use DonorPerfect to track information about donors, prospects, 
-								volunteers, staff and other constituents, 
-								and event managers can use auction management tools to manage silent, live, mobile and online charity auctions.
+								Welcome to VolunteerIn, your volunteer community hub! Here you will be able to create a profile that will include your favorite quotes and interests. You will also be able to create an event you would like to host and see other volunteer events in your area.  You can also follow other users and see what events they have attended and created.
 							</p>
+              <img src = "Volunteering.png"/>
 						</div>
-					</div>: null
+					</div>): null
 				}
 			</div>
 		);
@@ -56,10 +55,11 @@ class NavBar extends Component {
 }
 export default connect(
 	(state) => ({
-	  user:  state.users.user,
+	  user: state.users.user,
 	}),
 	(dispatch) => ({
 	  getAllUsers: () => dispatch(getAllUsers()),
-	  logoutUser: () => dispatch(logoutUser())
+	  logoutUser: () => dispatch(logoutUser()),
+	  getUser: ()=> dispatch(getUser())
 	}),
   )(NavBar);

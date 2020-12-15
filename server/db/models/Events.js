@@ -28,14 +28,18 @@ const Events = db.define('events', {
   coverImageUrl: {
     type: Sequelize.STRING,
   },
-  address: {
+  street_address: {
     type: Sequelize.STRING,
   },
   city: {
     type: Sequelize.STRING,
   },
+ 
   state: {
     type: Sequelize.STRING,
+  },
+  zip_code: {
+    type: Sequelize.STRING
   },
   comments: {
     type: Sequelize.STRING,

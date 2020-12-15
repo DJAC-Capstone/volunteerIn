@@ -89,7 +89,7 @@ class Posts extends Component {
    
       return (
         
-              <div>
+        <div style={{ marginTop: '100px',marginLeft: '50px' }}>
         <form style={userStyles} onSubmit={this._handleSubmit}>
           <div style={{ margin: '20px' }}>
             <h3>UPLOAD PHOTO</h3>
