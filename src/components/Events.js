@@ -20,6 +20,9 @@ class Events extends Component {
 		await this.props.getEvents();
 		await this.props.getUser()
 	}
+	editEventButton(){
+		window.location.hash=`#/editEvent`
+	}
 	componentDidUpdate(prevProps){
         if(this.props.user.events === 'undefined'|| prevProps.user.id !== this.state.user.id){
 			this.getArr()
@@ -69,6 +72,10 @@ class Events extends Component {
 								<h5>{event.city},{' '}{event.state}{' '}</h5>
 								<li>{event.description}</li>
 							</ul>
+							<button>join</button>
+							<Link  to={`${event.id}/editEvent`}params={{event: event.id}}>
+                             <h2>EditEvent</h2>
+		                      </Link>
 							{
 							arr ?
 								arr.indexOf(event.id) === -1?

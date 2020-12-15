@@ -1,60 +1,50 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {userStyles1,img} from '../utils/userStyles'
-import {createEvent} from '../redux/events'
+import {userStyles} from '../utils/userStyles'
+import {updateEvent} from '../redux/events'
 
-import { getEvents } from '../redux/events';
-
-
-class CreateEvent extends Component {
-  constructor() {
-    super();
-    this.state = {
-      title: '',
+class EditEvent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = 
+    {
+        title: '',
       description: '',
       date: '',
       city: '',
-	    state: '',
+        state: '',
+    }
+   
 
-    };  
+   
+      
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  componentDidMount(){
-    this.props.fetchEvents()
-  }
 
-  handleChange(ev) {
-    this.setState({      
-      [ev.target.name]: ev.target.value,
-    });
-    console.log(ev.target.value)
+  async handleChange(ev){
+      ev.preventDefault(ev);
+      this.setState({[ev.target.name]:ev.target.value})
   }
-
   async handleSubmit(ev) {
     ev.preventDefault();
-    await this.props.createEvent({...this.state})	
-      this.setState({
-        title: '',
-        description: '',
-        date: '',
-        city: '',
-        state: '',
-    });	
-    this.props.history.push('/events')
+    console.log(this.state)
+    await this.props.updateEvent(this.state,this.props.match.params.id)	
+  
   }
 
+
   render(){
-const {handleChange, handleSubmit} = this
+
+      
+const { handleChange,handleSubmit} = this
+const {event}=this.props;
     return (
-    <div>
-      <div><img style = {img} src = "./volunteer-hands-image.jpg"/></div>
-      <div className='createEvent'>
-        
-        <form style={userStyles1} onSubmit={handleSubmit}>
+      <div  style={{ marginTop: '100px',marginLeft:'50px' }}>
+        <form style={userStyles} onSubmit={handleSubmit}>
           <div style={{ margin: '20px' }}>
-            <h3>Event Info</h3>
+            <h3>Edit Event Info</h3>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="Title" name="title" onChange={handleChange} value={this.state.title } />
             </div>
@@ -65,26 +55,37 @@ const {handleChange, handleSubmit} = this
               <input type="text" className="form-control" placeholder="Date" name="date" onChange={handleChange} value={this.state.date} />
             </div>
             <hr/>
-            <h3>Event Location</h3>
+            <h3>Edit Event Location</h3>
             <div className="form-group">
               <input type="text" className="form-control" placeholder="City" name="city" onChange={handleChange} value={this.state.city} />
             </div>
             <div className="form-group">
               <input type="text" className="form-control"  placeholder="State" name="state" onChange={handleChange} value={this.state.state} />
             </div>
-            <button type="submit" className="btn btn-primary"> Submit </button>
+            <button type="submit" className="btn btn-primary"> Save Changes </button>
           </div>
         </form>
-      </div>
       </div>
     );
   }
 }
 
-export default connect(
-  (state)=>{events: state.events},
-  (dispatch) => ({
-    createEvent: (infoObject) => dispatch(createEvent(infoObject)),
-    fetchEvents: ()=> dispatch(getEvents())
-  }),
-)(CreateEvent);
+
+const mapStateToProps=({event})=>{
+  
+   
+    return{
+        event,
+        
+       
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    
+    return {
+      updateEvent: (event,id) => dispatch(updateEvent(event,id)),
+     
+    };
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(EditEvent);

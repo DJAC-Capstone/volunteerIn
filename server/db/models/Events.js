@@ -47,6 +47,10 @@ const Events = db.define('events', {
   donation: {
     type: Sequelize.STRING,
   },
+  imagePreviewUrl:{
+    type: Sequelize.STRING,
+    defaultValue: '',
+  }
 });
 
 module.exports = Events;

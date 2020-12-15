@@ -94,6 +94,18 @@ html> body{
     /* background-color: #f8f8f8; */
 }
 
+.post-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: solid 1px grey;
+    /* background-color: #f8f8f8; */
+}
+
 .user-post-container input{
     text-align: center;
     font-size: large;
