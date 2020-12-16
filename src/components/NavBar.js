@@ -24,7 +24,7 @@ class NavBar extends Component {
 		return (
 			<div>
 			<nav id='navBar'>
-				<h1 className="brand">VolunteerIn</h1>						
+				<h1 className="brand">volunteer<span>In </span></h1>						
 				{
 					user.id === undefined?
 					<Login/>:

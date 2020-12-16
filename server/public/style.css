@@ -1,17 +1,37 @@
-html> body{
-    background-color: rgba(246, 214, 163, 0.287);
+
+body{
+    background-image: url(./background.png);
+    font-family: montserrat, sans-serif;
+
 }
+
 .active > a {
     text-align: center;
 }
 
+
+
 /* ---Home---- */
 
+.brand {
+    /* font-weight: 900; */
+    font-family:'Courier New', Courier, monospace;
+    color: #f8f8f8;
+}
+
+.brand span {
+    font-weight: 900;
+    font-size: 1.5em;
+    color: #ffff00;
+}
+
+
+
 .main-container {
+   
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* align-content: stretch; */
     padding: 20px;
     
 }
@@ -29,11 +49,12 @@ html> body{
 
 .left-container > * {
     padding: 20px;
-   
-    
+
 }
 
 .profileImg-name > a {
+    background-color: rgba(255, 255, 255, 0.671);
+
     margin: 5px;
     font-size: 5rem;
     width: 200px;
@@ -62,7 +83,7 @@ html> body{
 
 .profile-picture > a{
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2.5em;
 }
 
 .profile-picture > img {
@@ -116,19 +137,35 @@ html> body{
     display: flex;
     justify-content: space-around;
   
+
+  
     
 }
 
 .last-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #f8f8f8;
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
     border-color:grey;
     border-width: 2px;
-    border-style: solid
+    border-style: solid;
+
+    
 
 }
+
+.last-post p {
+    width: 100%;
+    border-bottom: solid 1px black;
+    text-align: center;
+
+}
+
 
 .other-users-post-container {
     padding: 10px;
@@ -142,16 +179,20 @@ html> body{
     border-color: grey;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
 }  
 
 .last-post img {
   height: 300px;
   width: 300px;
+  border-radius: 10%;
 } 
 
 .post-title{
-    font-size: large;
-    font-weight: bold;
+    width: 100%;
+    background-color: black;
+    font-size: 1.25em;
+    color: white;
 }
 
 .profile-pic {
@@ -170,7 +211,14 @@ html> body{
 
 .profile-pic-and-name-container > div {
     width: 300px;
+    font-size: 1.25em;
 }
+
+.profile-pic-and-name-container > div > a{
+    width: 300px;
+    font-size: 1.5em;
+}
+
 
 .profile-pic-and-name-container img{
     max-height: 300px;
@@ -230,7 +278,9 @@ html> body{
     border-style: solid;
     border-color: grey;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    box-shadow: 2 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 
 }
 
@@ -247,6 +297,16 @@ html> body{
 .other-users-post-text .event-description {
     height: 200px;
     width: 400px;
+}
+
+.profile-pic > div {
+    color:red
+}
+
+.messages > a {
+    text-decoration: none;
+    background-color: #ffff00;
+    color: white;
 }
 
 /* ---user-profile-page---- */
@@ -438,22 +498,28 @@ html> body{
 /* ------------------NavBar-------------------- */
 
 #navBar {
-    top: 0;
-    z-index: 1;
-    position: fixed;
-    align-items: center;
-    height: 60px;
-    width: 100%;
+
+    /* top: 0;
+    z-index: 1; */
+
+
+    
+    /* position: fixed; */
+    /* height: 60px; */
+    width: 100%; 
     display: flex;
+    flex-direction: row;
     justify-content: space-around;
-    background-image: url(./volunteer-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-color: #f8f8f8;
+    align-items: center;
+    /* background-image: url(./volunteer-bg.jpg); */
+    /* background-repeat: no-repeat; */
+    /* background-size: auto; */
+    background-color:black;
 }
 
-a {
-    color: #f8f8f8  ;
+#navBar a {
+    text-decoration: none;
+    color: #f8f8f8;
 }
 
 
@@ -489,19 +555,24 @@ a {
 
 #navBar > div{
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
     align-items: center; 
-    margin-top: 1rem;
+    color: white;
+    /* margin-top: 1rem; */
 }
+
 #navBar > div >h3{
     margin-top: 0;
+    color: white;
+    
 }
 #navBar > div >i{
     text-align: center;
     margin: 0 1rem 1rem 1rem;
     cursor: pointer;
 }
-#navBar > div >a{
+#navBar > div > a{
     text-align: center;
     margin: 0 1rem 1rem 1rem;
     font-size: 25px;
@@ -638,19 +709,20 @@ a {
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
   }
-  .oneEvent{
+  .oneEvent {
     margin: 1.5rem;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-evenly; */
     border: black 1px solid;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 1rem;
-    box-shadow: 1px 1px 2px black, 0 0 25px rgb(204, 123, 121), 0 0 5px rgb(139, 32, 0);
+    /* bx-shadow: 1px 1px 2px black, 0 0 25px rgb(204, 123, 121), 0 0 5px rgb(139, 32, 0); */
+    background-color: rgba(255, 255, 255, 0.671)
   }
 
   .oneEvent > img{
-    width: 100%;
+    max-width: 100%;
     height: 8rem;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -663,7 +735,7 @@ a {
   }
 
   .oneEvent > ul >a{
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
     font-size: 20px;
     text-transform: capitalize;
   }
@@ -694,3 +766,6 @@ a {
     width: 50rem;
     margin-top: 80px;
   }
+
+
+

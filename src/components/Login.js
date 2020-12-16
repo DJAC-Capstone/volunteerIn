@@ -35,6 +35,7 @@ class Login extends Component {constructor() {
   }
 
   render(){
+    this
     const {handleChange, handleSubmit} = this;
 		return (
       <div id="login-form">

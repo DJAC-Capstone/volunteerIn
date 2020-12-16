@@ -64,28 +64,34 @@ class Events extends Component {
 		return (
 			<div className="allEventsContainer">
 				{
-					events.map(event => (
+				events.map(event => (
 						<div className='oneEvent' key={event.id}>
+						
 							<img src={event.image}/>
-							<ul>
-								<Link to={`/events/${event.id}`}>{event.title}</Link>
-								<h5>{event.city},{' '}{event.state}{' '}</h5>
-								<li>{event.description}</li>
-							</ul>
+							<Link to={`/events/${event.id}`}>{event.title}</Link>
+							<h5>{event.city},{' '}{event.state}{' '}</h5>
+							<p>{event.description}</p>
 							{
-							arr ?
+								arr ?
 								arr.indexOf(event.id) === -1?
 								<button onClick={()=> this.addEvent(event)}> Join </button>:
 								<button onClick={()=> this.removeEvent(event)}> Cancel </button>
-							:null
+								:
+								null
 							}
+		
 						</div>
-					))
+							
+
+						)
+					
+					)
 				}
 			</div>
-		);
-	}
+			)
+		}
 }
+	
 
 export default connect(
 	(state) => {

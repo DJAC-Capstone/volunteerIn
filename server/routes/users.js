@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const chalk = require('chalk');
 const { User, Session } = require('../db');
 const Events = require('../db/models/Events');
 
@@ -11,13 +12,14 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
 router.get('/get-user', async (req, res, next) => {
   try {
     const singleUser = await User.findByPk(req.user.id, { include: [Events] })
-      res.send(singleUser)
+    res.send(singleUser)
   }
   catch (err) {
-      next(err)
+    console.log(chalk.bgYellow(chalk.black("\nNo User Found ...\n")));
   }
 })
 
